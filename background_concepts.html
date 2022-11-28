@@ -1,0 +1,2121 @@
+
+<!DOCTYPE html>
+
+<html lang="python">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Background and Concepts &#8212; FLORIS</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples Index" href="examples.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="python">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-L8RGXZCW3F');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/gch.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FLORIS</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    FLORIS Wake Modeling & Wind Farm Controls
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Background and Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples.html">
+   Examples Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_reference.html">
+   Input File Reference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev_guide.html">
+   Developer's Guide
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="api_docs.html">
+   API Documentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="_autosummary/floris.logging_manager.html">
+     floris.logging_manager
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.logging_manager.configure_console_log.html">
+       floris.logging_manager.configure_console_log
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.logging_manager.configure_file_log.html">
+       floris.logging_manager.configure_file_log
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.logging_manager.LoggerBase.html">
+       floris.logging_manager.LoggerBase
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.logging_manager.TracebackInfoFilter.html">
+       floris.logging_manager.TracebackInfoFilter
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="_autosummary/floris.simulation.html">
+     floris.simulation
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.base.html">
+       floris.simulation.base
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+      <label for="toctree-checkbox-4">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.base.BaseClass.html">
+         floris.simulation.base.BaseClass
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.base.BaseModel.html">
+         floris.simulation.base.BaseModel
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.base.State.html">
+         floris.simulation.base.State
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.farm.html">
+       floris.simulation.farm
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.farm.Farm.html">
+         floris.simulation.farm.Farm
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.floris.html">
+       floris.simulation.floris
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.floris.logging_manager.html">
+         floris.simulation.floris.logging_manager
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.flow_field.html">
+       floris.simulation.flow_field
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.flow_field.FlowField.html">
+         floris.simulation.flow_field.FlowField
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.grid.html">
+       floris.simulation.grid
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+      <label for="toctree-checkbox-8">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.grid.FlowFieldGrid.html">
+         floris.simulation.grid.FlowFieldGrid
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.grid.FlowFieldPlanarGrid.html">
+         floris.simulation.grid.FlowFieldPlanarGrid
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.grid.Grid.html">
+         floris.simulation.grid.Grid
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.grid.TurbineGrid.html">
+         floris.simulation.grid.TurbineGrid
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.solver.html">
+       floris.simulation.solver
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+      <label for="toctree-checkbox-9">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.solver.calculate_area_overlap.html">
+         floris.simulation.solver.calculate_area_overlap
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.solver.cc_solver.html">
+         floris.simulation.solver.cc_solver
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.solver.full_flow_cc_solver.html">
+         floris.simulation.solver.full_flow_cc_solver
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.solver.full_flow_sequential_solver.html">
+         floris.simulation.solver.full_flow_sequential_solver
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.solver.full_flow_turbopark_solver.html">
+         floris.simulation.solver.full_flow_turbopark_solver
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.solver.sequential_solver.html">
+         floris.simulation.solver.sequential_solver
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.solver.turbopark_solver.html">
+         floris.simulation.solver.turbopark_solver
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.turbine.html">
+       floris.simulation.turbine
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.Ct.html">
+         floris.simulation.turbine.Ct
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.average_velocity.html">
+         floris.simulation.turbine.average_velocity
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.axial_induction.html">
+         floris.simulation.turbine.axial_induction
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.power.html">
+         floris.simulation.turbine.power
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.PowerThrustTable.html">
+         floris.simulation.turbine.PowerThrustTable
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.turbine.Turbine.html">
+         floris.simulation.turbine.Turbine
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.wake.html">
+       floris.simulation.wake
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake.WakeModelManager.html">
+         floris.simulation.wake.WakeModelManager
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.wake_combination.html">
+       floris.simulation.wake_combination
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_combination.fls.html">
+         floris.simulation.wake_combination.fls
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_combination.max.html">
+         floris.simulation.wake_combination.max
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_combination.sosfs.html">
+         floris.simulation.wake_combination.sosfs
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.wake_deflection.html">
+       floris.simulation.wake_deflection
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_deflection.gauss.html">
+         floris.simulation.wake_deflection.gauss
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_deflection.jimenez.html">
+         floris.simulation.wake_deflection.jimenez
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_deflection.none.html">
+         floris.simulation.wake_deflection.none
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.wake_turbulence.html">
+       floris.simulation.wake_turbulence
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_turbulence.crespo_hernandez.html">
+         floris.simulation.wake_turbulence.crespo_hernandez
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_turbulence.none.html">
+         floris.simulation.wake_turbulence.none
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.simulation.wake_velocity.html">
+       floris.simulation.wake_velocity
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_velocity.cumulative_gauss_curl.html">
+         floris.simulation.wake_velocity.cumulative_gauss_curl
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_velocity.gauss.html">
+         floris.simulation.wake_velocity.gauss
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_velocity.jensen.html">
+         floris.simulation.wake_velocity.jensen
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_velocity.none.html">
+         floris.simulation.wake_velocity.none
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.simulation.wake_velocity.turbopark.html">
+         floris.simulation.wake_velocity.turbopark
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="_autosummary/floris.tools.html">
+     floris.tools
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+    <label for="toctree-checkbox-16">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.cut_plane.html">
+       floris.tools.cut_plane
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.calculate_power.html">
+         floris.tools.cut_plane.calculate_power
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.calculate_wind_speed.html">
+         floris.tools.cut_plane.calculate_wind_speed
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.change_resolution.html">
+         floris.tools.cut_plane.change_resolution
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.get_plane_from_flow_data.html">
+         floris.tools.cut_plane.get_plane_from_flow_data
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.get_power_profile.html">
+         floris.tools.cut_plane.get_power_profile
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.interpolate_onto_array.html">
+         floris.tools.cut_plane.interpolate_onto_array
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.nudge_outward.html">
+         floris.tools.cut_plane.nudge_outward
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.project_onto.html">
+         floris.tools.cut_plane.project_onto
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.rescale_axis.html">
+         floris.tools.cut_plane.rescale_axis
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.set_origin.html">
+         floris.tools.cut_plane.set_origin
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.wind_speed_profile.html">
+         floris.tools.cut_plane.wind_speed_profile
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.cut_plane.CutPlane.html">
+         floris.tools.cut_plane.CutPlane
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.floris_interface.html">
+       floris.tools.floris_interface
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.floris_interface.generate_heterogeneous_wind_map.html">
+         floris.tools.floris_interface.generate_heterogeneous_wind_map
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.floris_interface.FlorisInterface.html">
+         floris.tools.floris_interface.FlorisInterface
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.floris_interface_legacy_reader.html">
+       floris.tools.floris_interface_legacy_reader
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+      <label for="toctree-checkbox-19">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.floris_interface_legacy_reader.FlorisInterfaceLegacyV2.html">
+         floris.tools.floris_interface_legacy_reader.FlorisInterfaceLegacyV2
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.interface_utilities.html">
+       floris.tools.interface_utilities
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+      <label for="toctree-checkbox-20">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.interface_utilities.get_params.html">
+         floris.tools.interface_utilities.get_params
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.interface_utilities.get_prop_values.html">
+         floris.tools.interface_utilities.get_prop_values
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.interface_utilities.get_props_subset.html">
+         floris.tools.interface_utilities.get_props_subset
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.interface_utilities.print_prop_docs.html">
+         floris.tools.interface_utilities.print_prop_docs
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.interface_utilities.print_props.html">
+         floris.tools.interface_utilities.print_props
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.interface_utilities.set_params.html">
+         floris.tools.interface_utilities.set_params
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.interface_utilities.show_params.html">
+         floris.tools.interface_utilities.show_params
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.layout_functions.html">
+       floris.tools.layout_functions
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+      <label for="toctree-checkbox-21">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.layout_functions.build_turbine_loc.html">
+         floris.tools.layout_functions.build_turbine_loc
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.layout_functions.label_line.html">
+         floris.tools.layout_functions.label_line
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.layout_functions.make_turbine_array.html">
+         floris.tools.layout_functions.make_turbine_array
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.layout_functions.set_direction.html">
+         floris.tools.layout_functions.set_direction
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.layout_functions.turbineDist.html">
+         floris.tools.layout_functions.turbineDist
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.layout_functions.visualize_layout.html">
+         floris.tools.layout_functions.visualize_layout
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.layout_functions.wakeAngle.html">
+         floris.tools.layout_functions.wakeAngle
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.optimization.html">
+       floris.tools.optimization
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+      <label for="toctree-checkbox-22">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.optimization.layout_optimization.html">
+         floris.tools.optimization.layout_optimization
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.optimization.legacy.html">
+         floris.tools.optimization.legacy
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.optimization.other.html">
+         floris.tools.optimization.other
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.optimization.yaw_optimization.html">
+         floris.tools.optimization.yaw_optimization
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.power_rose.html">
+       floris.tools.power_rose
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+      <label for="toctree-checkbox-23">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.power_rose.PowerRose.html">
+         floris.tools.power_rose.PowerRose
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.rews.html">
+       floris.tools.rews
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+      <label for="toctree-checkbox-24">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.rews.compute_rews.html">
+         floris.tools.rews.compute_rews
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.rews.determine_rews_weights.html">
+         floris.tools.rews.determine_rews_weights
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.rews.log_law_interpolate.html">
+         floris.tools.rews.log_law_interpolate
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.rews.rews_from_df.html">
+         floris.tools.rews.rews_from_df
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.uncertainty_interface.html">
+       floris.tools.uncertainty_interface
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+      <label for="toctree-checkbox-25">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.uncertainty_interface.UncertaintyInterface.html">
+         floris.tools.uncertainty_interface.UncertaintyInterface
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.visualization.html">
+       floris.tools.visualization
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+      <label for="toctree-checkbox-26">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.add_turbine_id_labels.html">
+         floris.tools.visualization.add_turbine_id_labels
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.line_contour_cut_plane.html">
+         floris.tools.visualization.line_contour_cut_plane
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.plot_rotor_values.html">
+         floris.tools.visualization.plot_rotor_values
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.plot_turbines.html">
+         floris.tools.visualization.plot_turbines
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.plot_turbines_with_fi.html">
+         floris.tools.visualization.plot_turbines_with_fi
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.reverse_cut_plane_x_axis_in_plot.html">
+         floris.tools.visualization.reverse_cut_plane_x_axis_in_plot
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.show_plots.html">
+         floris.tools.visualization.show_plots
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.visualize_cut_plane.html">
+         floris.tools.visualization.visualize_cut_plane
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.visualization.visualize_quiver.html">
+         floris.tools.visualization.visualize_quiver
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="_autosummary/floris.tools.wind_rose.html">
+       floris.tools.wind_rose
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" type="checkbox"/>
+      <label for="toctree-checkbox-27">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="_autosummary/floris.tools.wind_rose.WindRose.html">
+         floris.tools.wind_rose.WindRose
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="_autosummary/floris.type_dec.html">
+     floris.type_dec
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" type="checkbox"/>
+    <label for="toctree-checkbox-28">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.type_dec.attr_floris_filter.html">
+       floris.type_dec.attr_floris_filter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.type_dec.attr_serializer.html">
+       floris.type_dec.attr_serializer
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.type_dec.floris_array_converter.html">
+       floris.type_dec.floris_array_converter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.type_dec.iter_validator.html">
+       floris.type_dec.iter_validator
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.type_dec.FromDictMixin.html">
+       floris.type_dec.FromDictMixin
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="_autosummary/floris.utilities.html">
+     floris.utilities
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" type="checkbox"/>
+    <label for="toctree-checkbox-29">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.cosd.html">
+       floris.utilities.cosd
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.load_yaml.html">
+       floris.utilities.load_yaml
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.pshape.html">
+       floris.utilities.pshape
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.rotate_coordinates_rel_west.html">
+       floris.utilities.rotate_coordinates_rel_west
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.sind.html">
+       floris.utilities.sind
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.tand.html">
+       floris.utilities.tand
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.wind_delta.html">
+       floris.utilities.wind_delta
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.wrap_180.html">
+       floris.utilities.wrap_180
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.wrap_360.html">
+       floris.utilities.wrap_360
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.Loader.html">
+       floris.utilities.Loader
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="_autosummary/floris.utilities.Vec3.html">
+       floris.utilities.Vec3
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="code_quality.html">
+   Code Quality
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/nrel/floris/main?urlpath=tree/docs/background_concepts.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/nrel/floris"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/nrel/floris/issues/new?title=Issue%20on%20page%20%2Fbackground_concepts.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/nrel/floris/edit/main/docs/background_concepts.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/background_concepts.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initialize-florisinterface">
+   Initialize FlorisInterface
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-the-model">
+   Build the model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#execute-wake-calculation">
+   Execute wake calculation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-turbine-power">
+   Get turbine power
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applying-yaw-angles">
+   Applying yaw angles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-to-finish">
+   Start to finish
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization">
+   Visualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#on-grid-points">
+   On Grid Points
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-aep">
+   Calculating AEP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wake-steering-design">
+   Wake Steering Design
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Background and Concepts</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initialize-florisinterface">
+   Initialize FlorisInterface
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-the-model">
+   Build the model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#execute-wake-calculation">
+   Execute wake calculation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-turbine-power">
+   Get turbine power
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applying-yaw-angles">
+   Applying yaw angles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-to-finish">
+   Start to finish
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization">
+   Visualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#on-grid-points">
+   On Grid Points
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-aep">
+   Calculating AEP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wake-steering-design">
+   Wake Steering Design
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="background-and-concepts">
+<span id="background-concepts"></span><h1>Background and Concepts<a class="headerlink" href="#background-and-concepts" title="Permalink to this headline">#</a></h1>
+<p>FLORIS is a command-line program written in Python. There are two primary packages that make up the software:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">floris.simulation</span></code>: simulation framework including wake model definitions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">floris.tools</span></code>: utilities for pre and post processing as well as driving the simulation</p></li>
+</ul>
+<!-- TODO add chart  -->
+<p>Users of FLORIS will develop a Python script with the following sequence of steps:</p>
+<ol class="simple">
+<li><p>Load inputs and preprocess data</p></li>
+<li><p>Run the wind farm wake simulation</p></li>
+<li><p>Extract data and postprocess results</p></li>
+</ol>
+<p>Generally, users will only interact with <code class="docutils literal notranslate"><span class="pre">floris.tools</span></code> and most often through
+the <code class="docutils literal notranslate"><span class="pre">FlorisInterface</span></code> class. Additionally, <code class="docutils literal notranslate"><span class="pre">floris.tools</span></code> contains functionality
+for comparing results, creating visualizations, and developing optimization cases.</p>
+<p><strong>NOTE <code class="docutils literal notranslate"><span class="pre">floris.tools</span></code> is under active design and development. The API's will change and additional functionality from FLORIS v2 will be included in upcoming releases.</strong></p>
+<p>This notebook steps through the basic ideas and operations of FLORIS while showing
+realistic uses and expected behavior.</p>
+<section id="initialize-florisinterface">
+<h2>Initialize FlorisInterface<a class="headerlink" href="#initialize-florisinterface" title="Permalink to this headline">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">FlorisInterface</span></code> provides functionality to build a wind farm representation and drive
+the simulation. This object is created (instantiated) by passing the path to a FLORIS input
+file as the only argument. After this object is created, it can immediately be used to
+inspect the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+from floris.tools import FlorisInterface
+import matplotlib.pyplot as plt
+
+fi = FlorisInterface(&quot;gch.yaml&quot;)
+x, y = fi.get_turbine_layout()
+
+print(&quot;     x       y&quot;)
+for _x, _y in zip(x, y):
+    print(f&quot;{_x:6.1f}, {_y:6.1f}&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     x       y
+   0.0,    0.0
+ 630.0,    0.0
+1260.0,    0.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="build-the-model">
+<h2>Build the model<a class="headerlink" href="#build-the-model" title="Permalink to this headline">#</a></h2>
+<p>At this point, FLORIS has been initialized with the data defined in the input file.
+However, it is often simpler to define a basic configuration in the input file as
+a starting point and then make modifications in the Python script. This allows for
+generating data algorithmically or loading data from a data file. Modifications to
+the wind farm representation are handled through the <code class="docutils literal notranslate"><span class="pre">FlorisInterface.reinitialize()</span></code>
+function with keyword arguments. Another way to think of this function is that it
+changes the value of inputs specified in the input file.</p>
+<p>Let's change the location of turbines in the wind farm. The code below changes the
+initial 3x1 layout to a 2x2 rectangular layout.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_2x2 = [0, 0, 800, 800]
+y_2x2 = [0, 400, 0, 400]
+fi.reinitialize(layout_x=x_2x2, layout_y=y_2x2)
+
+x, y = fi.get_turbine_layout()
+
+print(&quot;     x       y&quot;)
+for _x, _y in zip(x, y):
+    print(f&quot;{_x:6.1f}, {_y:6.1f}&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     x       y
+   0.0,    0.0
+   0.0,  400.0
+ 800.0,    0.0
+ 800.0,  400.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Additionally, we can change the wind speeds and wind directions.
+These are lists of wind speeds and wind directions that will be
+combined so that a wake calculation will happen for every wind
+direction with each speed.</p>
+<p>Notice that we can give <code class="docutils literal notranslate"><span class="pre">FlorisInterface.reinitialize()</span></code> multiple keyword arguments at once.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># One wind direction and one speed -&gt; one atmospheric condition
+fi.reinitialize( wind_directions=[270.0], wind_speeds=[8.0] )
+
+# Two wind directions and one speed -&gt; two atmospheric conditions
+fi.reinitialize( wind_directions=[270.0, 280.0], wind_speeds=[8.0] )
+
+# Two wind directions and two speeds -&gt; four atmospheric conditions
+fi.reinitialize( wind_directions=[270.0, 280.0], wind_speeds=[8.0, 9.0] )
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">FlorisInterface.reinitialize()</span></code> creates all of the basic data structures required
+for the simulation but it does not do any aerodynamic calculations. The low level
+data structures have a complex shape that enables faster computations. Specifically,
+most data is structured as a many-dimensional Numpy array with the following dimensions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">(</span>
+        <span class="n">wind</span> <span class="n">directions</span><span class="p">,</span>
+        <span class="n">wind</span> <span class="n">speeds</span><span class="p">,</span>
+        <span class="n">turbines</span><span class="p">,</span>
+        <span class="n">grid</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">grid</span><span class="o">-</span><span class="mi">2</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>For example, we can see the shape of the data structure for the grid point x-coordinates
+for the all turbines and get the x-coordinates of grid points for the third turbine in
+the first wind direction and first wind speed. We can also plot all the grid points in
+space to get an idea of the overall form of our grid.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;Dimensions of grid x-components&quot;)
+print( np.shape(fi.floris.grid.x) )
+
+print()
+print(&quot;Turbine 3 grid x-components for first wind direction and first wind speed&quot;)
+print(fi.floris.grid.x[0, 0, 2, :, :])
+
+x = fi.floris.grid.x[0, 0, :, :, :]
+y = fi.floris.grid.y[0, 0, :, :, :]
+z = fi.floris.grid.z[0, 0, :, :, :]
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection=&quot;3d&quot;)
+ax.scatter(x, y, z, marker=&quot;.&quot;)
+ax.set_zlim([0, 150])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensions of grid x-components
+(2, 2, 4, 3, 3)
+
+Turbine 3 grid x-components for first wind direction and first wind speed
+[[800. 800. 800.]
+ [800. 800. 800.]
+ [800. 800. 800.]]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 150.0)
+</pre></div>
+</div>
+<img alt="_images/background_concepts_8_2.png" src="_images/background_concepts_8_2.png" />
+</div>
+</div>
+</section>
+<section id="execute-wake-calculation">
+<h2>Execute wake calculation<a class="headerlink" href="#execute-wake-calculation" title="Permalink to this headline">#</a></h2>
+<p>Running the wake calculation is a one-liner. This will calculate the velocities
+at each turbine given the wake of other turbines for every wind speed and wind
+direction combination. Since we have not explicitly specified yaw control settings,
+all turbines are aligned with the inflow.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fi.calculate_wake()
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-turbine-power">
+<h2>Get turbine power<a class="headerlink" href="#get-turbine-power" title="Permalink to this headline">#</a></h2>
+<p>At this point, the simulation has completed and we can use the <code class="docutils literal notranslate"><span class="pre">FlorisInterface</span></code> to
+extract useful information such as the power produced at each turbine. Remember that
+we have configured the simulation with two wind directions, two wind speeds, and four
+turbines.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>powers = fi.get_turbine_powers() / 1000.0  # calculated in Watts, so convert to kW
+
+print(&quot;Dimensions of `powers`&quot;)
+print( np.shape(powers) )
+
+N_TURBINES = fi.floris.farm.n_turbines
+
+print()
+print(&quot;Turbine powers for 8 m/s&quot;)
+for i in range(2):
+    print(f&quot;Wind direction {i}&quot;)
+    for j in range(N_TURBINES):
+        print(f&quot;  Turbine {j} - {powers[i, 0, j]:.2f} kW&quot;)
+    print()
+
+print(&quot;Turbine powers for all turbines at all wind conditions&quot;)
+print(powers)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensions of `powers`
+(2, 2, 4)
+
+Turbine powers for 8 m/s
+Wind direction 0
+  Turbine 0 - 1691.33 kW
+  Turbine 1 - 1691.33 kW
+  Turbine 2 - 592.65 kW
+  Turbine 3 - 592.98 kW
+
+Wind direction 1
+  Turbine 0 - 1691.33 kW
+  Turbine 1 - 1691.33 kW
+  Turbine 2 - 1631.07 kW
+  Turbine 3 - 1629.76 kW
+
+Turbine powers for all turbines at all wind conditions
+[[[1691.32664838 1691.32664838  592.6531181   592.97842923]
+  [2407.84167188 2407.84167188  861.30649817  861.73255027]]
+
+ [[1691.32664838 1691.32664838 1631.06554071 1629.75543674]
+  [2407.84167188 2407.84167188 2321.40975418 2319.53218301]]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="applying-yaw-angles">
+<h2>Applying yaw angles<a class="headerlink" href="#applying-yaw-angles" title="Permalink to this headline">#</a></h2>
+<p>Yaw angles are applied to turbines through the <code class="docutils literal notranslate"><span class="pre">FlorisInterface.calculate_wake</span></code> function.
+In order to fit into the vectorized framework, the yaw settings must be represented as
+a <code class="docutils literal notranslate"><span class="pre">Numpy.array</span></code> with  dimensions equal to:</p>
+<ul class="simple">
+<li><p>0: number of wind directions</p></li>
+<li><p>1: number of wind speeds</p></li>
+<li><p>2: number of turbines</p></li>
+</ul>
+<p><strong>Unlike the data configured in <code class="docutils literal notranslate"><span class="pre">FlorisInterface.reinitialize()</span></code>, yaw angles are not retained</strong>
+<strong>in memory and must be provided each time <code class="docutils literal notranslate"><span class="pre">FlorisInterface.calculate_wake</span></code> is used.</strong>
+<strong>If no yaw angles are given, all turbines will be aligned with the inflow.</strong></p>
+<p>It is typically easiest to start with an array of 0's and modify individual
+turbine yaw settings, as shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>yaw_angles = np.zeros( (2, 2, 4) )
+print(&quot;Yaw angle array initialized with 0&#39;s&quot;)
+print(yaw_angles)
+
+print(&quot;First turbine yawed 25 degrees for every atmospheric condition&quot;)
+yaw_angles[:, :, 0] = 25
+print(yaw_angles)
+
+fi.calculate_wake(yaw_angles=yaw_angles)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Yaw angle array initialized with 0&#39;s
+[[[0. 0. 0. 0.]
+  [0. 0. 0. 0.]]
+
+ [[0. 0. 0. 0.]
+  [0. 0. 0. 0.]]]
+First turbine yawed 25 degrees for every atmospheric condition
+[[[25.  0.  0.  0.]
+  [25.  0.  0.  0.]]
+
+ [[25.  0.  0.  0.]
+  [25.  0.  0.  0.]]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="start-to-finish">
+<h2>Start to finish<a class="headerlink" href="#start-to-finish" title="Permalink to this headline">#</a></h2>
+<p>Let's put it all together. The code below outlines these steps:</p>
+<ol class="simple">
+<li><p>Load an input file</p></li>
+<li><p>Modify the inputs with a more complex wind turbine layout and additional atmospheric conditions</p></li>
+<li><p>Calculate the velocities at each turbine for all atmospheric conditions</p></li>
+<li><p>Get the total farm power</p></li>
+<li><p>Develop the yaw control settings</p></li>
+<li><p>Calculate the velocities at each turbine for all atmospheric conditions with the new yaw settings</p></li>
+<li><p>Get the total farm power</p></li>
+<li><p>Compare farm power with and without wake steering</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 1. Load an input file
+fi = FlorisInterface(&quot;gch.yaml&quot;)
+
+fi.floris.solver
+
+# 2. Modify the inputs with a more complex wind turbine layout
+D = 126.0  # Design the layout based on turbine diameter
+x = [0, 0,  6 * D, 6 * D]
+y = [0, 3 * D, 0, 3 * D]
+wind_directions = [270.0, 280.0]
+wind_speeds = [8.0]
+
+# Pass the new data to FlorisInterface
+fi.reinitialize(
+    layout_x=x,
+    layout_y=y,
+    wind_directions=wind_directions,
+    wind_speeds=wind_speeds
+)
+
+# 3. Calculate the velocities at each turbine for all atmospheric conditions
+# All turbines have 0 degrees yaw
+fi.calculate_wake()
+
+# 4. Get the total farm power
+turbine_powers = fi.get_turbine_powers() / 1000.0  # Given in W, so convert to kW
+farm_power_baseline = np.sum(turbine_powers, 2)  # Sum over the third dimension
+
+# 5. Develop the yaw control settings
+yaw_angles = np.zeros( (2, 1, 4) )  # Construct the yaw array with dimensions for two wind directions, one wind speed, and four turbines
+yaw_angles[0, :, 0] = 25            # At 270 degrees, yaw the first turbine 25 degrees
+yaw_angles[0, :, 1] = 25            # At 270 degrees, yaw the second turbine 25 degrees
+yaw_angles[1, :, 0] = 10           # At 265 degrees, yaw the first turbine -25 degrees
+yaw_angles[1, :, 1] = 10           # At 265 degrees, yaw the second turbine -25 degrees
+
+# 6. Calculate the velocities at each turbine for all atmospheric conditions with the new yaw settings
+fi.calculate_wake(yaw_angles=yaw_angles)
+
+# 7. Get the total farm power
+turbine_powers = fi.get_turbine_powers() / 1000.0
+farm_power_yaw = np.sum(turbine_powers, 2)
+
+# 8. Compare farm power with and without wake steering
+difference = 100 * (farm_power_yaw - farm_power_baseline) / farm_power_baseline
+print(&quot;Power % difference with yaw&quot;)
+print(f&quot;    270 degrees: {difference[0, 0]:4.2f}%&quot;)
+print(f&quot;    280 degrees: {difference[1, 0]:4.2f}%&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Power % difference with yaw
+    270 degrees: 7.39%
+    280 degrees: 0.13%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">#</a></h2>
+<p>While comparing turbine and farm powers is meaningful, a picture is worth at least
+1000 Watts, and the <code class="docutils literal notranslate"><span class="pre">FlorisInterface</span></code> provides powerful routines for visualization.</p>
+<p><strong>NOTE <code class="docutils literal notranslate"><span class="pre">floris.tools</span></code> is under active design and development. The API's will change and additional functionality from FLORIS v2 will be included in upcoming releases.</strong></p>
+<p>The visualization functions require that the user select a single atmospheric condition
+to plot. The internal data structures still have the same shape but the wind speed and
+wind direction dimensions have a size of 1. This means that the yaw angle array used
+for plotting must have the same shape as above but a single atmospheric condition must
+be selected.</p>
+<p>Let's create a horizontal slice of each atmospheric condition from above with and without
+yaw settings included. Notice that although we are plotting the conditions for two
+different wind directions, the farm is rotated so that the wind is coming from the
+left (West) in both cases.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from floris.tools.visualization import visualize_cut_plane
+
+fig, axarr = plt.subplots(2, 2, figsize=(15,8))
+
+horizontal_plane = fi.calculate_horizontal_plane(wd=[wind_directions[0]], height=90.0)
+visualize_cut_plane(horizontal_plane, ax=axarr[0,0], title=&quot;270 - Aligned&quot;)
+
+horizontal_plane = fi.calculate_horizontal_plane(wd=[wind_directions[0]], yaw_angles=yaw_angles[0:1,0:1] , height=90.0)
+visualize_cut_plane(horizontal_plane, ax=axarr[0,1], title=&quot;270 - Yawed&quot;)
+
+horizontal_plane = fi.calculate_horizontal_plane(wd=[wind_directions[1]], height=90.0)
+visualize_cut_plane(horizontal_plane, ax=axarr[1,0], title=&quot;280 - Aligned&quot;)
+
+horizontal_plane = fi.calculate_horizontal_plane(wd=[wind_directions[1]], yaw_angles=yaw_angles[1:2,0:1] , height=90.0)
+visualize_cut_plane(horizontal_plane, ax=axarr[1,1], title=&quot;280 - Yawed&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7fd1d8449460&gt;
+</pre></div>
+</div>
+<img alt="_images/background_concepts_18_1.png" src="_images/background_concepts_18_1.png" />
+</div>
+</div>
+<p>We can also plot the streamwise inflow velocities on the turbine rotor
+grid points located on the rotor plane. The <code class="docutils literal notranslate"><span class="pre">plot_rotor_values</span></code> function
+simply plots any data given as the first argument, so in this case
+<code class="docutils literal notranslate"><span class="pre">fi.floris.flow_field.u</span></code> contains the yawed calculation from above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from floris.tools.visualization import plot_rotor_values
+
+fig, _, _ , _ = plot_rotor_values(fi.floris.flow_field.u, wd_index=0, ws_index=0, n_rows=1, n_cols=4, return_fig_objects=True)
+fig.suptitle(&quot;Wind direction 270&quot;)
+
+fig, _, _ , _ = plot_rotor_values(fi.floris.flow_field.u, wd_index=1, ws_index=0, n_rows=1, n_cols=4, return_fig_objects=True)
+fig.suptitle(&quot;Wind direction 280&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, &#39;Wind direction 280&#39;)
+</pre></div>
+</div>
+<img alt="_images/background_concepts_20_1.png" src="_images/background_concepts_20_1.png" />
+<img alt="_images/background_concepts_20_2.png" src="_images/background_concepts_20_2.png" />
+</div>
+</div>
+</section>
+<section id="on-grid-points">
+<h2>On Grid Points<a class="headerlink" href="#on-grid-points" title="Permalink to this headline">#</a></h2>
+<p>In FLORIS, grid points are the points in space where the wind conditions are calculated.
+In a typical simulation, these are all located on a regular grid on each turbine rotor.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">turbine_grid_points</span></code> specifies the number of rows and columns which define the turbine grid.
+In the example inputs, this value is 3 meaning there are 3 x 3 = 9 total grid points for each turbine.
+Wake steering codes currently require greater values greater than 1 in order to compute gradients.
+However, a single grid point (1 x 1) may be suitable for non wind farm control applications,
+but retuning of some parameters might be required.</p>
+<p>We can visualize the locations of the grid points in the current example using <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Get the grid points
+xs = fi.floris.grid.x
+ys = fi.floris.grid.y
+zs = fi.floris.grid.z
+
+# Consider the shape
+print(f&quot;shape of xs: {xs.shape}&quot;)
+print(&quot;  2 wd x 2 ws x 4 turbines x 3 x 3 grid points&quot;)
+
+# Lets plot just one wd/ws conditions
+xs = xs[1, 0, :, :, :]
+ys = ys[1, 0, :, :, :]
+zs = zs[1, 0, :, :, :]
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection=&quot;3d&quot;)
+ax.scatter(xs, ys, zs, marker=&quot;.&quot;)
+ax.set_zlim([0, 150])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>shape of xs: (2, 1, 4, 3, 3)
+  2 wd x 2 ws x 4 turbines x 3 x 3 grid points
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 150.0)
+</pre></div>
+</div>
+<img alt="_images/background_concepts_23_2.png" src="_images/background_concepts_23_2.png" />
+</div>
+</div>
+</section>
+<section id="calculating-aep">
+<h2>Calculating AEP<a class="headerlink" href="#calculating-aep" title="Permalink to this headline">#</a></h2>
+<p>Calculating AEP in FLORIS v3 leverages the vectorized framework to
+substantially reduce the computation time with respect to v2.4.
+Here, we demonstrate a simple AEP calculation for a 25-turbine farm
+using several different modeling options. We make the assumption
+that every wind speed and direction is equally likely. We also
+report the time required for the computation using the Python
+<code class="docutils literal notranslate"><span class="pre">time.perf_counter()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import time
+from typing import Tuple
+
+wind_directions = np.arange(0.0, 360.0, 5.0)
+wind_speeds = np.arange(5.0, 25.0, 1.0)
+
+num_bins = len(wind_directions) * len(wind_speeds)
+print(f&quot;Calculating AEP for {num_bins} wind direction and speed combinations...&quot;)
+
+# Set up a square 25 turbine layout
+N = 5  # Number of turbines per row and per column
+D = 126.0
+
+X, Y = np.meshgrid(
+    7.0 * D * np.arange(0, N, 1),
+    7.0 * D * np.arange(0, N, 1),
+)
+X = X.flatten()
+Y = Y.flatten()
+print(f&quot;Number of turbines = {len(X)}&quot;)
+
+# Define several models
+fi_jensen = FlorisInterface(&quot;jensen.yaml&quot;)
+fi_gch = FlorisInterface(&quot;gch.yaml&quot;)
+fi_cc = FlorisInterface(&quot;cc.yaml&quot;)
+
+# Assign the layouts, wind speeds and directions
+fi_jensen.reinitialize(layout_x=X, layout_y=Y, wind_directions=wind_directions, wind_speeds=wind_speeds)
+fi_gch.reinitialize(layout_x=X, layout_y=Y, wind_directions=wind_directions, wind_speeds=wind_speeds)
+fi_cc.reinitialize(layout_x=X, layout_y=Y, wind_directions=wind_directions, wind_speeds=wind_speeds)
+
+def time_model_calculation(model_fi: FlorisInterface) -&gt; Tuple[float, float]:
+    &quot;&quot;&quot;
+    This function performs the wake calculation for a given
+    FlorisInterface object and computes the AEP while
+    tracking the amount of wall-time required for both steps.
+
+    Args:
+        model_fi (FlorisInterface): _description_
+        float (_type_): _description_
+
+    Returns:
+        tuple(float, float):
+            0: AEP
+            1: Wall-time for the computation
+    &quot;&quot;&quot;
+    start = time.perf_counter()
+    model_fi.calculate_wake()
+    aep = model_fi.get_farm_power().sum() / num_bins  / 1E9 * 365 * 24
+    end = time.perf_counter()
+    return aep, end - start
+
+jensen_aep, jensen_compute_time = time_model_calculation(fi_jensen)
+gch_aep, gch_compute_time = time_model_calculation(fi_gch)
+cc_aep, cc_compute_time = time_model_calculation(fi_cc)
+
+print(&#39;Model    AEP (GWh)  Compute Time (s)&#39;)
+print(&#39;{:8s} {:&lt;10.3f} {:&lt;6.3f}&#39;.format(&quot;Jensen&quot;, jensen_aep, jensen_compute_time))
+print(&#39;{:8s} {:&lt;10.3f} {:&lt;6.3f}&#39;.format(&quot;GCH&quot;, gch_aep, gch_compute_time))
+print(&#39;{:8s} {:&lt;10.3f} {:&lt;6.3f}&#39;.format(&quot;CC&quot;, cc_aep, cc_compute_time))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculating AEP for 1440 wind direction and speed combinations...
+Number of turbines = 25
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model    AEP (GWh)  Compute Time (s)
+Jensen   843.237    3.698 
+GCH      843.905    6.440 
+CC       839.263    11.803
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="wake-steering-design">
+<h2>Wake Steering Design<a class="headerlink" href="#wake-steering-design" title="Permalink to this headline">#</a></h2>
+<p>FLORIS V3 further includes new optimization routines for the design of wake steering controllers.  The SerialRefine is a new method for quickly identifying optimum yaw angles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Demonstrate on 7-turbine single row farm
+X = np.linspace(0, 6*7*D, 7)
+Y = np.zeros_like(X)
+wind_speeds = [8.]
+wind_directions = np.arange(0., 360., 2.)
+fi_gch.reinitialize(layout_x=X, layout_y=Y, wind_directions=wind_directions, wind_speeds=wind_speeds)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from floris.tools.optimization.yaw_optimization.yaw_optimizer_sr import YawOptimizationSR
+
+# Define the SerialRefine optimization
+yaw_opt = YawOptimizationSR(
+    fi=fi_gch,
+    minimum_yaw_angle=0.0,  # Allowable yaw angles lower bound
+    maximum_yaw_angle=25.0,  # Allowable yaw angles upper bound
+    Ny_passes=[5, 4],
+    exclude_downstream_turbines=True,
+    exploit_layout_symmetry=True,
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>start = time.perf_counter()
+
+## Calculate the optimum yaw angles for 25 turbines and 72 wind directions
+df_opt = yaw_opt.optimize()
+
+end = time.perf_counter()
+
+walltime = end - start
+print(f&quot;Optimization wall time: {walltime:.3f} s&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=0, turbine_depth=0 (0.0 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=0, turbine_depth=1 (7.1 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=0, turbine_depth=2 (14.3 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=0, turbine_depth=3 (21.4 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=0, turbine_depth=4 (28.6 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=0, turbine_depth=5 (35.7 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=0, turbine_depth=6 (42.9 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=1, turbine_depth=0 (50.0 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=1, turbine_depth=1 (57.1 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=1, turbine_depth=2 (64.3 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=1, turbine_depth=3 (71.4 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=1, turbine_depth=4 (78.6 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=1, turbine_depth=5 (85.7 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Serial Refine] Processing pass=1, turbine_depth=6 (92.9 %)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization wall time: 3.795 s
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the results, T0 is the upstream turbine when wind direction is 270, while T6 is upstream at 90 deg</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Show the results
+yaw_angles_opt = np.vstack(df_opt[&quot;yaw_angles_opt&quot;])
+fig, axarr = plt.subplots(len(X), 1, sharex=True, sharey=True, figsize=(10, 10))
+for i in range(len(X)):
+    axarr[i].plot(wind_directions, yaw_angles_opt[:, i], &#39;k-&#39;, label=&#39;T%d&#39; % i)
+    axarr[i].set_ylabel(&#39;Yaw (Deg)&#39;)
+    axarr[i].legend()
+    axarr[i].grid(True)
+axarr[-1].set_xlabel(&#39;Wind Direction (Deg)&#39;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;Wind Direction (Deg)&#39;)
+</pre></div>
+</div>
+<img alt="_images/background_concepts_33_1.png" src="_images/background_concepts_33_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="installation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Installation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="examples.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examples Index</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By National Renewable Energy Laboratory<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
