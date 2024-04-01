@@ -694,6 +694,16 @@ appropriate entries of <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/msinner/floris3/floris/core/turbine/operation_models.py:367: RuntimeWarning: divide by zero encountered in divide
+  power_fractions = power_setpoints / base_powers
+/Users/msinner/floris3/floris/core/wake_deflection/gauss.py:323: RuntimeWarning: invalid value encountered in divide
+  val = 2 * (avg_v - v_core) / (v_top + v_bottom)
+/Users/msinner/floris3/floris/core/wake_deflection/gauss.py:158: RuntimeWarning: invalid value encountered in divide
+  C0 = 1 - u0 / freestream_velocity
+/Users/msinner/floris3/floris/core/wake_velocity/gauss.py:80: RuntimeWarning: invalid value encountered in divide
+  sigma_z0 = rotor_diameter_i * 0.5 * np.sqrt(uR / (u_initial + u0))
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Power [kW]&#39;)
 </pre></div>
 </div>
@@ -742,7 +752,7 @@ finite power setpoint for the same turbine and at the same <code class="docutils
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Powers (kw):  [[3063.49046772 2000.        ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Powers [kW]:  [[3063.49046772 2000.        ]]
 </pre></div>
 </div>
 </div>
