@@ -538,15 +538,17 @@ use those control setpoints.</p></li>
 <li><p>To &quot;forget&quot; previously provided control setpoints, use the new method
 <code class="docutils literal notranslate"><span class="pre">FlorisModel.reset_operation()</span></code>.</p></li>
 <li><p>When providing arguments to <code class="docutils literal notranslate"><span class="pre">set()</span></code>, all arguments much have the same length, as they will be
-&quot;paired&quot; (rather than gridded) for the computation. For instance, if the user provides <code class="docutils literal notranslate"><span class="pre">n</span></code>
-wind directions, they <em>must</em> provide <code class="docutils literal notranslate"><span class="pre">n</span></code> wind speeds and <code class="docutils literal notranslate"><span class="pre">n</span></code> turbulence intensities; as well as
-<code class="docutils literal notranslate"><span class="pre">n</span></code>x<code class="docutils literal notranslate"><span class="pre">n_turbines</span></code> yaw angles, if yaw angles are being used.</p></li>
+&quot;paired&quot; (rather than gridded) for the computation. For instance, if the user provides <code class="docutils literal notranslate"><span class="pre">n_findex</span></code>
+wind directions, they <em>must</em> provide <code class="docutils literal notranslate"><span class="pre">n_findex</span></code> wind speeds and <code class="docutils literal notranslate"><span class="pre">n_findex</span></code> turbulence intensities;
+as well as <code class="docutils literal notranslate"><span class="pre">n_findex</span></code>x<code class="docutils literal notranslate"><span class="pre">n_turbines</span></code> yaw angles, if yaw angles are being used.</p></li>
 <li><p>Providing varying <code class="docutils literal notranslate"><span class="pre">turbulence_intensities</span></code> is new for FLORIS v4.</p></li>
 <li><p>To facilitate &quot;easier&quot; use of the <code class="docutils literal notranslate"><span class="pre">set()</span></code> method (for instance, to run all combinations of
 wind directions and wind speeds), we now provide <code class="docutils literal notranslate"><span class="pre">WindData</span></code> objects that can be passed directly to
 <code class="docutils literal notranslate"><span class="pre">set()</span></code>'s <code class="docutils literal notranslate"><span class="pre">wind_data</span></code> keyword argument. See <a class="reference internal" href="#wind-data"><span class="xref myst">Wind data</span></a> as well as
 <a class="reference internal" href="wind_data_user.html"><span class="doc std std-doc">Wind Data Objects</span></a> for more information.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">calculate_no_wake()</span></code> has been replaced with <code class="docutils literal notranslate"><span class="pre">run_no_wake()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_farm_AEP()</span></code> no longer calls <code class="docutils literal notranslate"><span class="pre">run()</span></code>; to compute the farm AEP, users should <code class="docutils literal notranslate"><span class="pre">run()</span></code> the
+<code class="docutils literal notranslate"><span class="pre">fmodel</span></code> themselves before calling <code class="docutils literal notranslate"><span class="pre">get_farm_AEP()</span></code>.</p></li>
 </ul>
 <p>An example workflow for using <code class="docutils literal notranslate"><span class="pre">set</span></code> and <code class="docutils literal notranslate"><span class="pre">run</span></code> is:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
