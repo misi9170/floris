@@ -1761,27 +1761,27 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">reference_wind_height</span> <span class="o">=</span> <span class="n">unique_heights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="FlorisModel.get_power_thrust_model">
-<a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_power_thrust_model">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_power_thrust_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="FlorisModel.get_operation_model">
+<a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_operation_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_operation_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the power thrust model of a FlorisModel.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The power_thrust_model.</span>
+<span class="sd">            str: The operation_model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_definitions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;power_thrust_model&quot;</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_definitions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;operation_model&quot;</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="FlorisModel.set_power_thrust_model">
-<a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.set_power_thrust_model">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_power_thrust_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power_thrust_model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="FlorisModel.set_operation_model">
+<a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.set_operation_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_operation_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operation_model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the power thrust model of a FlorisModel.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            power_thrust_model (str): The power thrust model to set.</span>
+<span class="sd">            operation_model (str): The power thrust model to set.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">turbine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_definitions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">turbine_type</span><span class="p">[</span><span class="s2">&quot;power_thrust_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">power_thrust_model</span>
+        <span class="n">turbine_type</span><span class="p">[</span><span class="s2">&quot;operation_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operation_model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">turbine_type</span><span class="o">=</span><span class="p">[</span><span class="n">turbine_type</span><span class="p">])</span></div>
 
 

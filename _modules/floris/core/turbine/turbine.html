@@ -446,7 +446,7 @@ document.write(`
 
 
 <span class="n">TURBINE_MODEL_MAP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;power_thrust_model&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;operation_model&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;simple&quot;</span><span class="p">:</span> <span class="n">SimpleTurbine</span><span class="p">,</span>
         <span class="s2">&quot;cosine-loss&quot;</span><span class="p">:</span> <span class="n">CosineLossTurbine</span><span class="p">,</span>
         <span class="s2">&quot;simple-derating&quot;</span><span class="p">:</span> <span class="n">SimpleDeratingTurbine</span><span class="p">,</span>
@@ -856,7 +856,7 @@ document.write(`
     <span class="n">hub_height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
     <span class="n">TSR</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
     <span class="n">power_thrust_table</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{})</span> <span class="c1"># conversion to numpy in __post_init__</span>
-    <span class="n">power_thrust_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;cosine-loss&quot;</span><span class="p">)</span>
+    <span class="n">operation_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;cosine-loss&quot;</span><span class="p">)</span>
 
     <span class="n">correct_cp_ct_for_tilt</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">floating_tilt_table</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NDArrayFloat</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -898,7 +898,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">power_thrust_table</span> <span class="o">=</span> <span class="n">floris_numeric_dict_converter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power_thrust_table</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_initialize_power_thrust_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">turbine_function_model</span> <span class="o">=</span> <span class="n">TURBINE_MODEL_MAP</span><span class="p">[</span><span class="s2">&quot;power_thrust_model&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">power_thrust_model</span><span class="p">]</span>
+        <span class="n">turbine_function_model</span> <span class="o">=</span> <span class="n">TURBINE_MODEL_MAP</span><span class="p">[</span><span class="s2">&quot;operation_model&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">operation_model</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">thrust_coefficient_function</span> <span class="o">=</span> <span class="n">turbine_function_model</span><span class="o">.</span><span class="n">thrust_coefficient</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axial_induction_function</span> <span class="o">=</span> <span class="n">turbine_function_model</span><span class="o">.</span><span class="n">axial_induction</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">power_function</span> <span class="o">=</span> <span class="n">turbine_function_model</span><span class="o">.</span><span class="n">power</span>

@@ -494,8 +494,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.sample_flow_at_points"><code class="docutils literal notranslate"><span class="pre">FlorisModel.sample_flow_at_points()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.sample_velocity_deficit_profiles"><code class="docutils literal notranslate"><span class="pre">FlorisModel.sample_velocity_deficit_profiles()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.assign_hub_height_to_ref_height"><code class="docutils literal notranslate"><span class="pre">FlorisModel.assign_hub_height_to_ref_height()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_power_thrust_model"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_power_thrust_model()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.set_power_thrust_model"><code class="docutils literal notranslate"><span class="pre">FlorisModel.set_power_thrust_model()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_operation_model"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_operation_model()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.set_operation_model"><code class="docutils literal notranslate"><span class="pre">FlorisModel.set_operation_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.copy"><code class="docutils literal notranslate"><span class="pre">FlorisModel.copy()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_param"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_param()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.set_param"><code class="docutils literal notranslate"><span class="pre">FlorisModel.set_param()</span></code></a></li>
@@ -1042,8 +1042,8 @@ profile.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.get_power_thrust_model">
-<span class="sig-name descname"><span class="pre">get_power_thrust_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.get_power_thrust_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.get_power_thrust_model" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.get_operation_model">
+<span class="sig-name descname"><span class="pre">get_operation_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.get_operation_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.get_operation_model" title="Link to this definition">#</a></dt>
 <dd><p>Get the power thrust model of a FlorisModel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1051,22 +1051,22 @@ profile.</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>Returns:</dt><dd><p>str: The power_thrust_model.</p>
+<dt>Returns:</dt><dd><p>str: The operation_model.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.set_power_thrust_model">
-<span class="sig-name descname"><span class="pre">set_power_thrust_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power_thrust_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.set_power_thrust_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.set_power_thrust_model" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.set_operation_model">
+<span class="sig-name descname"><span class="pre">set_operation_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operation_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.set_operation_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.set_operation_model" title="Link to this definition">#</a></dt>
 <dd><p>Set the power thrust model of a FlorisModel.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>power_thrust_model (str): The power thrust model to set.</p>
+<dt>Args:</dt><dd><p>operation_model (str): The power thrust model to set.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>power_thrust_model</strong> (<em>str</em>) -- </p>
+<dd class="field-odd"><p><strong>operation_model</strong> (<em>str</em>) -- </p>
 </dd>
 </dl>
 </dd></dl>
@@ -1280,8 +1280,8 @@ otherwise, return x and y only. Defaults to <em>False</em>.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.sample_flow_at_points"><code class="docutils literal notranslate"><span class="pre">FlorisModel.sample_flow_at_points()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.sample_velocity_deficit_profiles"><code class="docutils literal notranslate"><span class="pre">FlorisModel.sample_velocity_deficit_profiles()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.assign_hub_height_to_ref_height"><code class="docutils literal notranslate"><span class="pre">FlorisModel.assign_hub_height_to_ref_height()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_power_thrust_model"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_power_thrust_model()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.set_power_thrust_model"><code class="docutils literal notranslate"><span class="pre">FlorisModel.set_power_thrust_model()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_operation_model"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_operation_model()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.set_operation_model"><code class="docutils literal notranslate"><span class="pre">FlorisModel.set_operation_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.copy"><code class="docutils literal notranslate"><span class="pre">FlorisModel.copy()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_param"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_param()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.set_param"><code class="docutils literal notranslate"><span class="pre">FlorisModel.set_param()</span></code></a></li>

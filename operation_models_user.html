@@ -537,7 +537,7 @@ We also describe the different parameters that must be specified in the turbine
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y [m]&quot;</span><span class="p">)</span>
 
 <span class="c1"># Set simple operation model</span>
-<span class="n">fmodel</span><span class="o">.</span><span class="n">set_power_thrust_model</span><span class="p">(</span><span class="s2">&quot;simple&quot;</span><span class="p">)</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set_operation_model</span><span class="p">(</span><span class="s2">&quot;simple&quot;</span><span class="p">)</span>
 
 <span class="c1"># Evalaute the model and extract the power output</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
@@ -546,7 +546,7 @@ We also describe the different parameters that must be specified in the turbine
 <span class="c1"># Set the yaw angles (which the &quot;simple&quot; operation model does not use</span>
 <span class="c1"># and change the operation model to &quot;cosine-loss&quot;</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yaw_angles</span><span class="o">=</span><span class="p">[[</span><span class="mf">20.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
-<span class="n">fmodel</span><span class="o">.</span><span class="n">set_power_thrust_model</span><span class="p">(</span><span class="s2">&quot;cosine-loss&quot;</span><span class="p">)</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set_operation_model</span><span class="p">(</span><span class="s2">&quot;cosine-loss&quot;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">layoutviz</span><span class="o">.</span><span class="n">plot_turbine_rotors</span><span class="p">(</span><span class="n">fmodel</span><span class="p">)</span>
 <span class="n">layoutviz</span><span class="o">.</span><span class="n">plot_turbine_labels</span><span class="p">(</span><span class="n">fmodel</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x [m]&quot;</span><span class="p">)</span>
@@ -615,7 +615,7 @@ thus vary as a function of the turbine's yaw angle, set using the <code class="d
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Set up the FlorisModel</span>
-<span class="n">fmodel</span><span class="o">.</span><span class="n">set_power_thrust_model</span><span class="p">(</span><span class="s2">&quot;cosine-loss&quot;</span><span class="p">)</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set_operation_model</span><span class="p">(</span><span class="s2">&quot;cosine-loss&quot;</span><span class="p">)</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">layout_x</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">layout_y</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">])</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">wind_data</span><span class="o">=</span><span class="n">TimeSeries</span><span class="p">(</span>
@@ -669,7 +669,7 @@ appropriate entries of <code class="docutils literal notranslate"><span class="p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the FlorisModel</span>
-<span class="n">fmodel</span><span class="o">.</span><span class="n">set_power_thrust_model</span><span class="p">(</span><span class="s2">&quot;simple-derating&quot;</span><span class="p">)</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set_operation_model</span><span class="p">(</span><span class="s2">&quot;simple-derating&quot;</span><span class="p">)</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">reset_operation</span><span class="p">()</span>
 <span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
@@ -733,7 +733,7 @@ non-<code class="docutils literal notranslate"><span class="pre">None</span></co
 finite power setpoint for the same turbine and at the same <code class="docutils literal notranslate"><span class="pre">findex</span></code> will produce an error.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmodel</span><span class="o">.</span><span class="n">set_power_thrust_model</span><span class="p">(</span><span class="s2">&quot;mixed&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fmodel</span><span class="o">.</span><span class="n">set_operation_model</span><span class="p">(</span><span class="s2">&quot;mixed&quot;</span><span class="p">)</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">layout_x</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">layout_y</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">500.0</span><span class="p">])</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">reset_operation</span><span class="p">()</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
