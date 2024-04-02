@@ -553,7 +553,7 @@ wind directions and wind speeds), we now provide <code class="docutils literal n
 
 <span class="n">fmodel</span> <span class="o">=</span> <span class="n">FlorisModel</span><span class="p">(</span><span class="s2">&quot;input_file.yaml&quot;</span><span class="p">)</span> <span class="c1"># Input file with 3 turbines</span>
 
-
+<span class="c1"># Set up a base case and run</span>
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">wind_directions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">270.</span><span class="p">,</span> <span class="mf">270.</span><span class="p">]),</span>
     <span class="n">wind_speeds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">]),</span>
@@ -654,15 +654,38 @@ was not readily available. See <a class="reference internal" href="input_referen
 </section>
 <section id="wind-data">
 <h2>Wind data<a class="headerlink" href="#wind-data" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Go into briefly here to explain the concept; then point to dedicated page.</p></li>
-</ul>
+<p>To aid users in setting the wind conditions they are interested in running, we provide &quot;wind data&quot;
+classes, which can be passed directly to <code class="docutils literal notranslate"><span class="pre">FlorisModel.set()</span></code>'s <code class="docutils literal notranslate"><span class="pre">wind_data</span></code> keyword argument in place
+of <code class="docutils literal notranslate"><span class="pre">wind_directions</span></code>, <code class="docutils literal notranslate"><span class="pre">wind_speeds</span></code>, and <code class="docutils literal notranslate"><span class="pre">turbulence_intensities</span></code>. The wind data objects enable,
+for example, gridding inputs (<code class="docutils literal notranslate"><span class="pre">WindRose</span></code> and <code class="docutils literal notranslate"><span class="pre">WindTIRose</span></code>) and broadcasting a scalar-valued
+turbulence intensity (<code class="docutils literal notranslate"><span class="pre">TimeSeries</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">FlorisModel</span>
+<span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">TimeSeries</span>
+
+<span class="n">fmodel</span> <span class="o">=</span> <span class="n">FlorisModel</span><span class="p">(</span><span class="s2">&quot;input_file.yaml&quot;</span><span class="p">)</span> <span class="c1"># Input file with 3 turbines</span>
+
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">270.0</span><span class="p">,</span> <span class="mf">270.0</span><span class="p">]),</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span>
+    <span class="n">turbulence_intensities</span><span class="o">=</span><span class="mf">0.06</span>
+<span class="p">)</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">wind_data</span><span class="o">=</span><span class="n">time_series</span><span class="p">)</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">wind_data</span><span class="o">=</span><span class="n">time_series</span><span class="p">)</span><span class="n">turbine_powers_base</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_turbine_powers</span><span class="p">()</span>
+<span class="n">turbine_powers</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_turbine_powers</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>More information about the various wind data classes can be found at
+<a class="reference internal" href="wind_data_user.html"><span class="doc std std-doc">Wind Data Objects</span></a>.</p>
 </section>
 <section id="operation-model">
 <h2>Operation model<a class="headerlink" href="#operation-model" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Again, brief overview and then point to main page.</p></li>
-</ul>
+<p>FLORIS v4 allows for significantly more flexible turbine operation via
+<a class="reference internal" href="operation_models_user.html"><span class="doc std std-doc">Turbine Operation Models</span></a>. These allow users to specify how a turbine loses
+power when yaw misaligned; how a turbine operates when derated; and how turbines produce power
+and thrust when operating with active wake mixing strategies. The default operation model is the
+<code class="docutils literal notranslate"><span class="pre">&quot;cosine-loss&quot;</span></code> model, which models a turbine's power loss when in yaw misalignment using the same
+cosine model as was hardcoded in FLORIS v3.</p>
 </section>
 </section>
 
