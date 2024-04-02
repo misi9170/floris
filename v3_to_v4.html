@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Switching from FLORIS v3 to FLORIS v4 &#8212; FLORIS</title>
+    <title>Switching from FLORIS v3 to v4 &#8212; FLORIS</title>
   
   
   
@@ -192,7 +192,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Switching from FLORIS v3 to FLORIS v4</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Switching from FLORIS v3 to v4</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Reference</span></p>
 <ul class="nav bd-sidenav">
@@ -465,7 +465,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Switching from FLORIS v3 to FLORIS v4</h1>
+    <h1>Switching from FLORIS v3 to v4</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -476,9 +476,15 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-and-running">Setting and running</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-files">Input files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engaging-on-github">Engaging on GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-files">Input files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-floris-input-yaml">Main FLORIS input yaml</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#turbine-input-yaml">Turbine input yaml</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-v3-yamls-to-v4">Converting v3 yamls to v4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-turbine-updates">Reference turbine updates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-data">Wind data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operation-model">Operation model</a></li>
 </ul>
             </nav>
         </div>
@@ -490,8 +496,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="switching-from-floris-v3-to-floris-v4">
-<h1>Switching from FLORIS v3 to FLORIS v4<a class="headerlink" href="#switching-from-floris-v3-to-floris-v4" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="switching-from-floris-v3-to-v4">
+<h1>Switching from FLORIS v3 to v4<a class="headerlink" href="#switching-from-floris-v3-to-v4" title="Link to this heading">#</a></h1>
 <p>There are several major changes introduced in FLORIS v4. The largest underlying change is that,
 where FLORIS v3 had a &quot;wind directions&quot; and a &quot;wind speeds&quot; dimension to its internal data
 structures, FLORIS v4 collapses these into a single dimension, which we refer to as the <code class="docutils literal notranslate"><span class="pre">findex</span></code>
@@ -501,16 +507,6 @@ largest implication of this change is that users must specify <code class="docut
 <code class="docutils literal notranslate"><span class="pre">turbulence_intensities</span></code> (new) as arrays of equal length; and these are &quot;zipped&quot; to create the
 conditions for FLORIS to run, rather than creating a grid of all combinations. This is discussed
 further in <a class="reference internal" href="#setting-and-running"><span class="xref myst">Setting and Running</span></a>.</p>
-<ul class="simple">
-<li><p>FlorisInterface -&gt; FlorisModel</p></li>
-<li><p>reinitialize, calculate_wake -&gt; set, run</p></li>
-<li><p>arguments to each</p></li>
-<li><p>setpoints STORED; can use reset_operation</p></li>
-<li><p>Time series mode everywhere</p></li>
-<li><p>Stricter about consistent inputs</p></li>
-<li><p>wind data objects</p></li>
-<li><p>operation models</p></li>
-</ul>
 <section id="setting-and-running">
 <h2>Setting and running<a class="headerlink" href="#setting-and-running" title="Link to this heading">#</a></h2>
 <p>In FLORIS v3, users interacted with FLORIS by instantiating a <code class="docutils literal notranslate"><span class="pre">FlorisInterface</span></code> object, nominally
@@ -586,52 +582,87 @@ wind directions and wind speeds), we now provide <code class="docutils literal n
 </section>
 <section id="input-files">
 <h2>Input files<a class="headerlink" href="#input-files" title="Link to this heading">#</a></h2>
+<p>As in FLORIS v3, there are two main input files to FLORIS v4:</p>
+<ol class="arabic simple">
+<li><p>The &quot;main&quot; FLORIS input yaml, which contains wake model parameters and wind farm data</p></li>
+<li><p>The &quot;turbine&quot; input yaml, which contains data about the wind turbines</p></li>
+</ol>
+<p>Examples for main FLORIS input yamls are in examples/inputs/. Default turbine yamls, which many users
+may use if they do not have their own turbine models to use, can be found in foris/turbine_library/.
+See also <a class="reference internal" href="input_reference_turbine.html"><span class="doc std std-doc">Turbine Library Interface</span></a> and
+<a class="reference internal" href="input_reference_main.html"><span class="doc std std-doc">Main Input File Reference</span></a>.</p>
+<p>Conceptually, both the main FLORIS input yaml and the turbine input yaml is much the same in v4 as
+in v3. However, there are a few changes to the fields on each that mean that existing yamls for v3
+will not run in v4 as is.</p>
+<section id="main-floris-input-yaml">
+<h3>Main FLORIS input yaml<a class="headerlink" href="#main-floris-input-yaml" title="Link to this heading">#</a></h3>
+<p>The only change in fields on the main FLORIS input file is that the <code class="docutils literal notranslate"><span class="pre">turbulence_intensity</span></code> field,
+which was specified as a scalar in FLORIS v3, has been changed to <code class="docutils literal notranslate"><span class="pre">turbulence_intensities</span></code>, and
+should now contain a list of turbulence intensities that is of the same length as <code class="docutils literal notranslate"><span class="pre">wind_directions</span></code>
+and <code class="docutils literal notranslate"><span class="pre">wind_speeds</span></code>. Additionally, the length of the lists for <code class="docutils literal notranslate"><span class="pre">wind_directions</span></code> and <code class="docutils literal notranslate"><span class="pre">wind_speeds</span></code>
+<em>must</em> now be of equal length.</p>
+</section>
+<section id="turbine-input-yaml">
+<h3>Turbine input yaml<a class="headerlink" href="#turbine-input-yaml" title="Link to this heading">#</a></h3>
+<p>To reflect the transition to more flexible <a class="reference internal" href="#operation-model"><span class="xref myst">operation models</span></a>, there are a
+number of changes to the fields on the turbine yaml. The changes are mostly regrouping and
+renaming of the existing fields.</p>
 <ul class="simple">
-<li><p>main input yaml and turbine yaml, as before</p></li>
-<li><p>changes to each (describe)</p></li>
-<li><p>utilities for converting between them.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">power_thrust_table</span></code> field now has <code class="docutils literal notranslate"><span class="pre">wind_speed</span></code> and <code class="docutils literal notranslate"><span class="pre">power</span></code> fields, as before; however,
+the <code class="docutils literal notranslate"><span class="pre">thrust</span></code> field has been renamed <code class="docutils literal notranslate"><span class="pre">thrust_coefficient</span></code> for clarity, and the <code class="docutils literal notranslate"><span class="pre">power</span></code> field now
+specifies the turbine <em>absolute</em> power (in kW) rather than the <em>power coefficient</em>.</p></li>
+<li><p>Additionally, any extra parameters and data required by operation models to evaluate the power
+and thrust curves have been moved onto the <code class="docutils literal notranslate"><span class="pre">power_thrust_table</span></code> field. This includes
+<code class="docutils literal notranslate"><span class="pre">ref_density_cp_ct</span></code> (renamed <code class="docutils literal notranslate"><span class="pre">ref_air_density</span></code> and moved onto the <code class="docutils literal notranslate"><span class="pre">power_thrust_table</span></code>);
+<code class="docutils literal notranslate"><span class="pre">ref_tilt_cp_ct</span></code> (renamed <code class="docutils literal notranslate"><span class="pre">ref_tilt</span></code> and moved onto the <code class="docutils literal notranslate"><span class="pre">power_thrust_table</span></code>); and <code class="docutils literal notranslate"><span class="pre">pP</span></code> and <code class="docutils literal notranslate"><span class="pre">pT</span></code>
+(renamed <code class="docutils literal notranslate"><span class="pre">cosine_loss_exponent_yaw</span></code> and <code class="docutils literal notranslate"><span class="pre">cosine_loss_exponent_tilt</span></code>, respectively, and moved onto
+the <code class="docutils literal notranslate"><span class="pre">power_thrust_table</span></code>).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">generator_efficiency</span></code> field has been removed. The <code class="docutils literal notranslate"><span class="pre">power</span></code> field on <code class="docutils literal notranslate"><span class="pre">power_thrust_table</span></code>
+should reflect the electrical power produced by the turbine, including any losses.</p></li>
+<li><p>A new field <code class="docutils literal notranslate"><span class="pre">operation_model</span></code> has been added, whose value should be a string that selects the
+operation model the user would like to evaluate. The default is <code class="docutils literal notranslate"><span class="pre">&quot;cosine-loss&quot;</span></code>,
+which recovers FLORIS v3-type turbine operation. See <a class="reference internal" href="#operation-model"><span class="xref myst">Operation model</span></a> and
+<a class="reference internal" href="operation_models_user.html"><span class="doc std std-doc">Turbine Operation Models</span></a> for details.</p></li>
 </ul>
 </section>
-<section id="quick-start">
-<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
-<p>FLORIS is a Python package run on the command line typically by providing
-an input file with an initial configuration. It can be installed with
-<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">floris</span></code> (see <a class="reference internal" href="installation.html#installation"><span class="std std-ref">Installation</span></a>). The typical entry point is
-<code class="xref py py-class docutils literal notranslate"><span class="pre">FlorisInterface</span></code> which accepts the path to the
-input file as an argument. From there, changes can be made to the initial
-configuration through the <code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.reinitialize()</span></code>
-routine, and the simulation is executed with
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.calculate_wake()</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris.tools</span> <span class="kn">import</span> <span class="n">FlorisInterface</span>
-<span class="n">fi</span> <span class="o">=</span> <span class="n">FlorisInterface</span><span class="p">(</span><span class="s2">&quot;path/to/input.yaml&quot;</span><span class="p">)</span>
-<span class="n">fi</span><span class="o">.</span><span class="n">reinitialize</span><span class="p">(</span><span class="n">wind_directions</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
-<span class="n">fi</span><span class="o">.</span><span class="n">calculate_wake</span><span class="p">()</span>
+<section id="converting-v3-yamls-to-v4">
+<h3>Converting v3 yamls to v4<a class="headerlink" href="#converting-v3-yamls-to-v4" title="Link to this heading">#</a></h3>
+<p>To aid users in converting their existing v3 main FLORIS input yamls and turbine input, we provide
+two utilities:</p>
+<ul class="simple">
+<li><p>floris/tools/convert_floris_input_v3_to_v4.py</p></li>
+<li><p>floris/tools/convert_turbine_v3_to_v4.py</p></li>
+</ul>
+<p>These can be executed from the command line and expect to be passed the exiting v3 yaml as an input;
+the will then write a new v4-compatible yaml of the same name but appended _v4.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>convert_floris_input_v3_to_v4.py<span class="w"> </span>your_v3_input_file.yaml
+python<span class="w"> </span>convert_floris_turbine_v3_to_v4.py<span class="w"> </span>your_v3_turbine_file.yaml
 </pre></div>
 </div>
-<p>Finally, results can be analyzed via post-processing functions available within
-<code class="xref py py-class docutils literal notranslate"><span class="pre">FlorisInterface</span></code> such as
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.get_turbine_layout()</span></code>,
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.get_turbine_powers()</span></code> and
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.get_farm_AEP()</span></code>, and
-a visualization package is available in <code class="xref py py-mod docutils literal notranslate"><span class="pre">floris.tools.visualization</span></code>.
-A collection of examples are included in the <a class="reference external" href="https://github.com/NREL/floris/tree/main/examples">repository</a>
-and described in detail in <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples Index</span></a>.</p>
+<p>Additionally, a function for building a turbine dictionary that can be passed directly to the
+<code class="docutils literal notranslate"><span class="pre">turbine_type</span></code> argument of <code class="docutils literal notranslate"><span class="pre">FlorisModel.set()</span></code> is provided:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris.turbine_library.turbine_utilities</span> <span class="kn">import</span> <span class="n">build_cosine_loss_turbine_dict</span>
+</pre></div>
+</div>
 </section>
-<section id="engaging-on-github">
-<h2>Engaging on GitHub<a class="headerlink" href="#engaging-on-github" title="Link to this heading">#</a></h2>
-<p>FLORIS leverages the following GitHub features to coordinate support and development efforts:</p>
+<section id="reference-turbine-updates">
+<h3>Reference turbine updates<a class="headerlink" href="#reference-turbine-updates" title="Link to this heading">#</a></h3>
+<p>The power and thrust curves for the NREL 5MW, IEA 10MW, and IEA 15MW turbines have been updated
+slightly do reflect publicly available data. The x_20MW reference turbine has been removed, as data
+was not readily available. See <a class="reference internal" href="input_reference_turbine.html"><span class="doc std std-doc">Turbine Library Interface</span></a>.</p>
+</section>
+</section>
+<section id="wind-data">
+<h2>Wind data<a class="headerlink" href="#wind-data" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/NREL/floris/discussions">Discussions</a>: Collaborate to develop ideas for new use cases, features, and software designs, and get support for usage questions</p></li>
-<li><p><a class="reference external" href="https://github.com/NREL/floris/issues">Issues</a>: Report potential bugs and well-developed feature requests</p></li>
-<li><p><a class="reference external" href="https://github.com/orgs/NREL/projects/18/">Projects</a>: Include current and future work on a timeline and assign a person to &quot;own&quot; it</p></li>
+<li><p>Go into briefly here to explain the concept; then point to dedicated page.</p></li>
 </ul>
-<p>Generally, the first entry point for the community will be within one of the
-categories in Discussions.
-<a class="reference external" href="https://github.com/NREL/floris/discussions/categories/ideas">Ideas</a> is a great spot to develop the
-details for a feature request. <a class="reference external" href="https://github.com/NREL/floris/discussions/categories/q-a">Q&amp;A</a>
-is where to get usage support.
-<a class="reference external" href="https://github.com/NREL/floris/discussions/categories/show-and-tell">Show and tell</a> is a free-form
-space to show off the things you are doing with FLORIS.</p>
+</section>
+<section id="operation-model">
+<h2>Operation model<a class="headerlink" href="#operation-model" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Again, brief overview and then point to main page.</p></li>
+</ul>
 </section>
 </section>
 
@@ -700,9 +731,15 @@ space to show off the things you are doing with FLORIS.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-and-running">Setting and running</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-files">Input files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engaging-on-github">Engaging on GitHub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-files">Input files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-floris-input-yaml">Main FLORIS input yaml</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#turbine-input-yaml">Turbine input yaml</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-v3-yamls-to-v4">Converting v3 yamls to v4</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-turbine-updates">Reference turbine updates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-data">Wind data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operation-model">Operation model</a></li>
 </ul>
   </nav></div>
 
