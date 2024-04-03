@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Wind data objects &#8212; FLORIS</title>
+    <title>Wind Data Objects &#8212; FLORIS</title>
   
   
   
@@ -198,7 +198,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_concepts.html">Advanced Concepts</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Wind data objects</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Wind Data Objects</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
@@ -334,7 +335,7 @@
       
       
       
-      <li><a href="https://github.com/NREL/floris/edit/main/docs/wind_data_user.md" target="_blank"
+      <li><a href="https://github.com/NREL/floris/edit/main/docs/wind_data_user.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +382,7 @@
       
       
       
-      <li><a href="_sources/wind_data_user.md" target="_blank"
+      <li><a href="_sources/wind_data_user.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -391,7 +392,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -452,7 +453,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -463,11 +466,42 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Wind data objects</h1>
+    <h1>Wind Data Objects</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Wind Data Objects</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winddatabase">WindDataBase</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries">TimeSeries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries-instantiation">TimeSeries Instantiation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#value">Value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-turbulence-intensity">Generating Turbulence Intensity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-value">Generating Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windrose">WindRose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windtirose">WindTIRose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversions">Conversions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-floris">Setting FLORIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">TimeSeries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">WindRose</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -478,9 +512,432 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="wind-data-objects">
-<span id="wind-data"></span><h1>Wind data objects<a class="headerlink" href="#wind-data-objects" title="Link to this heading">#</a></h1>
-<p>&#64;paulf81
-&#64;ejsimley (value)</p>
+<h1>Wind Data Objects<a class="headerlink" href="#wind-data-objects" title="Link to this heading">#</a></h1>
+<p>FLORIS v4 introduces WindData objects.  These include TimeSeries, WindRose, and WindTIRose.  These objects are used to hold inputs to FLORIS simulations, such as the ambient wind data, and to provide high-level methods for working with wind data.  This notebook provides an overview of the WindData objects and demonstrates how to use them.</p>
+<section id="winddatabase">
+<h2>WindDataBase<a class="headerlink" href="#winddatabase" title="Link to this heading">#</a></h2>
+<p>WindDataBase is the base class for all WindData objects.  It provides a common interface for working with wind data.  The WindDataBase class is not intended to be used directly, but rather to be subclassed by more specific wind data objects. It is only important to mention that many of the methods in FLORIS that accept wind data as input will accept any WindDataBase object as input.  But is not typical to use it directly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris.wind_data</span> <span class="kn">import</span> <span class="n">WindDataBase</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="timeseries">
+<h1>TimeSeries<a class="headerlink" href="#timeseries" title="Link to this heading">#</a></h1>
+<p>TimeSeries objects are used to represent data which are in a time-series form, or more generally and data which is represented as a list of conditions without frequency weighting (i.e. not a wind rose).  In addition to representing time series input conditions, TimeSeries objects are useful for generating sweep inputs where most values are help constant while one input is swept through a range of values.  Also useful can be an input of identical repeated inputs which can be useful if some control setting is going to be swept.  TimeSeries represents data most similarly to how data structures within FLORIS are represented in that there are N wind_directions, wind_speeds etc., in the TimeSeries, the n_findex value in FLORIS will be N.</p>
+<section id="timeseries-instantiation">
+<h2>TimeSeries Instantiation<a class="headerlink" href="#timeseries-instantiation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">TimeSeries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Like FlorisModel, TimeSeries require wind directions, wind speeds, and turbulence intensities to be of the same length.</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">wind_directions</span> <span class="o">=</span> <span class="mf">270.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">turbulence_intensities</span> <span class="o">=</span> <span class="mf">0.06</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Create a TimeSeries object</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span><span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span> <span class="n">turbulence_intensities</span><span class="o">=</span><span class="n">turbulence_intensities</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="broadcasting">
+<h2>Broadcasting<a class="headerlink" href="#broadcasting" title="Link to this heading">#</a></h2>
+<p>Unlike FlorisModel, TimeSeries objects do allow broadcasting.  As long as one of the inputs is a numpy array, the other inputs can be specified as a float, which will be broadcasted to the length of the numpy array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Equivalent to the above</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span><span class="n">wind_directions</span><span class="o">=</span><span class="mf">270.0</span><span class="p">,</span> <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span> <span class="n">turbulence_intensities</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="value">
+<h2>Value<a class="headerlink" href="#value" title="Link to this heading">#</a></h2>
+<p>In addition to wind directions, wind speeds and turbulence intensities, TimeSeries objects can also hold an array of values.  These values can be used for example to represent electricity market prices.<br />
+If values are included in the TimeSeries object, they must be the same length as the wind directions, wind speeds, and turbulence intensities.  If included, values enable calculation of Annual Value Production (AVP), in addition to AEP, and certain optimization routines, such as layout, can be configured to maximize value instead of energy production.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Including value for each indices</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span><span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span> <span class="n">turbulence_intensities</span><span class="o">=</span><span class="n">turbulence_intensities</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="generating-turbulence-intensity">
+<h3>Generating Turbulence Intensity<a class="headerlink" href="#generating-turbulence-intensity" title="Link to this heading">#</a></h3>
+<p>The TimeSeries object also includes functions for generating TI as a function of wind direction and wind speed.  This can be accomplished by passing in a custom function, or by taking use of the IEC 61400-1 standard</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assign TI as a function of wind speed using the IEC method and default parameters.</span>
+<span class="n">time_series</span><span class="o">.</span><span class="n">assign_ti_using_IEC_method</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time_series</span><span class="o">.</span><span class="n">wind_speeds</span><span class="p">,</span> <span class="n">time_series</span><span class="o">.</span><span class="n">turbulence_intensities</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Turbulence Intensity&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Turbulence Intensity&#39;)
+</pre></div>
+</div>
+<img alt="_images/d152d7e57577bfb32adce0e8bf2c212fedbd0c8bf7b053ce06537c5f15d5aa60.png" src="_images/d152d7e57577bfb32adce0e8bf2c212fedbd0c8bf7b053ce06537c5f15d5aa60.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="generating-value">
+<h2>Generating Value<a class="headerlink" href="#generating-value" title="Link to this heading">#</a></h2>
+<p>TODO</p>
+</section>
+<section id="windrose">
+<h2>WindRose<a class="headerlink" href="#windrose" title="Link to this heading">#</a></h2>
+<p>A second wind data object is the WindRose, which represents the data as:</p>
+<ul class="simple">
+<li><p>An array of wind directions</p></li>
+<li><p>An array of wind speeds</p></li>
+<li><p>A table of turbulence intensities of size (n_wind_directions, n_wind_speeds) which represents the TI at each wind direction and wind speed.</p></li>
+<li><p>A table of frequencies of size (n_wind_directions, n_wind_speeds) which represents the frequency of occurance of each wind direction and wind speed.</p></li>
+<li><p>An (optional) table of values of size (n_wind_directions, n_wind_speeds) which represents the value of the wind condition.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">WindRose</span>
+
+<span class="n">wind_directions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">270</span><span class="p">,</span> <span class="mi">280</span><span class="p">])</span> <span class="c1"># 2 Wind Directions</span>
+<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span> <span class="c1"># 3 Wind Speeds</span>
+
+<span class="c1"># Create a WindRose object, not indicating a frequency table indicates uniform frequency</span>
+<span class="n">wind_rose</span> <span class="o">=</span> <span class="n">WindRose</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span>
+    <span class="n">ti_table</span><span class="o">=</span><span class="mf">0.06</span> <span class="c1">#As in Time Series, a float indicates a constant table</span>
+<span class="p">)</span>
+
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">freq_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.16666667, 0.16666667, 0.16666667],
+       [0.16666667, 0.16666667, 0.16666667]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Several of the functions implemented for TimeSeries are likewise implemented for WindRose</span>
+
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">assign_ti_using_IEC_method</span><span class="p">()</span>
+
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">ti_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.09683333, 0.0905    , 0.08575   ],
+       [0.09683333, 0.0905    , 0.08575   ]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="windtirose">
+<h2>WindTIRose<a class="headerlink" href="#windtirose" title="Link to this heading">#</a></h2>
+<p>The WindTIRose is similar to the WindRose except that rather than specififying wind directions and wind speeds as arrays, with TI and frequency as a 2D table, the WindTIRose specificies wind directions, wind speeds and turbulence intensity as arrays with the frequency table now 3 dimensional, representing the frequency of each wind direction, wind speed, and turbulence intensity occurence.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">WindTIRose</span>
+
+<span class="n">wind_directions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">270</span><span class="p">,</span> <span class="mi">280</span><span class="p">])</span> <span class="c1"># 2 Wind Directions</span>
+<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span> <span class="c1"># 3 Wind Speeds</span>
+<span class="n">turbulence_intensities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">])</span> <span class="c1"># 3 Turbulence Intensities</span>
+
+<span class="c1"># The frequency table therefore is 2 x 3 x 3 and the sum over all entries = 1</span>
+<span class="n">freq_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[[</span><span class="mi">2</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">]],</span>
+    <span class="p">[[</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">]]</span>
+<span class="p">])</span>
+
+<span class="n">wind_ti_rose</span> <span class="o">=</span> <span class="n">WindTIRose</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span>
+    <span class="n">turbulence_intensities</span><span class="o">=</span><span class="n">turbulence_intensities</span><span class="p">,</span>
+    <span class="n">freq_table</span><span class="o">=</span><span class="n">freq_table</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conversions">
+<h2>Conversions<a class="headerlink" href="#conversions" title="Link to this heading">#</a></h2>
+<p>Several methods for converting between WindData objects are provided</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Converting from TimeSeries to WindRose/WindTiRose by binning</span>
+<span class="n">wind_rose</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">to_WindRose</span><span class="p">(</span><span class="n">wd_step</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ws_step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">wind_ti_rose</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">to_WindTIRose</span><span class="p">(</span><span class="n">wd_step</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ws_step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ti_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resampling WindRose/WindTiRose</span>
+<span class="n">wind_rose_resampled</span> <span class="o">=</span> <span class="n">wind_rose</span><span class="o">.</span><span class="n">resample_wind_rose</span><span class="p">(</span><span class="n">wd_step</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ws_step</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">wind_ti_rose_resampled</span> <span class="o">=</span> <span class="n">wind_ti_rose</span><span class="o">.</span><span class="n">resample_wind_rose</span><span class="p">(</span><span class="n">wd_step</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ws_step</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ti_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting">
+<h2>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">#</a></h2>
+<p>There are several plotting methods available to help visualize wind data objects</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wind_directions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">wind_speeds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">freq_table</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">freq_table</span> <span class="o">=</span> <span class="n">freq_table</span> <span class="o">/</span> <span class="n">freq_table</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">wind_rose</span> <span class="o">=</span> <span class="n">WindRose</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span>
+    <span class="n">ti_table</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span>
+    <span class="n">freq_table</span><span class="o">=</span><span class="n">freq_table</span>
+<span class="p">)</span>
+
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">plot_wind_rose</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PolarAxes: &gt;
+</pre></div>
+</div>
+<img alt="_images/96871edd97a9155b9455e6efcacd5af673f8a4c79a837d1d57de78b2da4bf50f.png" src="_images/96871edd97a9155b9455e6efcacd5af673f8a4c79a837d1d57de78b2da4bf50f.png" />
+</div>
+</div>
+</section>
+<section id="setting-floris">
+<h2>Setting FLORIS<a class="headerlink" href="#setting-floris" title="Link to this heading">#</a></h2>
+<p>WindData objects are used to set wind direction, speed, TI, frequency and value in a FlorisModel (or UncertainFlorisModel).</p>
+<section id="id1">
+<h3>TimeSeries<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TimeSeries</span>
+
+<span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">FlorisModel</span>
+
+<span class="c1"># Create a FlorisModel object</span>
+<span class="n">fmodel</span> <span class="o">=</span> <span class="n">FlorisModel</span><span class="p">(</span><span class="s2">&quot;../examples/inputs/gch.yaml&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set a two-turbine layout</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">layout_x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span> <span class="n">layout_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Make a set of inputs with 5 wind directions, while wind speed and TI are constant</span>
+<span class="n">wind_directions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">270</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">310</span><span class="p">])</span>
+<span class="n">wind_speeds</span> <span class="o">=</span> <span class="mf">8.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">turbulence_intensities</span> <span class="o">=</span> <span class="mf">0.06</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span>
+    <span class="n">turbulence_intensities</span><span class="o">=</span><span class="n">turbulence_intensities</span>
+<span class="p">)</span>
+
+<span class="c1"># Is equivalent to:</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span><span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">wind_speeds</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">turbulence_intensities</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">wind_data</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the model and get outputs</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1"># Get the power outputs</span>
+<span class="n">turbine_powers</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_turbine_powers</span><span class="p">()</span>
+<span class="n">farm_power</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_power</span><span class="p">()</span>
+<span class="n">expected_farm_power</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_expected_farm_power</span><span class="p">()</span>
+<span class="n">aep</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span>
+
+<span class="c1"># Display</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Turbine power have shape </span><span class="si">{</span><span class="n">turbine_powers</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and are </span><span class="si">{</span><span class="n">turbine_powers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm power has shape </span><span class="si">{</span><span class="n">farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected farm power has shape </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm AEP is </span><span class="si">{</span><span class="n">aep</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">floris.floris_model.FlorisModel</span> <span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> <span class=" -Color -Color-Yellow">Computing AEP with uniform frequencies. Results results may not reflect annual operation.</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Turbine power have shape (5, 2) and are [[1753954.45917917  354990.76412771]
+ [1753954.45917917 1320346.28513924]
+ [1753954.45917917 1748551.48278202]
+ [1753954.45917917 1753951.95262087]
+ [1753954.45917917 1753954.45908051]]
+Farm power has shape (5,) and is [2108945.22330688 3074300.74431841 3502505.94196119 3507906.41180004
+ 3507908.91825968]
+Expected farm power has shape () and is 3140313.4479292436
+Farm AEP is 27509145803.860172
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>WindRose<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>WindRose objects set FLORIS as TimeSeries, but there are some additional considerations.</p>
+<ul class="simple">
+<li><p>By default, wind direction/speed combinations with 0 frequency are not run</p></li>
+<li><p>The outputs of the functions get_turbine_powers and get_farm_power will be reshaped to have dimensions num_wind_directions x num_wind_speeds ( x num_turbines)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wind_directions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">270</span><span class="p">,</span> <span class="mi">280</span><span class="p">])</span> <span class="c1"># 2 Wind Directions</span>
+<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span> <span class="c1"># 3 Wind Speeds</span>
+
+<span class="c1"># Frequency matrix is 2 x 3, include some 0 frequency results</span>
+<span class="n">freq_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># Create a WindRose object, not indicating a frequency table indicates uniform frequency</span>
+<span class="n">wind_rose</span> <span class="o">=</span> <span class="n">WindRose</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span>
+    <span class="n">ti_table</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span>
+    <span class="n">freq_table</span><span class="o">=</span><span class="n">freq_table</span>
+<span class="p">)</span>
+
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">wind_data</span><span class="o">=</span><span class="n">wind_rose</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fmodel has n_findex </span><span class="si">{</span><span class="n">fmodel</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="si">}</span><span class="s2"> because two cases have 0 frequency&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fmodel has n_findex 4 because two cases have 0 frequency
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the model and collect the outputs</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1"># Get the power outputs</span>
+<span class="n">turbine_powers</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_turbine_powers</span><span class="p">()</span>
+<span class="n">farm_power</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_power</span><span class="p">()</span>
+<span class="n">expected_farm_power</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_expected_farm_power</span><span class="p">()</span>
+<span class="n">aep</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span>
+
+<span class="c1"># Note that the nan values in the non-computed cases are expected since these are not run</span>
+
+<span class="c1"># Display</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Turbine power have shape </span><span class="si">{</span><span class="n">turbine_powers</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and are </span><span class="si">{</span><span class="n">turbine_powers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm power has shape </span><span class="si">{</span><span class="n">farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected farm power has shape </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm AEP is </span><span class="si">{</span><span class="n">aep</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Turbine power have shape (2, 3, 2) and are [[[             nan              nan]
+  [             nan              nan]
+  [1753954.45917917  354990.76412771]]
+
+ [[ 731003.41073165  523849.55426108]
+  [1176825.66812027  876937.12082426]
+  [1753954.45917917 1320346.28513924]]]
+Farm power has shape (2, 3) and is [[             nan              nan 2108945.22330688]
+ [1254852.96499273 2053762.78894454 3074300.74431841]]
+Expected farm power has shape () and is 2118292.028029389
+Farm AEP is 18556238165.53745
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It&#39;s possible however to force the running of 0 frequency cases</span>
+<span class="n">wind_rose</span> <span class="o">=</span> <span class="n">WindRose</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span>
+    <span class="n">ti_table</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span>
+    <span class="n">freq_table</span><span class="o">=</span><span class="n">freq_table</span><span class="p">,</span>
+    <span class="n">compute_zero_freq_occurrence</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">wind_data</span><span class="o">=</span><span class="n">wind_rose</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fmodel has n_findex </span><span class="si">{</span><span class="n">fmodel</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Run the model and collect the outputs</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1"># Get the power outputs</span>
+<span class="n">turbine_powers</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_turbine_powers</span><span class="p">()</span>
+<span class="n">farm_power</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_power</span><span class="p">()</span>
+<span class="n">expected_farm_power</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_expected_farm_power</span><span class="p">()</span>
+<span class="n">aep</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span>
+
+<span class="c1"># Display</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Turbine powers and farm power are now computed for all cases&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Turbine power have shape </span><span class="si">{</span><span class="n">turbine_powers</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and are </span><span class="si">{</span><span class="n">turbine_powers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm power has shape </span><span class="si">{</span><span class="n">farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected farm power and AEP are the same as before since the new cases are weighted by 0&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected farm power has shape </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm AEP is </span><span class="si">{</span><span class="n">aep</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fmodel has n_findex 6
+Turbine powers and farm power are now computed for all cases
+Turbine power have shape (2, 3, 2) and are [[[ 731003.41073165   80999.08780495]
+  [1176825.66812027  191637.98384374]
+  [1753954.45917917  354990.76412771]]
+
+ [[ 731003.41073165  523849.55426108]
+  [1176825.66812027  876937.12082426]
+  [1753954.45917917 1320346.28513924]]]
+Farm power has shape (2, 3) and is [[ 812002.4985366  1368463.65196401 2108945.22330688]
+ [1254852.96499273 2053762.78894454 3074300.74431841]]
+Expected farm power and AEP are the same as before since the new cases are weighted by 0
+Expected farm power has shape () and is 2118292.028029389
+Farm AEP is 18556238165.53745
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -538,7 +995,43 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Wind Data Objects</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winddatabase">WindDataBase</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries">TimeSeries</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries-instantiation">TimeSeries Instantiation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#value">Value</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-turbulence-intensity">Generating Turbulence Intensity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-value">Generating Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windrose">WindRose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windtirose">WindTIRose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversions">Conversions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-floris">Setting FLORIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">TimeSeries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">WindRose</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
