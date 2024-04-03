@@ -646,12 +646,16 @@ wake of the controlled turbine. This effect is activated by setting
 <code class="docutils literal notranslate"><span class="pre">enable_active_wake_mixing</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>, and <code class="docutils literal notranslate"><span class="pre">awc_modes</span></code> to <code class="docutils literal notranslate"><span class="pre">&quot;helix&quot;</span></code> (other AWC
 strategies are yet to be implemented). The wake can then be controlled by
 setting the amplitude of the AWC excitation using <code class="docutils literal notranslate"><span class="pre">awc_amplitudes</span></code> (see the
-section on operation models). The effect of AWC is represented by updating the
+<a class="reference internal" href="operation_models_user.html#awc-model"><span class="std std-ref">AWC operation model</span></a>).
+The effect of AWC is represented by updating the
 wake-induced mixing term as follows:</p>
-<p>$<span class="math notranslate nohighlight">\( \text{WIM}_j = \sum_{i \in T^{\text{up}}(j)} \frac{A_{ij} a_i} {(x_j - x_i)/D_i} + \frac{A_{awc,j}^{p_{awc}}}{d_{awc}}\)</span>$,</p>
-<p>where <span class="math notranslate nohighlight">\(A_{awc,j}\)</span> is the AWC amplitude of turbine <span class="math notranslate nohighlight">\(j\)</span>, and <span class="math notranslate nohighlight">\(p_{awc}\)</span> and
-<span class="math notranslate nohighlight">\(d_{awc}\)</span> are tuning parameters that can be set in the <code class="docutils literal notranslate"><span class="pre">emgauss.yaml</span></code> file.
-Note that, similar to the yaw added mixing case, a turbine affects its own
+<div class="math notranslate nohighlight">
+\[ \text{WIM}_j = \sum_{i \in T^{\text{up}}(j)} \frac{A_{ij} a_i} {(x_j - x_i)/D_i} + 
+\frac{A_{\text{AWC},j}^{p_\text{AWC}}}{d_\text{AWC}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A_{\text{AWC},j}\)</span> is the AWC amplitude of turbine <span class="math notranslate nohighlight">\(j\)</span>, and the exponent <span class="math notranslate nohighlight">\(p_\text{AWC}\)</span> and
+denominator <span class="math notranslate nohighlight">\(d_\text{AWC}\)</span> are tuning parameters that can be set in the <code class="docutils literal notranslate"><span class="pre">emgauss.yaml</span></code> file with
+the fields <code class="docutils literal notranslate"><span class="pre">awc_wake_exp</span></code> and <code class="docutils literal notranslate"><span class="pre">awc_wake_denominator</span></code>, respectively.
+Note that, in contrast to the yaw added mixing case, a turbine currently affects <em>only</em> its own
 wake by applying AWC.</p>
 </section>
 </section>

@@ -795,11 +795,11 @@ as running a turbine at <code class="docutils literal notranslate"><span class="
 <p>Each example turbine input file <code class="docutils literal notranslate"><span class="pre">floris/turbine_library/*.yaml</span></code> has its own <code class="docutils literal notranslate"><span class="pre">helix_*</span></code> parameter data. These
 parameters are determined by fitting data from <code class="docutils literal notranslate"><span class="pre">OpenFAST</span></code> simulations in region II to the following equation:</p>
 <p>$<span class="math notranslate nohighlight">\(
-    P_{AWC} = P_{baseline} \cdot (1 - (b + c \cdot P_{baseline} ) \cdot A^a)
+    P_\text{AWC} = P_\text{baseline} \cdot (1 - (b + c \cdot P_\text{baseline} ) \cdot A_\text{AWC}^a)
 \)</span>$,</p>
-<p>where <code class="docutils literal notranslate"><span class="pre">a</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;helix_a&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;helix_power_b&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;helix_power_c&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">A</span></code> is <code class="docutils literal notranslate"><span class="pre">awc_amplitudes</span></code>.
+<p>where <span class="math notranslate nohighlight">\(a\)</span> is <code class="docutils literal notranslate"><span class="pre">&quot;helix_a&quot;</span></code>, <span class="math notranslate nohighlight">\(b\)</span> is <code class="docutils literal notranslate"><span class="pre">&quot;helix_power_b&quot;</span></code>, <span class="math notranslate nohighlight">\(c\)</span> is <code class="docutils literal notranslate"><span class="pre">&quot;helix_power_c&quot;</span></code>, and <span class="math notranslate nohighlight">\(A_\text{AWC}\)</span> is <code class="docutils literal notranslate"><span class="pre">awc_amplitudes</span></code>.
 The thrust coefficient follows the same equation, but with the respective thrust parameters. When AWC is
-turned on while <span class="math notranslate nohighlight">\(P_{baseline} &gt; P_{rated}\)</span>, a warning is given as the model is not yet tuned for region III.</p>
+turned on while <span class="math notranslate nohighlight">\(P_\text{baseline} &gt; P_\text{rated}\)</span>, a warning is given as the model is not yet tuned for region III.</p>
 <p>The figure below shows the fit between the turbine power and thrust in OpenFAST helix AWC simulations (x)
 and FLORIS simulations (--) at different region II wind speeds for the NREL 5MW reference turbine.</p>
 <img src="powerthrust_helix.png" width="600px"><div class="cell docutils container">
