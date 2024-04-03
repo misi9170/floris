@@ -794,9 +794,10 @@ power production. Note that setting <code class="docutils literal notranslate"><
 as running a turbine at <code class="docutils literal notranslate"><span class="pre">awc_modes</span> <span class="pre">=</span> <span class="pre">&quot;baseline&quot;</span></code>.</p>
 <p>Each example turbine input file <code class="docutils literal notranslate"><span class="pre">floris/turbine_library/*.yaml</span></code> has its own <code class="docutils literal notranslate"><span class="pre">helix_*</span></code> parameter data. These
 parameters are determined by fitting data from <code class="docutils literal notranslate"><span class="pre">OpenFAST</span></code> simulations in region II to the following equation:</p>
-<p>$<span class="math notranslate nohighlight">\(
+<div class="math notranslate nohighlight">
+\[
     P_\text{AWC} = P_\text{baseline} \cdot (1 - (b + c \cdot P_\text{baseline} ) \cdot A_\text{AWC}^a)
-\)</span>$,</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(a\)</span> is <code class="docutils literal notranslate"><span class="pre">&quot;helix_a&quot;</span></code>, <span class="math notranslate nohighlight">\(b\)</span> is <code class="docutils literal notranslate"><span class="pre">&quot;helix_power_b&quot;</span></code>, <span class="math notranslate nohighlight">\(c\)</span> is <code class="docutils literal notranslate"><span class="pre">&quot;helix_power_c&quot;</span></code>, and <span class="math notranslate nohighlight">\(A_\text{AWC}\)</span> is <code class="docutils literal notranslate"><span class="pre">awc_amplitudes</span></code>.
 The thrust coefficient follows the same equation, but with the respective thrust parameters. When AWC is
 turned on while <span class="math notranslate nohighlight">\(P_\text{baseline} &gt; P_\text{rated}\)</span>, a warning is given as the model is not yet tuned for region III.</p>
