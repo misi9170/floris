@@ -278,12 +278,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control optimization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/001_opt_yaw_single_ws.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/001_opt_yaw_single_ws.html">Example: Optimize yaw for a single wind speed and multiple wind directions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/002_opt_yaw_single_ws_uncertain.html">Example: Optimize yaw for a single wind speed and multiple wind directions.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/003_opt_yaw_multiple_ws.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/003_opt_yaw_multiple_ws.html">Example: Optimize yaw for multiple wind directions and multiple wind speeds.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/004_optimize_yaw_aep.html">Example: Optimize yaw and compare AEP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/005_optimize_yaw_aep_parallel.html">Example: Optimize yaw and compare AEP in parallel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/006_compare_yaw_optimizers.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/006_compare_yaw_optimizers.html">Example: Compare yaw optimizers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_optimization/007_optimize_yaw_with_neighbor_farms.html">Example: Optimize yaw with neighbor farm</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control types</span></p>
@@ -317,7 +317,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Layout optimization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_layout_optimization/001_optimize_layout.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_layout_optimization/001_optimize_layout.html">Example: Optimize Layout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_layout_optimization/002_optimize_layout_with_heterogeneity.html">Example: Layout optimization with heterogeneous inflow</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Multidim</span></p>
@@ -605,7 +605,7 @@ document.write(`
 </section>
 <section id="timeseries">
 <h2>TimeSeries<a class="headerlink" href="#timeseries" title="Link to this heading">#</a></h2>
-<p>TimeSeries objects are used to represent data which are in a time-series form, or more generally and data which is represented as a list of conditions without frequency weighting (i.e. not a wind rose).  In addition to representing time series input conditions, TimeSeries objects are useful for generating sweep inputs where most values are help constant while one input is swept through a range of values.  Also useful can be an input of identical repeated inputs which can be useful if some control setting is going to be swept.  TimeSeries represents data most similarly to how data structures within FLORIS are represented in that there are N wind_directions, wind_speeds etc., in the TimeSeries, the n_findex value in FLORIS will be N.</p>
+<p>TimeSeries objects are used to represent data which are in a time-series form, or more generally and data which is represented as a list of conditions without frequency weighting (i.e. not a wind rose).  In addition to representing time series input conditions, TimeSeries objects are useful for generating sweep inputs where most values are held constant while one input is swept through a range of values.  Also useful can be an input of identical repeated inputs which can be useful if some control setting is going to be swept.  TimeSeries represents data most similarly to how data structures within FLORIS are represented in that there are N wind_directions, wind_speeds etc., in the TimeSeries, the n_findex value in FLORIS will be N.</p>
 <section id="timeseries-instantiation">
 <h3>TimeSeries Instantiation<a class="headerlink" href="#timeseries-instantiation" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -615,7 +615,7 @@ document.write(`
 
 <span class="c1"># Like FlorisModel, TimeSeries require wind directions, wind speeds, and turbulence intensities to be of the same length.</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 <span class="n">wind_directions</span> <span class="o">=</span> <span class="mf">270.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="n">turbulence_intensities</span> <span class="o">=</span> <span class="mf">0.06</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 
@@ -640,8 +640,8 @@ document.write(`
 </section>
 <section id="value">
 <h3>Value<a class="headerlink" href="#value" title="Link to this heading">#</a></h3>
-<p>In addition to wind directions, wind speeds and turbulence intensities, TimeSeries objects can also hold an array of values.  These values can be used for example to represent electricity market prices.<br />
-If values are included in the TimeSeries object, they must be the same length as the wind directions, wind speeds, and turbulence intensities.  If included, values enable calculation of Annual Value Production (AVP), in addition to AEP, and certain optimization routines, such as layout, can be configured to maximize value instead of energy production.</p>
+<p>In addition to wind directions, wind speeds, and turbulence intensities, TimeSeries objects can also hold an array of values.  These values can be used for example to represent electricity market prices (e.g., price/MWh). The values are intended to be multiplied by the corresponding wind plant power at each time step or wind condition to determine the total value produced over all conditions.</p>
+<p>If values are included in the TimeSeries object, they must be the same length as the wind directions, wind speeds, and turbulence intensities.  If included, values enable calculation of Annual Value Production (AVP), in addition to AEP, and certain optimization routines, such as layout, can be configured to maximize value instead of energy production.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Including value for each indices</span>
@@ -672,13 +672,35 @@ If values are included in the TimeSeries object, they must be the same length as
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Turbulence Intensity&#39;)
 </pre></div>
 </div>
-<img alt="_images/c4bf7c53529484a49e8d59efa60bf7db3c61639961242e4390c7032636de11b4.png" src="_images/c4bf7c53529484a49e8d59efa60bf7db3c61639961242e4390c7032636de11b4.png" />
+<img alt="_images/e5a73da782caf6eced4d4740a5d50b2ea7d665e91f2970af0aaefdedf7e34efe.png" src="_images/e5a73da782caf6eced4d4740a5d50b2ea7d665e91f2970af0aaefdedf7e34efe.png" />
 </div>
 </div>
 </section>
 <section id="generating-value">
 <h3>Generating Value<a class="headerlink" href="#generating-value" title="Link to this heading">#</a></h3>
-<p>TODO</p>
+<p>The TimeSeries object also includes functions for generating value as a function of wind direction and wind speed. This can be accomplished by passing in a custom function using the <code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_value_using_wd_ws_function</span></code> method, or by using the <code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_value_piecewise_linear</span></code> method, which approximates value using a two-segment piecewise linear function of wind speed. When using the default parameters, this produces a value vs. wind speed that approximates the normalized mean electricity price vs. wind speed curve for the SPP market in the U.S. for years 2018-2020 from figure 7 in &quot;The value of wake steering wind farm flow control in US energy markets,&quot; Wind Energy Science, 2024. <a class="reference external" href="https://doi.org/10.5194/wes-9-219-2024">https://doi.org/10.5194/wes-9-219-2024</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assign value as a function of wind speed using the piecewise linear method and default parameters.</span>
+<span class="n">time_series</span><span class="o">.</span><span class="n">assign_value_piecewise_linear</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time_series</span><span class="o">.</span><span class="n">wind_speeds</span><span class="p">,</span> <span class="n">time_series</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Value (normalized price/MWh)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Value (normalized price/MWh)&#39;)
+</pre></div>
+</div>
+<img alt="_images/36591e5fae7e024182c5831585858c4320caf3e7ad4f9b816be34fe5b1ab58fe.png" src="_images/36591e5fae7e024182c5831585858c4320caf3e7ad4f9b816be34fe5b1ab58fe.png" />
+</div>
+</div>
 </section>
 </section>
 <section id="windrose">
@@ -696,7 +718,7 @@ If values are included in the TimeSeries object, they must be the same length as
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">WindRose</span>
 
 <span class="n">wind_directions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">270</span><span class="p">,</span> <span class="mi">280</span><span class="p">])</span> <span class="c1"># 2 Wind Directions</span>
-<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span> <span class="c1"># 3 Wind Speeds</span>
+<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span> <span class="c1"># 3 Wind Speeds</span>
 
 <span class="c1"># Create a WindRose object, not indicating a frequency table indicates uniform frequency</span>
 <span class="n">wind_rose</span> <span class="o">=</span> <span class="n">WindRose</span><span class="p">(</span>
@@ -722,13 +744,24 @@ If values are included in the TimeSeries object, they must be the same length as
 
 <span class="n">wind_rose</span><span class="o">.</span><span class="n">assign_ti_using_IEC_method</span><span class="p">()</span>
 
-<span class="n">wind_rose</span><span class="o">.</span><span class="n">ti_table</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wind_rose.ti_table&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wind_rose</span><span class="o">.</span><span class="n">ti_table</span><span class="p">)</span>
+
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">assign_value_piecewise_linear</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">wind_rose.value_table&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wind_rose</span><span class="o">.</span><span class="n">value_table</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.09683333, 0.0905    , 0.08575   ],
-       [0.09683333, 0.0905    , 0.08575   ]])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wind_rose.ti_table
+[[0.09683333 0.0905     0.08575   ]
+ [0.09683333 0.0905     0.08575   ]]
+
+wind_rose.value_table
+[[1.2225 1.0875 0.9525]
+ [1.2225 1.0875 0.9525]]
 </pre></div>
 </div>
 </div>
@@ -736,13 +769,13 @@ If values are included in the TimeSeries object, they must be the same length as
 </section>
 <section id="windtirose">
 <h2>WindTIRose<a class="headerlink" href="#windtirose" title="Link to this heading">#</a></h2>
-<p>The WindTIRose is similar to the WindRose except that rather than specififying wind directions and wind speeds as arrays, with TI and frequency as a 2D table, the WindTIRose specificies wind directions, wind speeds and turbulence intensity as arrays with the frequency table now 3 dimensional, representing the frequency of each wind direction, wind speed, and turbulence intensity occurence.</p>
+<p>The WindTIRose is similar to the WindRose except that rather than specififying wind directions and wind speeds as arrays, with TI, frequency, adn value as 2D tables, the WindTIRose specificies wind directions, wind speeds, and turbulence intensities as arrays with the frequency and value tables now 3 dimensional, representing the frequency and value of each wind direction, wind speed, and turbulence intensity occurence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">WindTIRose</span>
 
 <span class="n">wind_directions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">270</span><span class="p">,</span> <span class="mi">280</span><span class="p">])</span> <span class="c1"># 2 Wind Directions</span>
-<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span> <span class="c1"># 3 Wind Speeds</span>
+<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span> <span class="c1"># 3 Wind Speeds</span>
 <span class="n">turbulence_intensities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">])</span> <span class="c1"># 3 Turbulence Intensities</span>
 
 <span class="c1"># The frequency table therefore is 2 x 3 x 3 and the sum over all entries = 1</span>
@@ -751,12 +784,19 @@ If values are included in the TimeSeries object, they must be the same length as
     <span class="p">[[</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">18</span><span class="p">]]</span>
 <span class="p">])</span>
 
+<span class="c1"># The value table has the same dimensions as frequency</span>
+<span class="n">value_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">freq_table</span><span class="p">)</span>
+
 <span class="n">wind_ti_rose</span> <span class="o">=</span> <span class="n">WindTIRose</span><span class="p">(</span>
     <span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span>
     <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span>
     <span class="n">turbulence_intensities</span><span class="o">=</span><span class="n">turbulence_intensities</span><span class="p">,</span>
-    <span class="n">freq_table</span><span class="o">=</span><span class="n">freq_table</span>
+    <span class="n">freq_table</span><span class="o">=</span><span class="n">freq_table</span><span class="p">,</span>
+    <span class="n">value_table</span><span class="o">=</span><span class="n">value_table</span>
 <span class="p">)</span>
+
+<span class="c1"># Demonstrate setting value again</span>
+<span class="n">wind_ti_rose</span><span class="o">.</span><span class="n">assign_value_piecewise_linear</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -764,7 +804,7 @@ If values are included in the TimeSeries object, they must be the same length as
 </section>
 <section id="conversions">
 <h2>Conversions<a class="headerlink" href="#conversions" title="Link to this heading">#</a></h2>
-<p>Several methods for converting between WindData objects are provided</p>
+<p>Several methods for converting between WindData objects and resampling to different bin sizes are provided</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Converting from TimeSeries to WindRose/WindTiRose by binning</span>
@@ -790,7 +830,7 @@ If values are included in the TimeSeries object, they must be the same length as
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wind_directions</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">wind_speeds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">wind_speeds</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
 <span class="n">freq_table</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">freq_table</span> <span class="o">=</span> <span class="n">freq_table</span> <span class="o">/</span> <span class="n">freq_table</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
@@ -801,21 +841,27 @@ If values are included in the TimeSeries object, they must be the same length as
     <span class="n">freq_table</span><span class="o">=</span><span class="n">freq_table</span>
 <span class="p">)</span>
 
+<span class="c1"># Set value</span>
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">assign_value_piecewise_linear</span><span class="p">()</span>
+
 <span class="n">wind_rose</span><span class="o">.</span><span class="n">plot_wind_rose</span><span class="p">()</span>
+
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">plot_ti_over_ws</span><span class="p">()</span>
+
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">plot_value_over_ws</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PolarAxes: &gt;
-</pre></div>
-</div>
-<img alt="_images/4fddd040078b5f4895a683db09282f338a6f5ccb7e1d39a6deb891fb494d51e0.png" src="_images/4fddd040078b5f4895a683db09282f338a6f5ccb7e1d39a6deb891fb494d51e0.png" />
+<img alt="_images/7a3d7de98ea44012bfaa530ac8824b92f701d39bad495f234c961a81512e39ca.png" src="_images/7a3d7de98ea44012bfaa530ac8824b92f701d39bad495f234c961a81512e39ca.png" />
+<img alt="_images/dd91cab9ca0182579fbf3ebdc6aacf23f098e290d264dcf2200e8232b3f4d2d8.png" src="_images/dd91cab9ca0182579fbf3ebdc6aacf23f098e290d264dcf2200e8232b3f4d2d8.png" />
+<img alt="_images/765251d3e3de313717f2cf945d801aa1541f84d6d1ef85438531d4284a4f86e2.png" src="_images/765251d3e3de313717f2cf945d801aa1541f84d6d1ef85438531d4284a4f86e2.png" />
 </div>
 </div>
 </section>
 <section id="setting-floris">
 <h2>Setting FLORIS<a class="headerlink" href="#setting-floris" title="Link to this heading">#</a></h2>
-<p>WindData objects are used to set wind direction, speed, TI, frequency and value in a FlorisModel (or UncertainFlorisModel).</p>
+<p>WindData objects are used to set wind direction, speed, TI, frequency, and value in a FlorisModel (or UncertainFlorisModel).</p>
 <section id="id1">
 <h3>TimeSeries<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -841,8 +887,12 @@ If values are included in the TimeSeries object, they must be the same length as
     <span class="n">turbulence_intensities</span><span class="o">=</span><span class="n">turbulence_intensities</span>
 <span class="p">)</span>
 
-<span class="c1"># Is equivalent to:</span>
+<span class="c1"># Is equivalent to the following (but now we&#39;ll include value as well):</span>
 <span class="n">time_series</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span><span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">wind_speeds</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">turbulence_intensities</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+
+<span class="c1"># Scale some of the default parameters to get reasonable values representing USD/MWh</span>
+<span class="n">time_series</span><span class="o">.</span><span class="n">assign_value_piecewise_linear</span><span class="p">(</span><span class="n">value_zero_ws</span><span class="o">=</span><span class="mi">25</span><span class="o">*</span><span class="mf">1.425</span><span class="p">,</span> <span class="n">slope_2</span><span class="o">=-</span><span class="mi">25</span><span class="o">*</span><span class="mf">0.135</span><span class="p">)</span>
+
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">wind_data</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -859,16 +909,28 @@ If values are included in the TimeSeries object, they must be the same length as
 <span class="n">expected_farm_power</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_expected_farm_power</span><span class="p">()</span>
 <span class="n">aep</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span>
 
+<span class="c1"># Get value outputs</span>
+<span class="n">expected_farm_value</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_expected_farm_value</span><span class="p">()</span>
+<span class="n">avp</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AVP</span><span class="p">()</span>
+
 <span class="c1"># Display</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Turbine power have shape </span><span class="si">{</span><span class="n">turbine_powers</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and are </span><span class="si">{</span><span class="n">turbine_powers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm power has shape </span><span class="si">{</span><span class="n">farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected farm power has shape </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm AEP is </span><span class="si">{</span><span class="n">aep</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm AEP is </span><span class="si">{</span><span class="n">aep</span><span class="o">/</span><span class="mf">1e9</span><span class="si">}</span><span class="s2"> GWh&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected farm value has shape </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">expected_farm_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm annual value production (AVP) is </span><span class="si">{</span><span class="n">avp</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2"> USD&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">floris.floris_model.FlorisModel</span> <span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> <span class=" -Color -Color-Yellow">Computing AEP with uniform frequencies. Results results may not reflect annual operation.</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">floris.floris_model.FlorisModel</span> <span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> <span class=" -Color -Color-Yellow">Computing AVP with uniform frequencies. Results results may not reflect annual operation.</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">floris.floris_model.FlorisModel</span> <span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> <span class=" -Color -Color-Yellow">Computing AVP with uniform value equal to 1. Results will be equivalent to annual energy production.</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Turbine power have shape (5, 2) and are [[1753954.45917917  354990.76412771]
@@ -879,7 +941,9 @@ If values are included in the TimeSeries object, they must be the same length as
 Farm power has shape (5,) and is [2108945.22330688 3074300.74431841 3502505.94196119 3507906.41180004
  3507908.91825968]
 Expected farm power has shape () and is 3140313.4479292436
-Farm AEP is 27509145803.860172
+Farm AEP is 27.50914580386017 GWh
+Expected farm value has shape () and is 74778713.97881511
+Farm annual value production (AVP) is 655061.5344544204 USD
 </pre></div>
 </div>
 </div>
@@ -895,7 +959,7 @@ Farm AEP is 27509145803.860172
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wind_directions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">270</span><span class="p">,</span> <span class="mi">280</span><span class="p">])</span> <span class="c1"># 2 Wind Directions</span>
-<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span> <span class="c1"># 3 Wind Speeds</span>
+<span class="n">wind_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span> <span class="c1"># 3 Wind Speeds</span>
 
 <span class="c1"># Frequency matrix is 2 x 3, include some 0 frequency results</span>
 <span class="n">freq_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
@@ -910,6 +974,9 @@ Farm AEP is 27509145803.860172
     <span class="n">ti_table</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span>
     <span class="n">freq_table</span><span class="o">=</span><span class="n">freq_table</span>
 <span class="p">)</span>
+
+<span class="c1"># Set value and scale some of the default parameters to get reasonable values representing USD/MWh</span>
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">assign_value_piecewise_linear</span><span class="p">(</span><span class="n">value_zero_ws</span><span class="o">=</span><span class="mi">25</span><span class="o">*</span><span class="mf">1.425</span><span class="p">,</span> <span class="n">slope_2</span><span class="o">=-</span><span class="mi">25</span><span class="o">*</span><span class="mf">0.135</span><span class="p">)</span>
 
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">wind_data</span><span class="o">=</span><span class="n">wind_rose</span><span class="p">)</span>
 
@@ -934,13 +1001,19 @@ Farm AEP is 27509145803.860172
 <span class="n">expected_farm_power</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_expected_farm_power</span><span class="p">()</span>
 <span class="n">aep</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span>
 
+<span class="c1"># Get value outputs</span>
+<span class="n">expected_farm_value</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_expected_farm_value</span><span class="p">()</span>
+<span class="n">avp</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AVP</span><span class="p">()</span>
+
 <span class="c1"># Note that the nan values in the non-computed cases are expected since these are not run</span>
 
 <span class="c1"># Display</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Turbine power have shape </span><span class="si">{</span><span class="n">turbine_powers</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and are </span><span class="si">{</span><span class="n">turbine_powers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm power has shape </span><span class="si">{</span><span class="n">farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected farm power has shape </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm AEP is </span><span class="si">{</span><span class="n">aep</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm AEP is </span><span class="si">{</span><span class="n">aep</span><span class="o">/</span><span class="mf">1e9</span><span class="si">}</span><span class="s2"> GWh&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected farm value has shape </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">expected_farm_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm annual value production (AVP) is </span><span class="si">{</span><span class="n">avp</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2"> USD&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -955,7 +1028,9 @@ Farm AEP is 27509145803.860172
 Farm power has shape (2, 3) and is [[             nan              nan 2108945.22330688]
  [1254852.96499273 2053762.78894454 3074300.74431841]]
 Expected farm power has shape () and is 2118292.028029389
-Farm AEP is 18556238165.53745
+Farm AEP is 18.556238165537447 GWh
+Expected farm value has shape () and is 53008780.07184796
+Farm annual value production (AVP) is 464356.91342938814 USD
 </pre></div>
 </div>
 </div>
@@ -971,6 +1046,9 @@ Farm AEP is 18556238165.53745
     <span class="n">compute_zero_freq_occurrence</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
+<span class="c1"># Set value and scale some of the default parameters to get reasonable values representing USD/MWh</span>
+<span class="n">wind_rose</span><span class="o">.</span><span class="n">assign_value_piecewise_linear</span><span class="p">(</span><span class="n">value_zero_ws</span><span class="o">=</span><span class="mi">25</span><span class="o">*</span><span class="mf">1.425</span><span class="p">,</span> <span class="n">slope_2</span><span class="o">=-</span><span class="mi">25</span><span class="o">*</span><span class="mf">0.135</span><span class="p">)</span>
+
 <span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">wind_data</span><span class="o">=</span><span class="n">wind_rose</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fmodel has n_findex </span><span class="si">{</span><span class="n">fmodel</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -984,14 +1062,20 @@ Farm AEP is 18556238165.53745
 <span class="n">expected_farm_power</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_expected_farm_power</span><span class="p">()</span>
 <span class="n">aep</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span>
 
+<span class="c1"># Get value outputs</span>
+<span class="n">expected_farm_value</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_expected_farm_value</span><span class="p">()</span>
+<span class="n">avp</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AVP</span><span class="p">()</span>
+
 <span class="c1"># Display</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Turbine powers and farm power are now computed for all cases&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Turbine power have shape </span><span class="si">{</span><span class="n">turbine_powers</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and are </span><span class="si">{</span><span class="n">turbine_powers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm power has shape </span><span class="si">{</span><span class="n">farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected farm power and AEP are the same as before since the new cases are weighted by 0&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected farm power and value, AEP, and AVP are the same as before since the new cases are weighted by 0&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected farm power has shape </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm AEP is </span><span class="si">{</span><span class="n">aep</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm AEP is </span><span class="si">{</span><span class="n">aep</span><span class="o">/</span><span class="mf">1e9</span><span class="si">}</span><span class="s2"> GWh&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected farm value has shape </span><span class="si">{</span><span class="n">expected_farm_power</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and is </span><span class="si">{</span><span class="n">expected_farm_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Farm annual value production (AVP) is </span><span class="si">{</span><span class="n">avp</span><span class="o">/</span><span class="mf">1e6</span><span class="si">}</span><span class="s2"> USD&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1007,9 +1091,11 @@ Turbine power have shape (2, 3, 2) and are [[[ 731003.41073165   80999.08780495]
   [1753954.45917917 1320346.28513924]]]
 Farm power has shape (2, 3) and is [[ 812002.4985366  1368463.65196401 2108945.22330688]
  [1254852.96499273 2053762.78894454 3074300.74431841]]
-Expected farm power and AEP are the same as before since the new cases are weighted by 0
+Expected farm power and value, AEP, and AVP are the same as before since the new cases are weighted by 0
 Expected farm power has shape () and is 2118292.028029389
-Farm AEP is 18556238165.53745
+Farm AEP is 18.556238165537447 GWh
+Expected farm value has shape () and is 53008780.07184796
+Farm annual value production (AVP) is 464356.91342938814 USD
 </pre></div>
 </div>
 </div>

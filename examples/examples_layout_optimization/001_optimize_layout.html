@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title> &#8212; FLORIS</title>
+    <title>Example: Optimize Layout &#8212; FLORIS</title>
   
   
   
@@ -278,12 +278,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control optimization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/001_opt_yaw_single_ws.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/001_opt_yaw_single_ws.html">Example: Optimize yaw for a single wind speed and multiple wind directions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/002_opt_yaw_single_ws_uncertain.html">Example: Optimize yaw for a single wind speed and multiple wind directions.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/003_opt_yaw_multiple_ws.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/003_opt_yaw_multiple_ws.html">Example: Optimize yaw for multiple wind directions and multiple wind speeds.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/004_optimize_yaw_aep.html">Example: Optimize yaw and compare AEP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/005_optimize_yaw_aep_parallel.html">Example: Optimize yaw and compare AEP in parallel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/006_compare_yaw_optimizers.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/006_compare_yaw_optimizers.html">Example: Compare yaw optimizers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/007_optimize_yaw_with_neighbor_farms.html">Example: Optimize yaw with neighbor farm</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control types</span></p>
@@ -317,7 +317,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Layout optimization</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Example: Optimize Layout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_optimize_layout_with_heterogeneity.html">Example: Layout optimization with heterogeneous inflow</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Multidim</span></p>
@@ -548,7 +548,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1>Example: Optimize Layout</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -562,8 +562,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1><a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="example-optimize-layout">
+<h1>Example: Optimize Layout<a class="headerlink" href="#example-optimize-layout" title="Link to this heading">#</a></h1>
 <p>This example shows a simple layout optimization using the python module Scipy, optimizing for bothannual energy production (AEP) and annual value production (AVP).First, a 4 turbine array is optimized such that the layout of the turbine produces thehighest AEP based on the given wind resource. The turbinesare constrained to a square boundary and a random wind resource is supplied. The resultsof the optimization show that the turbines are pushed to near the outer corners of the boundary,which, given the generally uniform wind rose, makes sense in order to maximize the energyproduction by minimizing wake interactions.Next, with the same boundary, the same 4 turbine array is optimized to maximize AVP instead of AEP,using the value table defined in the WindRose object, where value represents the value of theenergy produced for a given wind condition (e.g., the price of electricity). In this example, valueis defined to be significantly higher for northerly and southerly wind directions, and zero whenthe wind is from the east or west. Because the value is much higher when the wind is from the northor south, the turbines are spaced apart roughly evenly in the x direction while being relativelyclose in the y direction to avoid wake interactions for northerly and southerly winds. Although thelayout results in large wake losses when the wind is from the east or west, these losses do notsignificantly impact the objective function because of the low value for those wind directions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -681,7 +681,6 @@ document.write(`
 <span class="n">layout_opt</span><span class="o">.</span><span class="n">plot_layout_opt_results</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>

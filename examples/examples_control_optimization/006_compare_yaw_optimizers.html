@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title> &#8212; FLORIS</title>
+    <title>Example: Compare yaw optimizers &#8212; FLORIS</title>
   
   
   
@@ -278,12 +278,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control optimization</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="001_opt_yaw_single_ws.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_opt_yaw_single_ws.html">Example: Optimize yaw for a single wind speed and multiple wind directions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_opt_yaw_single_ws_uncertain.html">Example: Optimize yaw for a single wind speed and multiple wind directions.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="003_opt_yaw_multiple_ws.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="003_opt_yaw_multiple_ws.html">Example: Optimize yaw for multiple wind directions and multiple wind speeds.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_optimize_yaw_aep.html">Example: Optimize yaw and compare AEP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="005_optimize_yaw_aep_parallel.html">Example: Optimize yaw and compare AEP in parallel</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Example: Compare yaw optimizers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="007_optimize_yaw_with_neighbor_farms.html">Example: Optimize yaw with neighbor farm</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control types</span></p>
@@ -317,7 +317,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Layout optimization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../examples_layout_optimization/001_optimize_layout.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_layout_optimization/001_optimize_layout.html">Example: Optimize Layout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_layout_optimization/002_optimize_layout_with_heterogeneity.html">Example: Layout optimization with heterogeneous inflow</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Multidim</span></p>
@@ -548,7 +548,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1>Example: Compare yaw optimizers</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -562,8 +562,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1><a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="example-compare-yaw-optimizers">
+<h1>Example: Compare yaw optimizers<a class="headerlink" href="#example-compare-yaw-optimizers" title="Link to this heading">#</a></h1>
 <p>This example compares the SciPy-based yaw optimizer with the Serial-Refine optimizerand geometric optimizer.First, we initialize Floris, and then generate a 3 turbine wind farm.Next, we create two yaw optimization objects, <code class="docutils literal notranslate"><span class="pre">yaw_opt_sr</span></code> and <code class="docutils literal notranslate"><span class="pre">yaw_opt_scipy</span></code> for theSerial-Refine and SciPy methods, respectively.We then perform the optimization using both methods.Finally, we compare the time it took to find the optimal angles and plot the optimal yaw anglesand resulting wind farm powers.The example now also compares the Geometric Yaw optimizer, which is fasta method to find approximately optimal yaw angles based on the wind farm geometry. Itsmain use case is for coupled layout and yaw optimization.see floris.optimization.yaw_optimization.yaw_optimizer_geometric.py and the paper onlineat <a class="reference external" href="https://wes.copernicus.org/preprints/wes-2023-1/">https://wes.copernicus.org/preprints/wes-2023-1/</a>. See also example 16c.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -751,7 +751,6 @@ document.write(`
 <span class="n">axarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1347,11 +1346,10 @@ Optimization terminated successfully    (Exit mode 0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Performing optimizations with Geometric Yaw...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Time spent, Geometric Yaw: 0.21 s.
- Time spent, Serial Refine: 1.11 s.
- Time spent, SciPy (SLSQP): 52.83 s.
+
+ Time spent, Geometric Yaw: 0.19 s.
+ Time spent, Serial Refine: 1.10 s.
+ Time spent, SciPy (SLSQP): 52.59 s.
 </pre></div>
 </div>
 <img alt="../../_images/7eefd5698cb5b8bfb142078ce377d36347c866c2e052932eb939c334c39d31ac.png" src="../../_images/7eefd5698cb5b8bfb142078ce377d36347c866c2e052932eb939c334c39d31ac.png" />
@@ -1359,7 +1357,7 @@ Optimization terminated successfully    (Exit mode 0)
 <img alt="../../_images/fd8df850f216cfc500c693709cbccdc425d46db714bbef62cb0dc1484f10c1f7.png" src="../../_images/fd8df850f216cfc500c693709cbccdc425d46db714bbef62cb0dc1484f10c1f7.png" />
 <img alt="../../_images/29b8296c6cf902bf22447f744f67167135d071fde9f5f25dd1ad566d5ee2432f.png" src="../../_images/29b8296c6cf902bf22447f744f67167135d071fde9f5f25dd1ad566d5ee2432f.png" />
 <img alt="../../_images/c6c4496373e9aaa1bfc898292d30e50fa2375cf51bf859c4de95788cc96d1e5c.png" src="../../_images/c6c4496373e9aaa1bfc898292d30e50fa2375cf51bf859c4de95788cc96d1e5c.png" />
-<img alt="../../_images/564169866d9e34be0fca18a637b4a4f979f76cc64ceb4f5698ca7f825fcc2131.png" src="../../_images/564169866d9e34be0fca18a637b4a4f979f76cc64ceb4f5698ca7f825fcc2131.png" />
+<img alt="../../_images/59d2dbc08385fb1405bc13edf863a5770f78d5bdeee45b4af39689185d390ce2.png" src="../../_images/59d2dbc08385fb1405bc13edf863a5770f78d5bdeee45b4af39689185d390ce2.png" />
 </div>
 </div>
 </section>

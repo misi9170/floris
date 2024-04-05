@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title> &#8212; FLORIS</title>
+    <title>Example: Optimize yaw for multiple wind directions and multiple wind speeds. &#8212; FLORIS</title>
   
   
   
@@ -278,12 +278,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control optimization</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="001_opt_yaw_single_ws.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="001_opt_yaw_single_ws.html">Example: Optimize yaw for a single wind speed and multiple wind directions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_opt_yaw_single_ws_uncertain.html">Example: Optimize yaw for a single wind speed and multiple wind directions.</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Example: Optimize yaw for multiple wind directions and multiple wind speeds.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="004_optimize_yaw_aep.html">Example: Optimize yaw and compare AEP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="005_optimize_yaw_aep_parallel.html">Example: Optimize yaw and compare AEP in parallel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="006_compare_yaw_optimizers.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="006_compare_yaw_optimizers.html">Example: Compare yaw optimizers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="007_optimize_yaw_with_neighbor_farms.html">Example: Optimize yaw with neighbor farm</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control types</span></p>
@@ -317,7 +317,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Layout optimization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../examples_layout_optimization/001_optimize_layout.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_layout_optimization/001_optimize_layout.html">Example: Optimize Layout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_layout_optimization/002_optimize_layout_with_heterogeneity.html">Example: Layout optimization with heterogeneous inflow</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Multidim</span></p>
@@ -548,7 +548,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1>Example: Optimize yaw for multiple wind directions and multiple wind speeds.</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -562,8 +562,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1><a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="example-optimize-yaw-for-multiple-wind-directions-and-multiple-wind-speeds">
+<h1>Example: Optimize yaw for multiple wind directions and multiple wind speeds.<a class="headerlink" href="#example-optimize-yaw-for-multiple-wind-directions-and-multiple-wind-speeds" title="Link to this heading">#</a></h1>
 <p>This example demonstrates how to perform a yaw optimization for multiple wind directionsand multiple wind speeds using the WindRose objectFirst, we initialize our Floris Interface, and then generate a 3 turbine wind farm.Next, we create the yaw optimization object <code class="docutils literal notranslate"><span class="pre">yaw_opt</span></code> and perform the optimization usingthe SerialRefine method. Finally, we plot the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -679,7 +679,6 @@ document.write(`
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>

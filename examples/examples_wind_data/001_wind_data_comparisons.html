@@ -278,12 +278,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control optimization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/001_opt_yaw_single_ws.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/001_opt_yaw_single_ws.html">Example: Optimize yaw for a single wind speed and multiple wind directions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/002_opt_yaw_single_ws_uncertain.html">Example: Optimize yaw for a single wind speed and multiple wind directions.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/003_opt_yaw_multiple_ws.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/003_opt_yaw_multiple_ws.html">Example: Optimize yaw for multiple wind directions and multiple wind speeds.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/004_optimize_yaw_aep.html">Example: Optimize yaw and compare AEP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/005_optimize_yaw_aep_parallel.html">Example: Optimize yaw and compare AEP in parallel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/006_compare_yaw_optimizers.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/006_compare_yaw_optimizers.html">Example: Compare yaw optimizers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_optimization/007_optimize_yaw_with_neighbor_farms.html">Example: Optimize yaw with neighbor farm</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Control types</span></p>
@@ -317,7 +317,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Layout optimization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../examples_layout_optimization/001_optimize_layout.html"></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_layout_optimization/001_optimize_layout.html">Example: Optimize Layout</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_layout_optimization/002_optimize_layout_with_heterogeneity.html">Example: Layout optimization with heterogeneous inflow</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Multidim</span></p>
@@ -665,7 +665,6 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AVP from WindTIRose </span><span class="si">{</span><span class="n">wind_ti_rose_avp</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1e6</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> dollars&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
@@ -681,17 +680,17 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">floris.floris_model.FlorisModel</span> <span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> <span class=" -Color -Color-Yellow">Computing AVP with uniform value equal to 1. Results will be equivalent to annual energy production.</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AEP from TimeSeries 38.80 GWh
-AEP from WindRose 38.53 GWh
-AEP from WindTIRose 38.53 GWh
-Annual Value Production (AVP) from TimeSeries 956103.05 dollars
-AVP from WindRose 949004.79 dollars
-AVP from WindTIRose 949135.63 dollars
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AEP from TimeSeries 36.81 GWh
+AEP from WindRose 36.73 GWh
+AEP from WindTIRose 36.73 GWh
+Annual Value Production (AVP) from TimeSeries 905735.76 dollars
+AVP from WindRose 901859.11 dollars
+AVP from WindTIRose 901932.56 dollars
 </pre></div>
 </div>
-<img alt="../../_images/9820c2e6f75ee8351dfc7b8790c2793bc2a0ae185a613640af7c8fc7dad2dfa6.png" src="../../_images/9820c2e6f75ee8351dfc7b8790c2793bc2a0ae185a613640af7c8fc7dad2dfa6.png" />
-<img alt="../../_images/26803ead356efd28bb18f0842f1c107f0f20491ae1056ff4f620f09566c10496.png" src="../../_images/26803ead356efd28bb18f0842f1c107f0f20491ae1056ff4f620f09566c10496.png" />
-<img alt="../../_images/dfb1bf708c842d04adc11318a68b368672415f9a815c281c6e65b3711bfe3317.png" src="../../_images/dfb1bf708c842d04adc11318a68b368672415f9a815c281c6e65b3711bfe3317.png" />
+<img alt="../../_images/f38b4d720a03658d03c548ab21adf748f59355dfe7b5737574e87fbe34a3dba8.png" src="../../_images/f38b4d720a03658d03c548ab21adf748f59355dfe7b5737574e87fbe34a3dba8.png" />
+<img alt="../../_images/9e9acd34de25097a24e5d9d22874280cc14f6859e3b55adce2086fdc65c72490.png" src="../../_images/9e9acd34de25097a24e5d9d22874280cc14f6859e3b55adce2086fdc65c72490.png" />
+<img alt="../../_images/5c2f60c6efd7740ba4e388decef293d1a280ab92ac2e0afb8ec1e3746063fb79.png" src="../../_images/5c2f60c6efd7740ba4e388decef293d1a280ab92ac2e0afb8ec1e3746063fb79.png" />
 </div>
 </div>
 </section>
