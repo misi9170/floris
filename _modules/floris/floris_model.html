@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -547,7 +563,7 @@ document.write(`
         <span class="n">turbine_type</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">turbine_library_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">solver_settings</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">heterogenous_inflow_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">heterogeneous_inflow_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">wind_data</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">WindDataBase</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -576,8 +592,8 @@ document.write(`
 <span class="sd">            turbine_library_path (str | Path | None, optional): Path to the turbine library.</span>
 <span class="sd">                Defaults to None.</span>
 <span class="sd">            solver_settings (dict | None, optional): Solver settings. Defaults to None.</span>
-<span class="sd">            heterogenous_inflow_config (None, optional): Heterogenous inflow configuration. Defaults</span>
-<span class="sd">                to None.</span>
+<span class="sd">            heterogeneous_inflow_config (None, optional): heterogeneous inflow configuration.</span>
+<span class="sd">                Defaults to None.</span>
 <span class="sd">            wind_data (type[WindDataBase] | None, optional): Wind data. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Export the floris object recursively as a dictionary</span>
@@ -590,13 +606,13 @@ document.write(`
             <span class="p">(</span><span class="n">wind_directions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
             <span class="ow">or</span> <span class="p">(</span><span class="n">wind_speeds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
             <span class="ow">or</span> <span class="p">(</span><span class="n">turbulence_intensities</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
-            <span class="ow">or</span> <span class="p">(</span><span class="n">heterogenous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="n">heterogeneous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
         <span class="p">):</span>
             <span class="k">if</span> <span class="n">wind_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="s2">&quot;If wind_data is passed to reinitialize, then do not pass wind_directions, &quot;</span>
                     <span class="s2">&quot;wind_speeds, turbulence_intensities or &quot;</span>
-                    <span class="s2">&quot;heterogenous_inflow_config as this is redundant&quot;</span>
+                    <span class="s2">&quot;heterogeneous_inflow_config as this is redundant&quot;</span>
                 <span class="p">)</span>
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Deleting stored wind_data information.&quot;</span><span class="p">)</span>
@@ -607,7 +623,7 @@ document.write(`
                     <span class="n">wind_directions</span><span class="p">,</span>
                     <span class="n">wind_speeds</span><span class="p">,</span>
                     <span class="n">turbulence_intensities</span><span class="p">,</span>
-                    <span class="n">heterogenous_inflow_config</span><span class="p">,</span>
+                    <span class="n">heterogeneous_inflow_config</span><span class="p">,</span>
                 <span class="p">)</span> <span class="o">=</span> <span class="n">wind_data</span><span class="o">.</span><span class="n">unpack_for_reinitialize</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_wind_data</span> <span class="o">=</span> <span class="n">wind_data</span>
 
@@ -626,8 +642,8 @@ document.write(`
             <span class="n">flow_field_dict</span><span class="p">[</span><span class="s2">&quot;turbulence_intensities&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">turbulence_intensities</span>
         <span class="k">if</span> <span class="n">air_density</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">flow_field_dict</span><span class="p">[</span><span class="s2">&quot;air_density&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">air_density</span>
-        <span class="k">if</span> <span class="n">heterogenous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">flow_field_dict</span><span class="p">[</span><span class="s2">&quot;heterogenous_inflow_config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">heterogenous_inflow_config</span>
+        <span class="k">if</span> <span class="n">heterogeneous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">flow_field_dict</span><span class="p">[</span><span class="s2">&quot;heterogeneous_inflow_config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">heterogeneous_inflow_config</span>
 
         <span class="c1">## Farm</span>
         <span class="k">if</span> <span class="n">layout_x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -723,7 +739,7 @@ document.write(`
         <span class="n">turbine_type</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">turbine_library_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">solver_settings</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">heterogenous_inflow_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">heterogeneous_inflow_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">wind_data</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">WindDataBase</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">yaw_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">power_setpoints</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -751,8 +767,8 @@ document.write(`
 <span class="sd">            turbine_library_path (str | Path | None, optional): Path to the turbine library.</span>
 <span class="sd">                Defaults to None.</span>
 <span class="sd">            solver_settings (dict | None, optional): Solver settings. Defaults to None.</span>
-<span class="sd">            heterogenous_inflow_config (None, optional): Heterogenous inflow configuration. Defaults</span>
-<span class="sd">                to None.</span>
+<span class="sd">            heterogeneous_inflow_config (None, optional): heterogeneous inflow configuration.</span>
+<span class="sd">                Defaults to None.</span>
 <span class="sd">            wind_data (type[WindDataBase] | None, optional): Wind data. Defaults to None.</span>
 <span class="sd">            yaw_angles (NDArrayFloat | list[float] | None, optional): Turbine yaw angles.</span>
 <span class="sd">                Defaults to None.</span>
@@ -778,7 +794,7 @@ document.write(`
             <span class="n">turbine_type</span><span class="o">=</span><span class="n">turbine_type</span><span class="p">,</span>
             <span class="n">turbine_library_path</span><span class="o">=</span><span class="n">turbine_library_path</span><span class="p">,</span>
             <span class="n">solver_settings</span><span class="o">=</span><span class="n">solver_settings</span><span class="p">,</span>
-            <span class="n">heterogenous_inflow_config</span><span class="o">=</span><span class="n">heterogenous_inflow_config</span><span class="p">,</span>
+            <span class="n">heterogeneous_inflow_config</span><span class="o">=</span><span class="n">heterogeneous_inflow_config</span><span class="p">,</span>
             <span class="n">wind_data</span><span class="o">=</span><span class="n">wind_data</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -1140,6 +1156,154 @@ document.write(`
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_expected_farm_power</span><span class="p">(</span>
             <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span>
+            <span class="n">turbine_weights</span><span class="o">=</span><span class="n">turbine_weights</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="n">hours_per_year</span></div>
+
+
+<div class="viewcode-block" id="FlorisModel.get_expected_farm_value">
+<a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_expected_farm_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_expected_farm_value</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">freq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">turbine_weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the expected (mean) value produced by the wind farm. This is</span>
+<span class="sd">        computed by multiplying the wind farm power for each wind condition by</span>
+<span class="sd">        the corresponding value of the power generated (e.g., electricity</span>
+<span class="sd">        market price per unit of energy), then weighting by frequency and</span>
+<span class="sd">        summing over all conditions.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            freq (NDArrayFloat): NumPy array with shape (n_findex)</span>
+<span class="sd">                with the frequencies of each wind condition combination.</span>
+<span class="sd">                These frequencies should typically sum up to 1.0 and are used</span>
+<span class="sd">                to weigh the wind farm value for every condition in calculating</span>
+<span class="sd">                the wind farm&#39;s expected value. Defaults to None. If None and a</span>
+<span class="sd">                WindData object is supplied, the WindData object&#39;s frequencies</span>
+<span class="sd">                will be used. Otherwise, uniform frequencies are assumed (i.e.,</span>
+<span class="sd">                a simple mean over the findices is computed).</span>
+<span class="sd">            values (NDArrayFloat): NumPy array with shape (n_findex)</span>
+<span class="sd">                with the values corresponding to the power generated for each</span>
+<span class="sd">                wind condition combination. The wind farm power is multiplied</span>
+<span class="sd">                by the value for every condition in calculating the wind farm&#39;s</span>
+<span class="sd">                expected value. Defaults to None. If None and a WindData object</span>
+<span class="sd">                is supplied, the WindData object&#39;s values will be used.</span>
+<span class="sd">                Otherwise, a value of 1 for all conditions is assumed (i.e.,</span>
+<span class="sd">                the expected farm value will be equivalent to the expected farm</span>
+<span class="sd">                power).</span>
+<span class="sd">            turbine_weights (NDArrayFloat | list[float] | None, optional):</span>
+<span class="sd">                weighing terms that allow the user to emphasize power at</span>
+<span class="sd">                particular turbines and/or completely ignore the power</span>
+<span class="sd">                from other turbines. This is useful when, for example, you are</span>
+<span class="sd">                modeling multiple wind farms in a single floris object. If you</span>
+<span class="sd">                only want to calculate the value production for one of those</span>
+<span class="sd">                farms and include the wake effects of the neighboring farms,</span>
+<span class="sd">                you can set the turbine_weights for the neighboring farms&#39;</span>
+<span class="sd">                turbines to 0.0. The array of turbine powers from floris</span>
+<span class="sd">                is multiplied with this array in the calculation of the</span>
+<span class="sd">                expected value. If None, this is an array with all values 1.0</span>
+<span class="sd">                and with shape equal to (n_findex, n_turbines). Defaults to None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float:</span>
+<span class="sd">                The expected value produced by the wind farm in units of value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">farm_power</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_farm_power</span><span class="p">(</span><span class="n">turbine_weights</span><span class="o">=</span><span class="n">turbine_weights</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">freq</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">freq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span><span class="o">.</span><span class="n">unpack_freq</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span><span class="o">.</span><span class="n">unpack_value</span><span class="p">()</span>
+
+        <span class="n">farm_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">farm_power</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">farm_value</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="FlorisModel.get_farm_AVP">
+<a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_farm_AVP">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_farm_AVP</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">freq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">turbine_weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">hours_per_year</span><span class="o">=</span><span class="mi">8760</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Estimate annual value production (AVP) for distribution of wind</span>
+<span class="sd">        conditions, frequencies of occurrence, and corresponding values of</span>
+<span class="sd">        power generated (e.g., electricity price per unit of energy).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            freq (NDArrayFloat): NumPy array with shape (n_findex)</span>
+<span class="sd">                with the frequencies of each wind condition combination.</span>
+<span class="sd">                These frequencies should typically sum up to 1.0 and are used</span>
+<span class="sd">                to weigh the wind farm value for every condition in calculating</span>
+<span class="sd">                the wind farm&#39;s AVP. Defaults to None. If None and a</span>
+<span class="sd">                WindData object is supplied, the WindData object&#39;s frequencies</span>
+<span class="sd">                will be used. Otherwise, uniform frequencies are assumed (i.e.,</span>
+<span class="sd">                a simple mean over the findices is computed).</span>
+<span class="sd">            values (NDArrayFloat): NumPy array with shape (n_findex)</span>
+<span class="sd">                with the values corresponding to the power generated for each</span>
+<span class="sd">                wind condition combination. The wind farm power is multiplied</span>
+<span class="sd">                by the value for every condition in calculating the wind farm&#39;s</span>
+<span class="sd">                AVP. Defaults to None. If None and a WindData object is</span>
+<span class="sd">                supplied, the WindData object&#39;s values will be used. Otherwise,</span>
+<span class="sd">                a value of 1 for all conditions is assumed (i.e., the AVP will</span>
+<span class="sd">                be equivalent to the AEP).</span>
+<span class="sd">            turbine_weights (NDArrayFloat | list[float] | None, optional):</span>
+<span class="sd">                weighing terms that allow the user to emphasize power at</span>
+<span class="sd">                particular turbines and/or completely ignore the power</span>
+<span class="sd">                from other turbines. This is useful when, for example, you are</span>
+<span class="sd">                modeling multiple wind farms in a single floris object. If you</span>
+<span class="sd">                only want to calculate the value production for one of those</span>
+<span class="sd">                farms and include the wake effects of the neighboring farms,</span>
+<span class="sd">                you can set the turbine_weights for the neighboring farms&#39;</span>
+<span class="sd">                turbines to 0.0. The array of turbine powers from floris is</span>
+<span class="sd">                multiplied with this array in the calculation of the AVP. If</span>
+<span class="sd">                None, this is an array with all values 1.0 and with shape equal</span>
+<span class="sd">                to (n_findex, n_turbines). Defaults to None.</span>
+<span class="sd">            hours_per_year (float, optional): Number of hours in a year.</span>
+<span class="sd">                Defaults to 365 * 24.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float:</span>
+<span class="sd">                The Annual Value Production (AVP) for the wind farm in units</span>
+<span class="sd">                of value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">freq</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span><span class="p">,</span> <span class="n">WindRose</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span><span class="p">,</span> <span class="n">WindTIRose</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;Computing AVP with uniform frequencies. Results results may not reflect annual &quot;</span>
+                <span class="s2">&quot;operation.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span><span class="p">,</span> <span class="n">WindRose</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span><span class="p">,</span> <span class="n">WindTIRose</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;Computing AVP with uniform value equal to 1. Results will be equivalent to &quot;</span>
+                <span class="s2">&quot;annual energy production.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_expected_farm_value</span><span class="p">(</span>
+            <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span>
+            <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">,</span>
             <span class="n">turbine_weights</span><span class="o">=</span><span class="n">turbine_weights</span>
         <span class="p">)</span> <span class="o">*</span> <span class="n">hours_per_year</span></div>
 
@@ -1766,25 +1930,54 @@ document.write(`
 <div class="viewcode-block" id="FlorisModel.get_operation_model">
 <a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_operation_model">[docs]</a>
     <span class="k">def</span> <span class="nf">get_operation_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the power thrust model of a FlorisModel.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the operation model of a FlorisModel.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The operation_model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_definitions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;operation_model&quot;</span><span class="p">]</span></div>
+        <span class="n">operation_models</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_definitions</span><span class="p">[</span><span class="n">tindex</span><span class="p">][</span><span class="s2">&quot;operation_model&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">tindex</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">operation_models</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">operation_models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">operation_models</span></div>
 
 
 <div class="viewcode-block" id="FlorisModel.set_operation_model">
 <a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.set_operation_model">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_operation_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operation_model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the power thrust model of a FlorisModel.</span>
+    <span class="k">def</span> <span class="nf">set_operation_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operation_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the turbine operation model(s).</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            operation_model (str): The power thrust model to set.</span>
+<span class="sd">            operation_model (str): The operation model to set.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">turbine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_definitions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">turbine_type</span><span class="p">[</span><span class="s2">&quot;operation_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operation_model</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">turbine_type</span><span class="o">=</span><span class="p">[</span><span class="n">turbine_type</span><span class="p">])</span></div>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operation_model</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_type</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># Set a single one here, then, and return</span>
+                <span class="n">turbine_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_definitions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">turbine_type</span><span class="p">[</span><span class="s2">&quot;operation_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operation_model</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">turbine_type</span><span class="o">=</span><span class="p">[</span><span class="n">turbine_type</span><span class="p">])</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">operation_model</span> <span class="o">=</span> <span class="p">[</span><span class="n">operation_model</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">operation_model</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;The length of the operation_model list must be &quot;</span>
+                    <span class="s2">&quot;equal to the number of turbines.&quot;</span>
+                <span class="p">)</span>
+
+        <span class="n">turbine_type_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_definitions</span>
+
+        <span class="k">for</span> <span class="n">tindex</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">):</span>
+            <span class="n">turbine_type_list</span><span class="p">[</span><span class="n">tindex</span><span class="p">][</span><span class="s2">&quot;turbine_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">turbine_type_list</span><span class="p">[</span><span class="n">tindex</span><span class="p">][</span><span class="s2">&quot;turbine_type&quot;</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">operation_model</span><span class="p">[</span><span class="n">tindex</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">turbine_type_list</span><span class="p">[</span><span class="n">tindex</span><span class="p">][</span><span class="s2">&quot;operation_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operation_model</span><span class="p">[</span><span class="n">tindex</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">turbine_type</span><span class="o">=</span><span class="n">turbine_type_list</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FlorisModel.copy">
@@ -1890,6 +2083,56 @@ document.write(`
 <span class="sd">            np.array: Wind turbine y-coordinate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">layout_y</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wind_directions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wind direction information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.array: Wind direction.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">wind_directions</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wind_speeds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wind speed information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.array: Wind speed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">wind_speeds</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">turbulence_intensities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Turbulence intensity information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.array: Turbulence intensity.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">turbulence_intensities</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_findex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Number of floris indices (findex).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Number of flow indices.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_turbines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Number of turbines.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Number of turbines.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">turbine_average_velocities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArrayFloat</span><span class="p">:</span>

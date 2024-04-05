@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -737,7 +753,7 @@ document.write(`
 <span class="sd">            turbine_weights (iterable, optional): Array or list of weights to apply to the turbine</span>
 <span class="sd">                powers. Defaults to None.</span>
 <span class="sd">            heterogeneous_speed_multipliers (iterable, optional): Array or list of speed up factors</span>
-<span class="sd">                for heterogenous inflow. Defaults to None.</span>
+<span class="sd">                for heterogeneous inflow. Defaults to None.</span>
 
 
 <span class="sd">        Returns:</span>
@@ -757,7 +773,7 @@ document.write(`
             <span class="n">turbine_weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_turbine_weights_subset</span>
         <span class="k">if</span> <span class="n">heterogeneous_speed_multipliers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fmodel_subset</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span>\
-                <span class="n">heterogenous_inflow_config</span><span class="p">[</span><span class="s1">&#39;speed_multipliers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">heterogeneous_speed_multipliers</span>
+                <span class="n">heterogeneous_inflow_config</span><span class="p">[</span><span class="s1">&#39;speed_multipliers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">heterogeneous_speed_multipliers</span>
 
         <span class="c1"># Ensure format [incompatible with _subset notation]</span>
         <span class="n">yaw_angles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unpack_variable</span><span class="p">(</span><span class="n">yaw_angles</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

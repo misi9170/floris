@@ -199,7 +199,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation_models_user.html">Turbine Operation Models</a></li>
@@ -262,6 +261,23 @@
 <li class="toctree-l2"><a class="reference internal" href="floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -504,14 +520,50 @@ document.write(`
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse" title="floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LayoutOptimizationPyOptSparse</span></code></a>(fmodel, boundaries)</p></td>
-<td><p></p></td>
+<td><p>This class provides an interface for optimizing the layout of wind turbines using the pyOptSparse optimization library.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.optimization.layout_optimization.layout_optimization_pyoptsparse.</span></span><span class="sig-name descname"><span class="pre">LayoutOptimizationPyOptSparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmodel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundaries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeLimit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storeHistory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hist.hist'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hotStart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_geometric_yaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/optimization/layout_optimization/layout_optimization_pyoptsparse.html#LayoutOptimizationPyOptSparse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse" title="Link to this definition">#</a></dt>
-<dd><dl class="py method">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.optimization.layout_optimization.layout_optimization_pyoptsparse.</span></span><span class="sig-name descname"><span class="pre">LayoutOptimizationPyOptSparse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmodel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundaries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeLimit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storeHistory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hist.hist'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hotStart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_geometric_yaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/optimization/layout_optimization/layout_optimization_pyoptsparse.html#LayoutOptimizationPyOptSparse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse" title="Link to this definition">#</a></dt>
+<dd><p>This class provides an interface for optimizing the layout of wind turbines
+using the pyOptSparse optimization library.  The optimization objective is to
+maximize annual energy production (AEP) or annual value production (AVP).</p>
+<dl>
+<dt>Args:</dt><dd><p>fmodel (FlorisModel): A FlorisModel object.
+boundaries (iterable(float, float)): Pairs of x- and y-coordinates</p>
+<blockquote>
+<div><p>that represent the boundary's vertices (m).</p>
+</div></blockquote>
+<dl class="simple">
+<dt>min_dist (float, optional): The minimum distance to be maintained</dt><dd><p>between turbines during the optimization (m). If not specified,
+initializes to 2 rotor diameters. Defaults to None.</p>
+</dd>
+<dt>solver (str, optional): Sets the solver used by pyOptSparse. Defaults</dt><dd><p>to 'SLSQP'.</p>
+</dd>
+<dt>optOptions (dict, optional): Dictionary for setting the</dt><dd><p>optimization options. Defaults to None.</p>
+</dd>
+<dt>timeLimit (float, optional): Variable passed to pyOptSparse optimizer.</dt><dd><p>The maximum amount of time for optimizer to run (seconds). If None,
+no time limit is imposed. Defaults to None.</p>
+</dd>
+<dt>storeHistory (str, optional): Variable passed to pyOptSparse optimizer.</dt><dd><p>File name of the history file into which the history of the
+pyOptSparse optimization will be stored. Defaults to &quot;hist.hist&quot;.</p>
+</dd>
+<dt>hotStart (str, optional): Variable passed to pyOptSparse optimizer.</dt><dd><p>File name of the history file to “replay” for the optimization.
+If None, pyOptSparse initializes the optimization from scratch.
+Defaults to None.</p>
+</dd>
+<dt>enable_geometric_yaw (bool, optional): If True, enables geometric yaw</dt><dd><p>optimization. Defaults to False.</p>
+</dd>
+<dt>use_value (bool, optional): If True, the layout optimization objective</dt><dd><p>is to maximize annual value production using the value array in the
+FLORIS model's WindData object. If False, the optimization
+objective is to maximize AEP. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse.parse_opt_vars">
 <span class="sig-name descname"><span class="pre">parse_opt_vars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varDict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/optimization/layout_optimization/layout_optimization_pyoptsparse.html#LayoutOptimizationPyOptSparse.parse_opt_vars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse.parse_opt_vars" title="Link to this definition">#</a></dt>
 <dd></dd></dl>

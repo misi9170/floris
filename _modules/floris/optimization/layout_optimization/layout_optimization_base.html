@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -445,12 +461,24 @@ document.write(`
 <span class="sd">            initializes to 2 rotor diameters. Defaults to None.</span>
 <span class="sd">        enable_geometric_yaw (bool, optional): If True, enables geometric yaw</span>
 <span class="sd">            optimization. Defaults to False.</span>
+<span class="sd">        use_value (bool, optional): If True, the layout optimization objective</span>
+<span class="sd">            is to maximize annual value production using the value array in the</span>
+<span class="sd">            FLORIS model&#39;s WindData object. If False, the optimization</span>
+<span class="sd">            objective is to maximize AEP. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmodel</span><span class="p">,</span> <span class="n">boundaries</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enable_geometric_yaw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">fmodel</span><span class="p">,</span>
+        <span class="n">boundaries</span><span class="p">,</span>
+        <span class="n">min_dist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enable_geometric_yaw</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">use_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># Does not copy over the wind_data object</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">wind_data</span><span class="o">=</span><span class="n">fmodel</span><span class="o">.</span><span class="n">wind_data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">boundaries</span> <span class="o">=</span> <span class="n">boundaries</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">enable_geometric_yaw</span> <span class="o">=</span> <span class="n">enable_geometric_yaw</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_value</span> <span class="o">=</span> <span class="n">use_value</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_boundary_polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundaries</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_boundary_line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundaries</span><span class="p">)</span>
@@ -460,7 +488,7 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">ymin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">tup</span> <span class="ow">in</span> <span class="n">boundaries</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">tup</span> <span class="ow">in</span> <span class="n">boundaries</span><span class="p">])</span>
 
-        <span class="c1"># If no minimum distance is provided, assume a value of 2 rotor diamters</span>
+        <span class="c1"># If no minimum distance is provided, assume a value of 2 rotor diameters</span>
         <span class="k">if</span> <span class="n">min_dist</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">min_dist</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotor_diameter</span>
         <span class="k">else</span><span class="p">:</span>
@@ -472,9 +500,13 @@ document.write(`
             <span class="c1"># a WindData object, but it is still recommended.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
                 <span class="s2">&quot;Running layout optimization without a WindData object (e.g. TimeSeries, WindRose, &quot;</span>
-                <span class="s2">&quot;WindTIRose). We suggest that the user set the wind conditions on the FlorisModel &quot;</span>
-                <span class="s2">&quot; using the wind_data keyword argument for layout optimizations to capture &quot;</span>
-                <span class="s2">&quot;frequencies accurately.&quot;</span>
+                <span class="s2">&quot;WindTIRose). We suggest that the user set the wind conditions (and if applicable, &quot;</span>
+                <span class="s2">&quot;frequencies and values) on the FlorisModel using the wind_data keyword argument &quot;</span>
+                <span class="s2">&quot;for layout optimizations to capture frequencies and the value of the energy &quot;</span>
+                <span class="s2">&quot;production accurately. If a WindData object is not defined, uniform frequencies &quot;</span>
+                <span class="s2">&quot;will be assumed. If use_value is True and a WindData object is not defined, a &quot;</span>
+                <span class="s2">&quot;value of 1 will be used for each wind condition and layout optimization will &quot;</span>
+                <span class="s2">&quot;simply be performed to maximize AEP.&quot;</span>
             <span class="p">)</span>
 
         <span class="c1"># Establish geometric yaw class</span>
@@ -486,7 +518,11 @@ document.write(`
             <span class="p">)</span>
             <span class="c1"># TODO: is this being used?</span>
         <span class="n">fmodel</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">initial_AEP</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initial_AEP_or_AVP</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AVP</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">initial_AEP_or_AVP</span> <span class="o">=</span> <span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;layout&quot;</span>

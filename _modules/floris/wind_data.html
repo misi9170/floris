@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -460,14 +476,14 @@ document.write(`
             <span class="n">ti_table_unpack</span><span class="p">,</span>
             <span class="n">_</span><span class="p">,</span>
             <span class="n">_</span><span class="p">,</span>
-            <span class="n">heterogenous_inflow_config</span><span class="p">,</span>
+            <span class="n">heterogeneous_inflow_config</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unpack</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">wind_directions_unpack</span><span class="p">,</span>
             <span class="n">wind_speeds_unpack</span><span class="p">,</span>
             <span class="n">ti_table_unpack</span><span class="p">,</span>
-            <span class="n">heterogenous_inflow_config</span><span class="p">,</span>
+            <span class="n">heterogeneous_inflow_config</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -479,71 +495,79 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">unpack</span><span class="p">()[</span><span class="mi">3</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="WindDataBase.check_heterogenous_inflow_config_by_wd">
-<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.check_heterogenous_inflow_config_by_wd">[docs]</a>
-    <span class="k">def</span> <span class="nf">check_heterogenous_inflow_config_by_wd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">):</span>
+<div class="viewcode-block" id="WindDataBase.unpack_value">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.unpack_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">unpack_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Unpack values of power generated&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">unpack</span><span class="p">()[</span><span class="mi">4</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="WindDataBase.check_heterogeneous_inflow_config_by_wd">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.check_heterogeneous_inflow_config_by_wd">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_heterogeneous_inflow_config_by_wd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Check that the heterogenous_inflow_config_by_wd dictionary is properly formatted</span>
+<span class="sd">        Check that the heterogeneous_inflow_config_by_wd dictionary is properly formatted</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            heterogenous_inflow_config_by_wd (dict): A dictionary containing the following keys:</span>
+<span class="sd">            heterogeneous_inflow_config_by_wd (dict): A dictionary containing the following keys:</span>
 <span class="sd">                * &#39;speed_multipliers&#39;: A 2D NumPy array (size num_wd x num_points)</span>
 <span class="sd">                     of speed multipliers.</span>
 <span class="sd">                * &#39;wind_directions&#39;: A 1D NumPy array (size num_wd) of wind directions (degrees).</span>
 <span class="sd">                * &#39;x&#39;: A 1D NumPy array (size num_points) of x-coordinates (meters).</span>
 <span class="sd">                * &#39;y&#39;: A 1D NumPy array (size num_points) of y-coordinates (meters).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">heterogenous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;heterogenous_inflow_config_by_wd must be a dictionary&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;speed_multipliers&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">heterogeneous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;heterogeneous_inflow_config_by_wd must be a dictionary&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;speed_multipliers&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;heterogenous_inflow_config_by_wd must contain a key &#39;speed_multipliers&#39;&quot;</span>
+                    <span class="s2">&quot;heterogeneous_inflow_config_by_wd must contain a key &#39;speed_multipliers&#39;&quot;</span>
                 <span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;wind_directions&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;wind_directions&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;heterogenous_inflow_config_by_wd must contain a key &#39;wind_directions&#39;&quot;</span>
+                    <span class="s2">&quot;heterogeneous_inflow_config_by_wd must contain a key &#39;wind_directions&#39;&quot;</span>
                 <span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;x&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;heterogenous_inflow_config_by_wd must contain a key &#39;x&#39;&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;y&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;heterogenous_inflow_config_by_wd must contain a key &#39;y&#39;&quot;</span><span class="p">)</span></div>
+            <span class="k">if</span> <span class="s2">&quot;x&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;heterogeneous_inflow_config_by_wd must contain a key &#39;x&#39;&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;y&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;heterogeneous_inflow_config_by_wd must contain a key &#39;y&#39;&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="WindDataBase.check_heterogenous_inflow_config">
-<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.check_heterogenous_inflow_config">[docs]</a>
-    <span class="k">def</span> <span class="nf">check_heterogenous_inflow_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heterogenous_inflow_config</span><span class="p">):</span>
+<div class="viewcode-block" id="WindDataBase.check_heterogeneous_inflow_config">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.check_heterogeneous_inflow_config">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_heterogeneous_inflow_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heterogeneous_inflow_config</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Check that the heterogenous_inflow_config dictionary is properly formatted</span>
+<span class="sd">        Check that the heterogeneous_inflow_config dictionary is properly formatted</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            heterogenous_inflow_config (dict): A dictionary containing the following keys:</span>
+<span class="sd">            heterogeneous_inflow_config (dict): A dictionary containing the following keys:</span>
 <span class="sd">                * &#39;speed_multipliers&#39;: A 2D NumPy array (size n_findex x num_points)</span>
 <span class="sd">                      of speed multipliers.</span>
 <span class="sd">                * &#39;x&#39;: A 1D NumPy array (size num_points) of x-coordinates (meters).</span>
 <span class="sd">                * &#39;y&#39;: A 1D NumPy array (size num_points) of y-coordinates (meters).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">heterogenous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">heterogenous_inflow_config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;heterogenous_inflow_config_by_wd must be a dictionary&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;speed_multipliers&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogenous_inflow_config</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">heterogeneous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">heterogeneous_inflow_config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;heterogeneous_inflow_config_by_wd must be a dictionary&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;speed_multipliers&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogeneous_inflow_config</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;heterogenous_inflow_config must contain a key &#39;speed_multipliers&#39;&quot;</span>
+                    <span class="s2">&quot;heterogeneous_inflow_config must contain a key &#39;speed_multipliers&#39;&quot;</span>
                 <span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;x&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogenous_inflow_config</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;heterogenous_inflow_config must contain a key &#39;x&#39;&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="s2">&quot;y&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogenous_inflow_config</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;heterogenous_inflow_config must contain a key &#39;y&#39;&quot;</span><span class="p">)</span></div>
+            <span class="k">if</span> <span class="s2">&quot;x&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogeneous_inflow_config</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;heterogeneous_inflow_config must contain a key &#39;x&#39;&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;y&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">heterogeneous_inflow_config</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;heterogeneous_inflow_config must contain a key &#39;y&#39;&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="WindDataBase.get_speed_multipliers_by_wd">
 <a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.get_speed_multipliers_by_wd">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_speed_multipliers_by_wd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_speed_multipliers_by_wd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Processes heterogenous inflow configuration data to generate a speed multiplier array</span>
+<span class="sd">        Processes heterogeneous inflow configuration data to generate a speed multiplier array</span>
 <span class="sd">        aligned with the wind directions. Accounts for the cyclical nature of wind directions.</span>
 <span class="sd">        Args:</span>
-<span class="sd">            heterogenous_inflow_config_by_wd (dict): A dictionary containing the following keys:</span>
+<span class="sd">            heterogeneous_inflow_config_by_wd (dict): A dictionary containing the following keys:</span>
 <span class="sd">                * &#39;speed_multipliers&#39;: A 2D NumPy array (size num_wd x num_points)</span>
 <span class="sd">                     of speed multipliers.</span>
 <span class="sd">                * &#39;wind_directions&#39;: A 1D NumPy array (size num_wd) of wind directions (degrees).</span>
@@ -559,14 +583,14 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Extract data from the configuration dictionary</span>
-        <span class="n">speed_multipliers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">[</span><span class="s2">&quot;speed_multipliers&quot;</span><span class="p">])</span>
-        <span class="n">het_wd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">[</span><span class="s2">&quot;wind_directions&quot;</span><span class="p">])</span>
+        <span class="n">speed_multipliers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">[</span><span class="s2">&quot;speed_multipliers&quot;</span><span class="p">])</span>
+        <span class="n">het_wd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">[</span><span class="s2">&quot;wind_directions&quot;</span><span class="p">])</span>
 
         <span class="c1"># Confirm 0th dimension of speed_multipliers == len(het_wd)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">het_wd</span><span class="p">)</span> <span class="o">!=</span> <span class="n">speed_multipliers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;The legnth of het_wd must equal the number of rows speed_multipliers&quot;</span>
-                <span class="s2">&quot;Within the heterogenous_inflow_config_by_wd dictionary&quot;</span>
+                <span class="s2">&quot;Within the heterogeneous_inflow_config_by_wd dictionary&quot;</span>
             <span class="p">)</span>
 
         <span class="c1"># Calculate closest wind direction indices (accounting for angles)</span>
@@ -578,23 +602,23 @@ document.write(`
         <span class="k">return</span> <span class="n">speed_multipliers</span><span class="p">[</span><span class="n">closest_wd_indices</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="WindDataBase.get_heterogenous_inflow_config">
-<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.get_heterogenous_inflow_config">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_heterogenous_inflow_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions</span><span class="p">):</span>
-        <span class="c1"># If heterogenous_inflow_config_by_wd is None, return None</span>
-        <span class="k">if</span> <span class="n">heterogenous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="WindDataBase.get_heterogeneous_inflow_config">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindDataBase.get_heterogeneous_inflow_config">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_heterogeneous_inflow_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions</span><span class="p">):</span>
+        <span class="c1"># If heterogeneous_inflow_config_by_wd is None, return None</span>
+        <span class="k">if</span> <span class="n">heterogeneous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-        <span class="c1"># If heterogenous_inflow_config_by_wd is not None, then process it</span>
+        <span class="c1"># If heterogeneous_inflow_config_by_wd is not None, then process it</span>
         <span class="c1"># Build the n-findex version of the het map</span>
         <span class="n">speed_multipliers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_speed_multipliers_by_wd</span><span class="p">(</span>
-            <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions</span>
+            <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions</span>
         <span class="p">)</span>
-        <span class="c1"># Return heterogenous_inflow_config</span>
+        <span class="c1"># Return heterogeneous_inflow_config</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;speed_multipliers&quot;</span><span class="p">:</span> <span class="n">speed_multipliers</span><span class="p">,</span>
-            <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
-            <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span>
         <span class="p">}</span></div>
 </div>
 
@@ -628,7 +652,7 @@ document.write(`
 <span class="sd">            each bin to compute the total value of the energy produced</span>
 <span class="sd">        compute_zero_freq_occurrence: Flag indicating whether to compute zero</span>
 <span class="sd">            frequency occurrences (bool, optional).  Defaults to False.</span>
-<span class="sd">        heterogenous_inflow_config_by_wd (dict, optional): A dictionary containing the following</span>
+<span class="sd">        heterogeneous_inflow_config_by_wd (dict, optional): A dictionary containing the following</span>
 <span class="sd">            keys. Defaults to None.</span>
 <span class="sd">            * &#39;speed_multipliers&#39;: A 2D NumPy array (size num_wd x num_points)</span>
 <span class="sd">                    of speed multipliers.</span>
@@ -646,7 +670,7 @@ document.write(`
         <span class="n">freq_table</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">value_table</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">compute_zero_freq_occurrence</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;wind_directions must be a NumPy array&quot;</span><span class="p">)</span>
@@ -706,12 +730,12 @@ document.write(`
                 <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compute_zero_freq_occurrence</span> <span class="o">=</span> <span class="n">compute_zero_freq_occurrence</span>
 
-        <span class="c1"># Check that heterogenous_inflow_config_by_wd is a dictionary with keys:</span>
+        <span class="c1"># Check that heterogeneous_inflow_config_by_wd is a dictionary with keys:</span>
         <span class="c1"># speed_multipliers, wind_directions, x and y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">check_heterogenous_inflow_config_by_wd</span><span class="p">(</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_heterogeneous_inflow_config_by_wd</span><span class="p">(</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">)</span>
 
         <span class="c1"># Then save</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span> <span class="o">=</span> <span class="n">heterogenous_inflow_config_by_wd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span> <span class="o">=</span> <span class="n">heterogeneous_inflow_config_by_wd</span>
 
         <span class="c1"># Build the gridded and flatten versions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_build_gridded_and_flattened_version</span><span class="p">()</span>
@@ -779,14 +803,14 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="n">value_table_unpack</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="c1"># If heterogenous_inflow_config_by_wd is not None, then update</span>
-        <span class="c1"># heterogenous_inflow_config to match wind_directions_unpack</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">heterogenous_inflow_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_heterogenous_inflow_config</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions_unpack</span>
+        <span class="c1"># If heterogeneous_inflow_config_by_wd is not None, then update</span>
+        <span class="c1"># heterogeneous_inflow_config to match wind_directions_unpack</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">heterogeneous_inflow_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_heterogeneous_inflow_config</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions_unpack</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">heterogenous_inflow_config</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">heterogeneous_inflow_config</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">wind_directions_unpack</span><span class="p">,</span>
@@ -794,7 +818,7 @@ document.write(`
             <span class="n">ti_table_unpack</span><span class="p">,</span>
             <span class="n">freq_table_unpack</span><span class="p">,</span>
             <span class="n">value_table_unpack</span><span class="p">,</span>
-            <span class="n">heterogenous_inflow_config</span><span class="p">,</span>
+            <span class="n">heterogeneous_inflow_config</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -833,7 +857,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">ws_flat</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ti_table_flat</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">value_table_flat</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Now build a new wind rose using the new steps</span>
@@ -971,14 +995,18 @@ document.write(`
 
 <span class="sd">        Args:</span>
 <span class="sd">            ax (:py:class:`matplotlib.pyplot.axes`, optional): The figure axes</span>
-<span class="sd">                on which the wind rose is plotted. Defaults to None.</span>
-<span class="sd">            plot_kwargs (dict, optional): Keyword arguments to be passed to</span>
-<span class="sd">                ax.plot().</span>
+<span class="sd">                on which the turbulence intensity is plotted. Defaults to None.</span>
+<span class="sd">            marker (str, optional): Scatter plot marker style. Defaults to &quot;.&quot;.</span>
+<span class="sd">            ls (str, optional): Scatter plot line style. Defaults to &quot;None&quot;.</span>
+<span class="sd">            color (str, optional): Scatter plot color. Defaults to &quot;k&quot;.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            :py:class:`matplotlib.pyplot.axes`: A figure axes object containing</span>
-<span class="sd">            the plotted wind rose.</span>
+<span class="sd">            the plotted turbulence intensities as a function of wind speed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># TODO: Plot mean and std. devs. of TI in each ws bin in addition to</span>
+        <span class="c1"># individual points</span>
 
         <span class="c1"># Set up figure</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -987,6 +1015,119 @@ document.write(`
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ws_flat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ti_table_flat</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Wind Speed (m/s)&quot;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Turbulence Intensity (%)&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WindRose.assign_value_using_wd_ws_function">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindRose.assign_value_using_wd_ws_function">[docs]</a>
+    <span class="k">def</span> <span class="nf">assign_value_using_wd_ws_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Use the passed in function to assign new values to the value table.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            func (function): Function which accepts wind_directions as its</span>
+<span class="sd">                first argument and wind_speeds as second argument and returns</span>
+<span class="sd">                values.</span>
+<span class="sd">            normalize (bool, optional): If True, the value array will be</span>
+<span class="sd">                normalized by the mean value. Defaults to False.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value_table</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wd_grid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ws_grid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">value_table</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freq_table</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_table</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build_gridded_and_flattened_version</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="WindRose.assign_value_piecewise_linear">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindRose.assign_value_piecewise_linear">[docs]</a>
+    <span class="k">def</span> <span class="nf">assign_value_piecewise_linear</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">value_zero_ws</span><span class="o">=</span><span class="mf">1.425</span><span class="p">,</span>
+        <span class="n">ws_knee</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span>
+        <span class="n">slope_1</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">slope_2</span><span class="o">=-</span><span class="mf">0.135</span><span class="p">,</span>
+        <span class="n">limit_to_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Define value as a continuous piecewise linear function of wind speed</span>
+<span class="sd">        with two line segments. The default parameters yield a value function</span>
+<span class="sd">        that approximates the normalized mean electricity price vs. wind speed</span>
+<span class="sd">        curve for the SPP market in the U.S. for years 2018-2020 from figure 7</span>
+<span class="sd">        in Simley et al. &quot;The value of wake steering wind farm flow control in</span>
+<span class="sd">        US energy markets,&quot; Wind Energy Science, 2024.</span>
+<span class="sd">        https://doi.org/10.5194/wes-9-219-2024. This default value function is</span>
+<span class="sd">        constant at low wind speeds, then linearly decreases above 4.5 m/s.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value_zero_ws (float, optional): The value when wind speed is zero.</span>
+<span class="sd">                Defaults to 1.425.</span>
+<span class="sd">            ws_knee (float, optional): The wind speed separating line segments</span>
+<span class="sd">                1 and 2. Default = 4.5 m/s.</span>
+<span class="sd">            slope_1 (float, optional): The slope of the first line segment</span>
+<span class="sd">                (unit of value per m/s). Defaults to zero.</span>
+<span class="sd">            slope_2 (float, optional): The slope of the second line segment</span>
+<span class="sd">            (unit of value per m/s). Defaults to -0.135.</span>
+<span class="sd">            limit_to_zero (bool, optional): If True, negative values will be</span>
+<span class="sd">                set to zero. Defaults to False.</span>
+<span class="sd">            normalize (bool, optional): If True, the value array will be</span>
+<span class="sd">                normalized by the mean value. Defaults to False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">piecewise_linear_value_func</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">wind_speeds</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">wind_speeds</span><span class="p">)</span>
+            <span class="n">value</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&lt;</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">slope_1</span> <span class="o">*</span> <span class="n">wind_speeds</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&lt;</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">+</span> <span class="n">value_zero_ws</span>
+            <span class="p">)</span>
+
+            <span class="n">offset_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">slope_1</span> <span class="o">-</span> <span class="n">slope_2</span><span class="p">)</span> <span class="o">*</span> <span class="n">ws_knee</span> <span class="o">+</span> <span class="n">value_zero_ws</span>
+
+            <span class="n">value</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&gt;=</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">=</span> <span class="n">slope_2</span> <span class="o">*</span> <span class="n">wind_speeds</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&gt;=</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset_2</span>
+
+            <span class="k">if</span> <span class="n">limit_to_zero</span><span class="p">:</span>
+                <span class="n">value</span><span class="p">[</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+            <span class="k">return</span> <span class="n">value</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assign_value_using_wd_ws_function</span><span class="p">(</span><span class="n">piecewise_linear_value_func</span><span class="p">,</span> <span class="n">normalize</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WindRose.plot_value_over_ws">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindRose.plot_value_over_ws">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_value_over_ws</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
+        <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scatter plot the value of the energy generated against wind speed.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ax (:py:class:`matplotlib.pyplot.axes`, optional): The figure axes</span>
+<span class="sd">                on which the value is plotted. Defaults to None.</span>
+<span class="sd">            marker (str, optional): Scatter plot marker style. Defaults to &quot;.&quot;.</span>
+<span class="sd">            ls (str, optional): Scatter plot line style. Defaults to &quot;None&quot;.</span>
+<span class="sd">            color (str, optional): Scatter plot color. Defaults to &quot;k&quot;.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :py:class:`matplotlib.pyplot.axes`: A figure axes object containing</span>
+<span class="sd">            the plotted value as a function of wind speed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># TODO: Plot mean and std. devs. of value in each ws bin in addition to</span>
+        <span class="c1"># individual points</span>
+
+        <span class="c1"># Set up figure</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ws_flat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_table_flat</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Wind Speed (m/s)&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
 
 
@@ -1107,7 +1248,7 @@ document.write(`
 <span class="sd">            to compute the total value of the energy produced.</span>
 <span class="sd">        compute_zero_freq_occurrence: Flag indicating whether to compute zero</span>
 <span class="sd">            frequency occurrences (bool, optional).  Defaults to False.</span>
-<span class="sd">        heterogenous_inflow_config_by_wd (dict, optional): A dictionary containing the following</span>
+<span class="sd">        heterogeneous_inflow_config_by_wd (dict, optional): A dictionary containing the following</span>
 <span class="sd">            keys. Defaults to None.</span>
 <span class="sd">            * &#39;speed_multipliers&#39;: A 2D NumPy array (size num_wd x num_points)</span>
 <span class="sd">                    of speed multipliers.</span>
@@ -1125,7 +1266,7 @@ document.write(`
         <span class="n">freq_table</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">value_table</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">compute_zero_freq_occurrence</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;wind_directions must be a NumPy array&quot;</span><span class="p">)</span>
@@ -1174,12 +1315,12 @@ document.write(`
                 <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value_table</span> <span class="o">=</span> <span class="n">value_table</span>
 
-        <span class="c1"># Check that heterogenous_inflow_config_by_wd is a dictionary with keys:</span>
+        <span class="c1"># Check that heterogeneous_inflow_config_by_wd is a dictionary with keys:</span>
         <span class="c1"># speed_multipliers, wind_directions, x and y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">check_heterogenous_inflow_config_by_wd</span><span class="p">(</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_heterogeneous_inflow_config_by_wd</span><span class="p">(</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">)</span>
 
         <span class="c1"># Then save</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span> <span class="o">=</span> <span class="n">heterogenous_inflow_config_by_wd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span> <span class="o">=</span> <span class="n">heterogeneous_inflow_config_by_wd</span>
 
         <span class="c1"># Save whether zero occurrence cases should be computed</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compute_zero_freq_occurrence</span> <span class="o">=</span> <span class="n">compute_zero_freq_occurrence</span>
@@ -1248,14 +1389,14 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="n">value_table_unpack</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="c1"># If heterogenous_inflow_config_by_wd is not None, then update</span>
-        <span class="c1"># heterogenous_inflow_config to match wind_directions_unpack</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">heterogenous_inflow_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_heterogenous_inflow_config</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions_unpack</span>
+        <span class="c1"># If heterogeneous_inflow_config_by_wd is not None, then update</span>
+        <span class="c1"># heterogeneous_inflow_config to match wind_directions_unpack</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">heterogeneous_inflow_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_heterogeneous_inflow_config</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span> <span class="n">wind_directions_unpack</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">heterogenous_inflow_config</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">heterogeneous_inflow_config</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">wind_directions_unpack</span><span class="p">,</span>
@@ -1263,7 +1404,7 @@ document.write(`
             <span class="n">turbulence_intensities_unpack</span><span class="p">,</span>
             <span class="n">freq_table_unpack</span><span class="p">,</span>
             <span class="n">value_table_unpack</span><span class="p">,</span>
-            <span class="n">heterogenous_inflow_config</span><span class="p">,</span>
+            <span class="n">heterogeneous_inflow_config</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -1310,7 +1451,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">ws_flat</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ti_flat</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">value_table_flat</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Now build a new wind rose using the new steps</span>
@@ -1430,16 +1571,18 @@ document.write(`
 
 <span class="sd">        Args:</span>
 <span class="sd">            ax (:py:class:`matplotlib.pyplot.axes`, optional): The figure axes</span>
-<span class="sd">                on which the wind rose is plotted. Defaults to None.</span>
-<span class="sd">            plot_kwargs (dict, optional): Keyword arguments to be passed to</span>
-<span class="sd">                ax.plot().</span>
+<span class="sd">                on which the mean turbulence intensity is plotted. Defaults to None.</span>
+<span class="sd">            marker (str, optional): Scatter plot marker style. Defaults to &quot;.&quot;.</span>
+<span class="sd">            ls (str, optional): Scatter plot line style. Defaults to &quot;None&quot;.</span>
+<span class="sd">            color (str, optional): Scatter plot color. Defaults to &quot;k&quot;.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            :py:class:`matplotlib.pyplot.axes`: A figure axes object containing</span>
-<span class="sd">            the plotted wind rose.</span>
+<span class="sd">            the plotted mean turbulence intensities as a function of wind speed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># TODO: Plot std. devs. of TI in addition to mean values</span>
+        <span class="c1"># TODO: Plot individual points and std. devs. of TI in addition to mean</span>
+        <span class="c1"># values</span>
 
         <span class="c1"># Set up figure</span>
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1452,6 +1595,120 @@ document.write(`
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_speeds</span><span class="p">,</span> <span class="n">mean_ti_values</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Wind Speed (m/s)&quot;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean Turbulence Intensity (%)&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WindTIRose.assign_value_using_wd_ws_ti_function">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindTIRose.assign_value_using_wd_ws_ti_function">[docs]</a>
+    <span class="k">def</span> <span class="nf">assign_value_using_wd_ws_ti_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Use the passed in function to assign new values to the value table.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            func (function): Function which accepts wind_directions as its</span>
+<span class="sd">                first argument, wind_speeds as its second argument, and</span>
+<span class="sd">                turbulence_intensities as its third argument and returns</span>
+<span class="sd">                values.</span>
+<span class="sd">            normalize (bool, optional): If True, the value array will be</span>
+<span class="sd">                normalized by the mean value. Defaults to False.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value_table</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wd_grid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ws_grid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ti_grid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">value_table</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">freq_table</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_table</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build_gridded_and_flattened_version</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="WindTIRose.assign_value_piecewise_linear">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindTIRose.assign_value_piecewise_linear">[docs]</a>
+    <span class="k">def</span> <span class="nf">assign_value_piecewise_linear</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">value_zero_ws</span><span class="o">=</span><span class="mf">1.425</span><span class="p">,</span>
+        <span class="n">ws_knee</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span>
+        <span class="n">slope_1</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">slope_2</span><span class="o">=-</span><span class="mf">0.135</span><span class="p">,</span>
+        <span class="n">limit_to_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Define value as a continuous piecewise linear function of wind speed</span>
+<span class="sd">        with two line segments. The default parameters yield a value function</span>
+<span class="sd">        that approximates the normalized mean electricity price vs. wind speed</span>
+<span class="sd">        curve for the SPP market in the U.S. for years 2018-2020 from figure 7</span>
+<span class="sd">        in Simley et al. &quot;The value of wake steering wind farm flow control in</span>
+<span class="sd">        US energy markets,&quot; Wind Energy Science, 2024.</span>
+<span class="sd">        https://doi.org/10.5194/wes-9-219-2024. This default value function is</span>
+<span class="sd">        constant at low wind speeds, then linearly decreases above 4.5 m/s.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value_zero_ws (float, optional): The value when wind speed is zero.</span>
+<span class="sd">                Defaults to 1.425.</span>
+<span class="sd">            ws_knee (float, optional): The wind speed separating line segments</span>
+<span class="sd">                1 and 2. Default = 4.5 m/s.</span>
+<span class="sd">            slope_1 (float, optional): The slope of the first line segment</span>
+<span class="sd">                (unit of value per m/s). Defaults to zero.</span>
+<span class="sd">            slope_2 (float, optional): The slope of the second line segment</span>
+<span class="sd">            (unit of value per m/s). Defaults to -0.135.</span>
+<span class="sd">            limit_to_zero (bool, optional): If True, negative values will be</span>
+<span class="sd">                set to zero. Defaults to False.</span>
+<span class="sd">            normalize (bool, optional): If True, the value array will be</span>
+<span class="sd">                normalized by the mean value. Defaults to False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">piecewise_linear_value_func</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">wind_speeds</span><span class="p">,</span> <span class="n">turbulence_intensities</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">wind_speeds</span><span class="p">)</span>
+            <span class="n">value</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&lt;</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">slope_1</span> <span class="o">*</span> <span class="n">wind_speeds</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&lt;</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">+</span> <span class="n">value_zero_ws</span>
+            <span class="p">)</span>
+
+            <span class="n">offset_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">slope_1</span> <span class="o">-</span> <span class="n">slope_2</span><span class="p">)</span> <span class="o">*</span> <span class="n">ws_knee</span> <span class="o">+</span> <span class="n">value_zero_ws</span>
+
+            <span class="n">value</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&gt;=</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">=</span> <span class="n">slope_2</span> <span class="o">*</span> <span class="n">wind_speeds</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&gt;=</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset_2</span>
+
+            <span class="k">if</span> <span class="n">limit_to_zero</span><span class="p">:</span>
+                <span class="n">value</span><span class="p">[</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+            <span class="k">return</span> <span class="n">value</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assign_value_using_wd_ws_ti_function</span><span class="p">(</span><span class="n">piecewise_linear_value_func</span><span class="p">,</span> <span class="n">normalize</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WindTIRose.plot_value_over_ws">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.WindTIRose.plot_value_over_ws">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_value_over_ws</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span>
+        <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scatter plot the value of the energy generated against wind speed.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ax (:py:class:`matplotlib.pyplot.axes`, optional): The figure axes</span>
+<span class="sd">                on which the value is plotted. Defaults to None.</span>
+<span class="sd">            marker (str, optional): Scatter plot marker style. Defaults to &quot;.&quot;.</span>
+<span class="sd">            ls (str, optional): Scatter plot line style. Defaults to &quot;None&quot;.</span>
+<span class="sd">            color (str, optional): Scatter plot color. Defaults to &quot;k&quot;.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :py:class:`matplotlib.pyplot.axes`: A figure axes object containing</span>
+<span class="sd">            the plotted value as a function of wind speed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># TODO: Plot mean and std. devs. of value in each ws bin in addition to</span>
+        <span class="c1"># individual points</span>
+
+        <span class="c1"># Set up figure</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ws_flat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_table_flat</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Wind Speed (m/s)&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
 
 
@@ -1560,14 +1817,14 @@ document.write(`
 <span class="sd">            a single value or an array of values.</span>
 <span class="sd">        values (NDArrayFloat, optional): Values associated with each wind</span>
 <span class="sd">            direction, wind speed, and turbulence intensity. Defaults to None.</span>
-<span class="sd">        heterogenous_inflow_config_by_wd (dict, optional): A dictionary containing the following</span>
+<span class="sd">        heterogeneous_inflow_config_by_wd (dict, optional): A dictionary containing the following</span>
 <span class="sd">            keys. Defaults to None.</span>
 <span class="sd">            * &#39;speed_multipliers&#39;: A 2D NumPy array (size num_wd x num_points)</span>
 <span class="sd">                    of speed multipliers.</span>
 <span class="sd">            * &#39;wind_directions&#39;: A 1D NumPy array (size num_wd) of wind directions (degrees).</span>
 <span class="sd">            * &#39;x&#39;: A 1D NumPy array (size num_points) of x-coordinates (meters).</span>
 <span class="sd">            * &#39;y&#39;: A 1D NumPy array (size num_points) of y-coordinates (meters).</span>
-<span class="sd">        heterogenous_inflow_config (dict, optional): A dictionary containing the following keys.</span>
+<span class="sd">        heterogeneous_inflow_config (dict, optional): A dictionary containing the following keys.</span>
 <span class="sd">            Defaults to None.</span>
 <span class="sd">            * &#39;speed_multipliers&#39;: A 2D NumPy array (size n_findex x num_points)</span>
 <span class="sd">                    of speed multipliers.</span>
@@ -1581,8 +1838,8 @@ document.write(`
         <span class="n">wind_speeds</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
         <span class="n">turbulence_intensities</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
         <span class="n">values</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">heterogenous_inflow_config_by_wd</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">heterogenous_inflow_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">heterogeneous_inflow_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="c1"># At least one of wind_directions, wind_speeds, or turbulence_intensities must be an array</span>
         <span class="k">if</span> <span class="p">(</span>
@@ -1603,9 +1860,8 @@ document.write(`
                     <span class="s2">&quot;wind_directions and wind_speeds must be the same length if provided as arrays&quot;</span>
                 <span class="p">)</span>
 
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="nb">isinstance</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">turbulence_intensities</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">turbulence_intensities</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
         <span class="p">):</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">turbulence_intensities</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -1651,29 +1907,32 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">turbulence_intensities</span> <span class="o">=</span> <span class="n">turbulence_intensities</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
 
-        <span class="c1"># Only one of heterogenous_inflow_config_by_wd and</span>
-        <span class="c1"># heterogenous_inflow_config can be not None</span>
-        <span class="k">if</span> <span class="n">heterogenous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">heterogenous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Only one of heterogeneous_inflow_config_by_wd and</span>
+        <span class="c1"># heterogeneous_inflow_config can be not None</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">heterogeneous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">heterogeneous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Only one of heterogenous_inflow_config_by_wd and heterogenous_inflow_config &quot;</span>
+                <span class="s2">&quot;Only one of heterogeneous_inflow_config_by_wd and heterogeneous_inflow_config &quot;</span>
                 <span class="s2">&quot;can be not None&quot;</span>
             <span class="p">)</span>
 
-        <span class="c1"># if heterogenous_inflow_config is not None, then the speed_multipliers</span>
+        <span class="c1"># if heterogeneous_inflow_config is not None, then the speed_multipliers</span>
         <span class="c1"># must be the same length as wind_directions</span>
         <span class="c1"># in the 0th dimension</span>
-        <span class="k">if</span> <span class="n">heterogenous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">heterogenous_inflow_config</span><span class="p">[</span><span class="s2">&quot;speed_multipliers&quot;</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">heterogeneous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">heterogeneous_inflow_config</span><span class="p">[</span><span class="s2">&quot;speed_multipliers&quot;</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;speed_multipliers must be the same length as wind_directions&quot;</span><span class="p">)</span>
 
-        <span class="c1"># Check that heterogenous_inflow_config_by_wd is a dictionary with keys:</span>
+        <span class="c1"># Check that heterogeneous_inflow_config_by_wd is a dictionary with keys:</span>
         <span class="c1"># speed_multipliers, wind_directions, x and y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">check_heterogenous_inflow_config_by_wd</span><span class="p">(</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">check_heterogenous_inflow_config</span><span class="p">(</span><span class="n">heterogenous_inflow_config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_heterogeneous_inflow_config_by_wd</span><span class="p">(</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_heterogeneous_inflow_config</span><span class="p">(</span><span class="n">heterogeneous_inflow_config</span><span class="p">)</span>
 
         <span class="c1"># Then save</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span> <span class="o">=</span> <span class="n">heterogenous_inflow_config_by_wd</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config</span> <span class="o">=</span> <span class="n">heterogenous_inflow_config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span> <span class="o">=</span> <span class="n">heterogeneous_inflow_config_by_wd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config</span> <span class="o">=</span> <span class="n">heterogeneous_inflow_config</span>
 
         <span class="c1"># Record findex</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_findex</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_directions</span><span class="p">)</span>
@@ -1689,14 +1948,14 @@ document.write(`
         <span class="n">uniform_frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_directions</span><span class="p">)</span>
         <span class="n">uniform_frequency</span> <span class="o">=</span> <span class="n">uniform_frequency</span> <span class="o">/</span> <span class="n">uniform_frequency</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-        <span class="c1"># If heterogenous_inflow_config_by_wd is not None, then update</span>
-        <span class="c1"># heterogenous_inflow_config to match wind_directions_unpack</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">heterogenous_inflow_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_heterogenous_inflow_config</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wind_directions</span>
+        <span class="c1"># If heterogeneous_inflow_config_by_wd is not None, then update</span>
+        <span class="c1"># heterogeneous_inflow_config to match wind_directions_unpack</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">heterogeneous_inflow_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_heterogeneous_inflow_config</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wind_directions</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">heterogenous_inflow_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config</span>
+            <span class="n">heterogeneous_inflow_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config</span>
 
         <span class="k">return</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">wind_directions</span><span class="p">,</span>
@@ -1704,7 +1963,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">turbulence_intensities</span><span class="p">,</span>
             <span class="n">uniform_frequency</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-            <span class="n">heterogenous_inflow_config</span><span class="p">,</span>
+            <span class="n">heterogeneous_inflow_config</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -1768,6 +2027,80 @@ document.write(`
             <span class="k">return</span> <span class="n">sigma_1</span> <span class="o">/</span> <span class="n">wind_speeds</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">assign_ti_using_wd_ws_function</span><span class="p">(</span><span class="n">iref_func</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TimeSeries.assign_value_using_wd_ws_function">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.TimeSeries.assign_value_using_wd_ws_function">[docs]</a>
+    <span class="k">def</span> <span class="nf">assign_value_using_wd_ws_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Use the passed in function to assign new values to the value table.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            func (function): Function which accepts wind_directions as its</span>
+<span class="sd">                first argument and wind_speeds as second argument and returns</span>
+<span class="sd">                values.</span>
+<span class="sd">            normalize (bool, optional): If True, the value array will be</span>
+<span class="sd">                normalized by the mean value. Defaults to False.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_directions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wind_speeds</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TimeSeries.assign_value_piecewise_linear">
+<a class="viewcode-back" href="../../_autosummary/floris.wind_data.html#floris.wind_data.TimeSeries.assign_value_piecewise_linear">[docs]</a>
+    <span class="k">def</span> <span class="nf">assign_value_piecewise_linear</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">value_zero_ws</span><span class="o">=</span><span class="mf">1.425</span><span class="p">,</span>
+        <span class="n">ws_knee</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span>
+        <span class="n">slope_1</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">slope_2</span><span class="o">=-</span><span class="mf">0.135</span><span class="p">,</span>
+        <span class="n">limit_to_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Define value as a continuous piecewise linear function of wind speed</span>
+<span class="sd">        with two line segments. The default parameters yield a value function</span>
+<span class="sd">        that approximates the normalized mean electricity price vs. wind speed</span>
+<span class="sd">        curve for the SPP market in the U.S. for years 2018-2020 from figure 7</span>
+<span class="sd">        in Simley et al. &quot;The value of wake steering wind farm flow control in</span>
+<span class="sd">        US energy markets,&quot; Wind Energy Science, 2024.</span>
+<span class="sd">        https://doi.org/10.5194/wes-9-219-2024. This default value function is</span>
+<span class="sd">        constant at low wind speeds, then linearly decreases above 4.5 m/s.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value_zero_ws (float, optional): The value when wind speed is zero.</span>
+<span class="sd">                Defaults to 1.425.</span>
+<span class="sd">            ws_knee (float, optional): The wind speed separating line segments</span>
+<span class="sd">                1 and 2. Default = 4.5 m/s.</span>
+<span class="sd">            slope_1 (float, optional): The slope of the first line segment</span>
+<span class="sd">                (unit of value per m/s). Defaults to zero.</span>
+<span class="sd">            slope_2 (float, optional): The slope of the second line segment</span>
+<span class="sd">            (unit of value per m/s). Defaults to -0.135.</span>
+<span class="sd">            limit_to_zero (bool, optional): If True, negative values will be</span>
+<span class="sd">                set to zero. Defaults to False.</span>
+<span class="sd">            normalize (bool, optional): If True, the value array will be</span>
+<span class="sd">                normalized by the mean value. Defaults to False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">piecewise_linear_value_func</span><span class="p">(</span><span class="n">wind_directions</span><span class="p">,</span> <span class="n">wind_speeds</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">wind_speeds</span><span class="p">)</span>
+            <span class="n">value</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&lt;</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">slope_1</span> <span class="o">*</span> <span class="n">wind_speeds</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&lt;</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">+</span> <span class="n">value_zero_ws</span>
+            <span class="p">)</span>
+
+            <span class="n">offset_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">slope_1</span> <span class="o">-</span> <span class="n">slope_2</span><span class="p">)</span> <span class="o">*</span> <span class="n">ws_knee</span> <span class="o">+</span> <span class="n">value_zero_ws</span>
+
+            <span class="n">value</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&gt;=</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">=</span> <span class="n">slope_2</span> <span class="o">*</span> <span class="n">wind_speeds</span><span class="p">[</span><span class="n">wind_speeds</span> <span class="o">&gt;=</span> <span class="n">ws_knee</span><span class="p">]</span> <span class="o">+</span> <span class="n">offset_2</span>
+
+            <span class="k">if</span> <span class="n">limit_to_zero</span><span class="p">:</span>
+                <span class="n">value</span><span class="p">[</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+            <span class="k">return</span> <span class="n">value</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assign_value_using_wd_ws_function</span><span class="p">(</span><span class="n">piecewise_linear_value_func</span><span class="p">,</span> <span class="n">normalize</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TimeSeries.to_WindRose">
@@ -1909,7 +2242,7 @@ document.write(`
             <span class="n">ti_table</span><span class="p">,</span>
             <span class="n">freq_table</span><span class="p">,</span>
             <span class="n">value_table</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -2079,7 +2412,7 @@ document.write(`
             <span class="n">ti_centers</span><span class="p">,</span>
             <span class="n">freq_table</span><span class="p">,</span>
             <span class="n">value_table</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config_by_wd</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config_by_wd</span><span class="p">,</span>
         <span class="p">)</span></div>
 </div>
 

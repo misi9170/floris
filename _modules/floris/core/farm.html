@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -457,7 +473,7 @@ document.write(`
 <span class="nd">@define</span>
 <span class="k">class</span> <span class="nc">Farm</span><span class="p">(</span><span class="n">BaseClass</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Farm is where wind power plants should be instantiated from a YAML configuration</span>
-<span class="sd">    file. The Farm will create a heterogenous set of turbines that compose a wind farm,</span>
+<span class="sd">    file. The Farm will create a heterogeneous set of turbines that compose a wind farm,</span>
 <span class="sd">    validate the inputs, and then create a vectorized representation of the the turbine</span>
 <span class="sd">    data.</span>
 
@@ -636,7 +652,8 @@ document.write(`
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;turbine_type must have the same number of entries as layout_x/layout_y or have &quot;</span>
-                <span class="s2">&quot;a single turbine_type value.&quot;</span>
+                <span class="s2">&quot;a single turbine_type value. This error can arise if you set the turbine_type or &quot;</span>
+                <span class="s2">&quot;alter the operation model before setting the layout.&quot;</span>
             <span class="p">)</span></div>
 
 

@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -1170,6 +1186,56 @@ document.write(`
 <span class="sd">            np.array: Wind turbine y-coordinate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel_unexpanded</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">layout_y</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wind_directions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wind direction information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.array: Wind direction.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel_unexpanded</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">wind_directions</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wind_speeds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wind speed information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.array: Wind speed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel_unexpanded</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">wind_speeds</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">turbulence_intensities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Turbulence intensity information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.array: Turbulence intensity.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel_unexpanded</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">turbulence_intensities</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_findex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Number of unique wind conditions.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Number of unique wind conditions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel_unexpanded</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_turbines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Number of turbines in the wind farm.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Number of turbines in the wind farm.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel_unexpanded</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">core</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

@@ -199,7 +199,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation_models_user.html">Turbine Operation Models</a></li>
@@ -262,6 +261,23 @@
 <li class="toctree-l2"><a class="reference internal" href="floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -485,6 +501,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_farm_power"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_farm_power()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_expected_farm_power"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_expected_farm_power()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_farm_AEP"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_farm_AEP()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_expected_farm_value"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_expected_farm_value()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_farm_AVP"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_farm_AVP()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_turbine_ais"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_turbine_ais()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_turbine_thrust_coefficients"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_turbine_thrust_coefficients()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_turbine_TIs"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_turbine_TIs()</span></code></a></li>
@@ -505,6 +523,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.print_dict"><code class="docutils literal notranslate"><span class="pre">FlorisModel.print_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.layout_x"><code class="docutils literal notranslate"><span class="pre">FlorisModel.layout_x</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.layout_y"><code class="docutils literal notranslate"><span class="pre">FlorisModel.layout_y</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.wind_directions"><code class="docutils literal notranslate"><span class="pre">FlorisModel.wind_directions</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.wind_speeds"><code class="docutils literal notranslate"><span class="pre">FlorisModel.wind_speeds</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.turbulence_intensities"><code class="docutils literal notranslate"><span class="pre">FlorisModel.turbulence_intensities</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.n_findex"><code class="docutils literal notranslate"><span class="pre">FlorisModel.n_findex</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.n_turbines"><code class="docutils literal notranslate"><span class="pre">FlorisModel.n_turbines</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.turbine_average_velocities"><code class="docutils literal notranslate"><span class="pre">FlorisModel.turbine_average_velocities</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.wind_data"><code class="docutils literal notranslate"><span class="pre">FlorisModel.wind_data</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.calculate_wake"><code class="docutils literal notranslate"><span class="pre">FlorisModel.calculate_wake()</span></code></a></li>
@@ -562,7 +585,7 @@ methods on objects within FLORIS.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="floris.floris_model.FlorisModel.set">
-<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_speeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_shear</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_veer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_wind_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbulence_intensities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_library_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogenous_inflow_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_setpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_turbines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.set" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_speeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_shear</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_veer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_wind_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbulence_intensities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_library_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogeneous_inflow_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_setpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_turbines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.set" title="Link to this definition">#</a></dt>
 <dd><p>Set the wind conditions and operation setpoints for the wind farm.</p>
 <dl>
 <dt>Args:</dt><dd><dl class="simple">
@@ -593,9 +616,9 @@ turbine_library_path (str | Path | None, optional): Path to the turbine library.
 <div><p>Defaults to None.</p>
 </div></blockquote>
 <p>solver_settings (dict | None, optional): Solver settings. Defaults to None.
-heterogenous_inflow_config (None, optional): Heterogenous inflow configuration. Defaults</p>
+heterogeneous_inflow_config (None, optional): heterogeneous inflow configuration.</p>
 <blockquote>
-<div><p>to None.</p>
+<div><p>Defaults to None.</p>
 </div></blockquote>
 <p>wind_data (type[WindDataBase] | None, optional): Wind data. Defaults to None.
 yaw_angles (NDArrayFloat | list[float] | None, optional): Turbine yaw angles.</p>
@@ -783,6 +806,114 @@ n_turbines). Defaults to None.</p>
 <dt>Returns:</dt><dd><dl class="simple">
 <dt>float:</dt><dd><p>The Annual Energy Production (AEP) for the wind farm in
 watt-hours.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.get_expected_farm_value">
+<span class="sig-name descname"><span class="pre">get_expected_farm_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.get_expected_farm_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.get_expected_farm_value" title="Link to this definition">#</a></dt>
+<dd><p>Compute the expected (mean) value produced by the wind farm. This is
+computed by multiplying the wind farm power for each wind condition by
+the corresponding value of the power generated (e.g., electricity
+market price per unit of energy), then weighting by frequency and
+summing over all conditions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>freq (NDArrayFloat): NumPy array with shape (n_findex)</dt><dd><p>with the frequencies of each wind condition combination.
+These frequencies should typically sum up to 1.0 and are used
+to weigh the wind farm value for every condition in calculating
+the wind farm's expected value. Defaults to None. If None and a
+WindData object is supplied, the WindData object's frequencies
+will be used. Otherwise, uniform frequencies are assumed (i.e.,
+a simple mean over the findices is computed).</p>
+</dd>
+<dt>values (NDArrayFloat): NumPy array with shape (n_findex)</dt><dd><p>with the values corresponding to the power generated for each
+wind condition combination. The wind farm power is multiplied
+by the value for every condition in calculating the wind farm's
+expected value. Defaults to None. If None and a WindData object
+is supplied, the WindData object's values will be used.
+Otherwise, a value of 1 for all conditions is assumed (i.e.,
+the expected farm value will be equivalent to the expected farm
+power).</p>
+</dd>
+<dt>turbine_weights (NDArrayFloat | list[float] | None, optional):</dt><dd><p>weighing terms that allow the user to emphasize power at
+particular turbines and/or completely ignore the power
+from other turbines. This is useful when, for example, you are
+modeling multiple wind farms in a single floris object. If you
+only want to calculate the value production for one of those
+farms and include the wake effects of the neighboring farms,
+you can set the turbine_weights for the neighboring farms'
+turbines to 0.0. The array of turbine powers from floris
+is multiplied with this array in the calculation of the
+expected value. If None, this is an array with all values 1.0
+and with shape equal to (n_findex, n_turbines). Defaults to None.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>float:</dt><dd><p>The expected value produced by the wind farm in units of value.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.get_farm_AVP">
+<span class="sig-name descname"><span class="pre">get_farm_AVP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hours_per_year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8760</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.get_farm_AVP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.get_farm_AVP" title="Link to this definition">#</a></dt>
+<dd><p>Estimate annual value production (AVP) for distribution of wind
+conditions, frequencies of occurrence, and corresponding values of
+power generated (e.g., electricity price per unit of energy).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>freq (NDArrayFloat): NumPy array with shape (n_findex)</dt><dd><p>with the frequencies of each wind condition combination.
+These frequencies should typically sum up to 1.0 and are used
+to weigh the wind farm value for every condition in calculating
+the wind farm's AVP. Defaults to None. If None and a
+WindData object is supplied, the WindData object's frequencies
+will be used. Otherwise, uniform frequencies are assumed (i.e.,
+a simple mean over the findices is computed).</p>
+</dd>
+<dt>values (NDArrayFloat): NumPy array with shape (n_findex)</dt><dd><p>with the values corresponding to the power generated for each
+wind condition combination. The wind farm power is multiplied
+by the value for every condition in calculating the wind farm's
+AVP. Defaults to None. If None and a WindData object is
+supplied, the WindData object's values will be used. Otherwise,
+a value of 1 for all conditions is assumed (i.e., the AVP will
+be equivalent to the AEP).</p>
+</dd>
+<dt>turbine_weights (NDArrayFloat | list[float] | None, optional):</dt><dd><p>weighing terms that allow the user to emphasize power at
+particular turbines and/or completely ignore the power
+from other turbines. This is useful when, for example, you are
+modeling multiple wind farms in a single floris object. If you
+only want to calculate the value production for one of those
+farms and include the wake effects of the neighboring farms,
+you can set the turbine_weights for the neighboring farms'
+turbines to 0.0. The array of turbine powers from floris is
+multiplied with this array in the calculation of the AVP. If
+None, this is an array with all values 1.0 and with shape equal
+to (n_findex, n_turbines). Defaults to None.</p>
+</dd>
+<dt>hours_per_year (float, optional): Number of hours in a year.</dt><dd><p>Defaults to 365 * 24.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>float:</dt><dd><p>The Annual Value Production (AVP) for the wind farm in units
+of value.</p>
 </dd>
 </dl>
 </dd>
@@ -1046,7 +1177,7 @@ profile.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="floris.floris_model.FlorisModel.get_operation_model">
 <span class="sig-name descname"><span class="pre">get_operation_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.get_operation_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.get_operation_model" title="Link to this definition">#</a></dt>
-<dd><p>Get the power thrust model of a FlorisModel.</p>
+<dd><p>Get the operation model of a FlorisModel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
@@ -1061,14 +1192,14 @@ profile.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="floris.floris_model.FlorisModel.set_operation_model">
 <span class="sig-name descname"><span class="pre">set_operation_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operation_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/floris_model.html#FlorisModel.set_operation_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.floris_model.FlorisModel.set_operation_model" title="Link to this definition">#</a></dt>
-<dd><p>Set the power thrust model of a FlorisModel.</p>
+<dd><p>Set the turbine operation model(s).</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>operation_model (str): The power thrust model to set.</p>
+<dt>Args:</dt><dd><p>operation_model (str): The operation model to set.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>operation_model</strong> (<em>str</em>) -- </p>
+<dd class="field-odd"><p><strong>operation_model</strong> (<em>str</em><em> | </em><em>List</em><em>[</em><em>str</em><em>]</em>) -- </p>
 </dd>
 </dl>
 </dd></dl>
@@ -1175,6 +1306,56 @@ otherwise, return x and y only. Defaults to <em>False</em>.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.wind_directions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wind_directions</span></span><a class="headerlink" href="#floris.floris_model.FlorisModel.wind_directions" title="Link to this definition">#</a></dt>
+<dd><p>Wind direction information.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>np.array: Wind direction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.wind_speeds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wind_speeds</span></span><a class="headerlink" href="#floris.floris_model.FlorisModel.wind_speeds" title="Link to this definition">#</a></dt>
+<dd><p>Wind speed information.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>np.array: Wind speed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.turbulence_intensities">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">turbulence_intensities</span></span><a class="headerlink" href="#floris.floris_model.FlorisModel.turbulence_intensities" title="Link to this definition">#</a></dt>
+<dd><p>Turbulence intensity information.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>np.array: Turbulence intensity.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.n_findex">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_findex</span></span><a class="headerlink" href="#floris.floris_model.FlorisModel.n_findex" title="Link to this definition">#</a></dt>
+<dd><p>Number of floris indices (findex).</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: Number of flow indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="floris.floris_model.FlorisModel.n_turbines">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_turbines</span></span><a class="headerlink" href="#floris.floris_model.FlorisModel.n_turbines" title="Link to this definition">#</a></dt>
+<dd><p>Number of turbines.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: Number of turbines.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="floris.floris_model.FlorisModel.turbine_average_velocities">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">turbine_average_velocities</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#floris.floris_model.FlorisModel.turbine_average_velocities" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1271,6 +1452,8 @@ otherwise, return x and y only. Defaults to <em>False</em>.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_farm_power"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_farm_power()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_expected_farm_power"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_expected_farm_power()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_farm_AEP"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_farm_AEP()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_expected_farm_value"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_expected_farm_value()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_farm_AVP"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_farm_AVP()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_turbine_ais"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_turbine_ais()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_turbine_thrust_coefficients"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_turbine_thrust_coefficients()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.get_turbine_TIs"><code class="docutils literal notranslate"><span class="pre">FlorisModel.get_turbine_TIs()</span></code></a></li>
@@ -1291,6 +1474,11 @@ otherwise, return x and y only. Defaults to <em>False</em>.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.print_dict"><code class="docutils literal notranslate"><span class="pre">FlorisModel.print_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.layout_x"><code class="docutils literal notranslate"><span class="pre">FlorisModel.layout_x</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.layout_y"><code class="docutils literal notranslate"><span class="pre">FlorisModel.layout_y</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.wind_directions"><code class="docutils literal notranslate"><span class="pre">FlorisModel.wind_directions</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.wind_speeds"><code class="docutils literal notranslate"><span class="pre">FlorisModel.wind_speeds</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.turbulence_intensities"><code class="docutils literal notranslate"><span class="pre">FlorisModel.turbulence_intensities</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.n_findex"><code class="docutils literal notranslate"><span class="pre">FlorisModel.n_findex</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.n_turbines"><code class="docutils literal notranslate"><span class="pre">FlorisModel.n_turbines</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.turbine_average_velocities"><code class="docutils literal notranslate"><span class="pre">FlorisModel.turbine_average_velocities</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.wind_data"><code class="docutils literal notranslate"><span class="pre">FlorisModel.wind_data</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.floris_model.FlorisModel.calculate_wake"><code class="docutils literal notranslate"><span class="pre">FlorisModel.calculate_wake()</span></code></a></li>

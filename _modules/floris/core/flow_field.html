@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -447,8 +463,7 @@ document.write(`
     <span class="n">air_density</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">converter</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">turbulence_intensities</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">converter</span><span class="o">=</span><span class="n">floris_array_converter</span><span class="p">)</span>
     <span class="n">reference_wind_height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">converter</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="n">time_series</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">heterogenous_inflow_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">heterogeneous_inflow_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">multidim_conditions</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="n">n_findex</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -525,21 +540,21 @@ document.write(`
             <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="FlowField.heterogenous_config_validator">
-<a class="viewcode-back" href="../../../_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.heterogenous_config_validator">[docs]</a>
-    <span class="nd">@heterogenous_inflow_config</span><span class="o">.</span><span class="n">validator</span>
-    <span class="k">def</span> <span class="nf">heterogenous_config_validator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="n">attrs</span><span class="o">.</span><span class="n">Attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Using the validator method to check that the heterogenous_inflow_config dictionary has</span>
+<div class="viewcode-block" id="FlowField.heterogeneous_config_validator">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.flow_field.html#floris.core.flow_field.FlowField.heterogeneous_config_validator">[docs]</a>
+    <span class="nd">@heterogeneous_inflow_config</span><span class="o">.</span><span class="n">validator</span>
+    <span class="k">def</span> <span class="nf">heterogeneous_config_validator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="n">attrs</span><span class="o">.</span><span class="n">Attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Using the validator method to check that the heterogeneous_inflow_config dictionary has</span>
 <span class="sd">        the correct key-value pairs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 
-        <span class="c1"># Check that the correct keys are supplied for the heterogenous_inflow_config dict</span>
+        <span class="c1"># Check that the correct keys are supplied for the heterogeneous_inflow_config dict</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;speed_multipliers&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;heterogenous_inflow_config must contain entries for &#39;speed_multipliers&#39;,&quot;</span>
+                    <span class="s2">&quot;heterogeneous_inflow_config must contain entries for &#39;speed_multipliers&#39;,&quot;</span>
                     <span class="sa">f</span><span class="s2">&quot;&#39;x&#39;, and &#39;y&#39;, with &#39;z&#39; optional. Missing &#39;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
                 <span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;z&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
@@ -565,7 +580,7 @@ document.write(`
 
 
     <span class="k">def</span> <span class="nf">__attrs_post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">generate_heterogeneous_wind_map</span><span class="p">()</span>
 
 
@@ -601,8 +616,8 @@ document.write(`
         <span class="c1"># grid locations are determined in either 2 or 3 dimensions.</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
             <span class="p">)))</span>
             <span class="n">hull</span> <span class="o">=</span> <span class="n">ConvexHull</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
             <span class="n">polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="n">hull</span><span class="o">.</span><span class="n">vertices</span><span class="p">])</span>
@@ -718,7 +733,7 @@ document.write(`
 <span class="sd">        map bounds.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            heterogenous_inflow_config (dict): The heterogeneous inflow configuration dictionary.</span>
+<span class="sd">            heterogeneous_inflow_config (dict): The heterogeneous inflow configuration dictionary.</span>
 <span class="sd">            The configuration should have the following inputs specified.</span>
 <span class="sd">                - **speed_multipliers** (list): A list of speed up factors that will multiply</span>
 <span class="sd">                    the specified freestream wind speed. This 2-dimensional array should have an</span>
@@ -727,10 +742,10 @@ document.write(`
 <span class="sd">                - **y**: A list of y locations at which the speed up factors are defined.</span>
 <span class="sd">                - **z** (optional): A list of z locations at which the speed up factors are defined.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">speed_multipliers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config</span><span class="p">[</span><span class="s1">&#39;speed_multipliers&#39;</span><span class="p">]</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogenous_inflow_config</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>
+        <span class="n">speed_multipliers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config</span><span class="p">[</span><span class="s1">&#39;speed_multipliers&#39;</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heterogeneous_inflow_config</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">z</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># Compute the 3-dimensional interpolants for each wind direction</span>

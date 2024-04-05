@@ -199,7 +199,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operation_models_user.html">Turbine Operation Models</a></li>
@@ -262,6 +261,23 @@
 <li class="toctree-l2"><a class="reference internal" href="floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -480,10 +496,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.unpack"><code class="docutils literal notranslate"><span class="pre">WindDataBase.unpack()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.unpack_for_reinitialize"><code class="docutils literal notranslate"><span class="pre">WindDataBase.unpack_for_reinitialize()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.unpack_freq"><code class="docutils literal notranslate"><span class="pre">WindDataBase.unpack_freq()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.check_heterogenous_inflow_config_by_wd"><code class="docutils literal notranslate"><span class="pre">WindDataBase.check_heterogenous_inflow_config_by_wd()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.check_heterogenous_inflow_config"><code class="docutils literal notranslate"><span class="pre">WindDataBase.check_heterogenous_inflow_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.unpack_value"><code class="docutils literal notranslate"><span class="pre">WindDataBase.unpack_value()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.check_heterogeneous_inflow_config_by_wd"><code class="docutils literal notranslate"><span class="pre">WindDataBase.check_heterogeneous_inflow_config_by_wd()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.check_heterogeneous_inflow_config"><code class="docutils literal notranslate"><span class="pre">WindDataBase.check_heterogeneous_inflow_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.get_speed_multipliers_by_wd"><code class="docutils literal notranslate"><span class="pre">WindDataBase.get_speed_multipliers_by_wd()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.get_heterogenous_inflow_config"><code class="docutils literal notranslate"><span class="pre">WindDataBase.get_heterogenous_inflow_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.get_heterogeneous_inflow_config"><code class="docutils literal notranslate"><span class="pre">WindDataBase.get_heterogeneous_inflow_config()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose"><code class="docutils literal notranslate"><span class="pre">WindRose</span></code></a><ul class="nav section-nav flex-column">
@@ -493,6 +510,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.assign_ti_using_wd_ws_function"><code class="docutils literal notranslate"><span class="pre">WindRose.assign_ti_using_wd_ws_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.assign_ti_using_IEC_method"><code class="docutils literal notranslate"><span class="pre">WindRose.assign_ti_using_IEC_method()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.plot_ti_over_ws"><code class="docutils literal notranslate"><span class="pre">WindRose.plot_ti_over_ws()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.assign_value_using_wd_ws_function"><code class="docutils literal notranslate"><span class="pre">WindRose.assign_value_using_wd_ws_function()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.assign_value_piecewise_linear"><code class="docutils literal notranslate"><span class="pre">WindRose.assign_value_piecewise_linear()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.plot_value_over_ws"><code class="docutils literal notranslate"><span class="pre">WindRose.plot_value_over_ws()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.read_csv_long"><code class="docutils literal notranslate"><span class="pre">WindRose.read_csv_long()</span></code></a></li>
 </ul>
 </li>
@@ -501,6 +521,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.resample_wind_rose"><code class="docutils literal notranslate"><span class="pre">WindTIRose.resample_wind_rose()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.plot_wind_rose"><code class="docutils literal notranslate"><span class="pre">WindTIRose.plot_wind_rose()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.plot_ti_over_ws"><code class="docutils literal notranslate"><span class="pre">WindTIRose.plot_ti_over_ws()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.assign_value_using_wd_ws_ti_function"><code class="docutils literal notranslate"><span class="pre">WindTIRose.assign_value_using_wd_ws_ti_function()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.assign_value_piecewise_linear"><code class="docutils literal notranslate"><span class="pre">WindTIRose.assign_value_piecewise_linear()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.plot_value_over_ws"><code class="docutils literal notranslate"><span class="pre">WindTIRose.plot_value_over_ws()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.read_csv_long"><code class="docutils literal notranslate"><span class="pre">WindTIRose.read_csv_long()</span></code></a></li>
 </ul>
 </li>
@@ -508,6 +531,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.unpack"><code class="docutils literal notranslate"><span class="pre">TimeSeries.unpack()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.assign_ti_using_wd_ws_function"><code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_ti_using_wd_ws_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.assign_ti_using_IEC_method"><code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_ti_using_IEC_method()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.assign_value_using_wd_ws_function"><code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_value_using_wd_ws_function()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.assign_value_piecewise_linear"><code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_value_piecewise_linear()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.to_WindRose"><code class="docutils literal notranslate"><span class="pre">TimeSeries.to_WindRose()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.to_WindTIRose"><code class="docutils literal notranslate"><span class="pre">TimeSeries.to_WindTIRose()</span></code></a></li>
 </ul>
@@ -568,12 +593,18 @@ method.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="floris.wind_data.WindDataBase.check_heterogenous_inflow_config_by_wd">
-<span class="sig-name descname"><span class="pre">check_heterogenous_inflow_config_by_wd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heterogenous_inflow_config_by_wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindDataBase.check_heterogenous_inflow_config_by_wd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindDataBase.check_heterogenous_inflow_config_by_wd" title="Link to this definition">#</a></dt>
-<dd><p>Check that the heterogenous_inflow_config_by_wd dictionary is properly formatted</p>
+<dt class="sig sig-object py" id="floris.wind_data.WindDataBase.unpack_value">
+<span class="sig-name descname"><span class="pre">unpack_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindDataBase.unpack_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindDataBase.unpack_value" title="Link to this definition">#</a></dt>
+<dd><p>Unpack values of power generated</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.wind_data.WindDataBase.check_heterogeneous_inflow_config_by_wd">
+<span class="sig-name descname"><span class="pre">check_heterogeneous_inflow_config_by_wd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heterogeneous_inflow_config_by_wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindDataBase.check_heterogeneous_inflow_config_by_wd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindDataBase.check_heterogeneous_inflow_config_by_wd" title="Link to this definition">#</a></dt>
+<dd><p>Check that the heterogeneous_inflow_config_by_wd dictionary is properly formatted</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>heterogenous_inflow_config_by_wd (dict): A dictionary containing the following keys:</dt><dd><ul class="simple">
+<dt>heterogeneous_inflow_config_by_wd (dict): A dictionary containing the following keys:</dt><dd><ul class="simple">
 <li><dl class="simple">
 <dt>'speed_multipliers': A 2D NumPy array (size num_wd x num_points)</dt><dd><p>of speed multipliers.</p>
 </dd>
@@ -590,12 +621,12 @@ method.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="floris.wind_data.WindDataBase.check_heterogenous_inflow_config">
-<span class="sig-name descname"><span class="pre">check_heterogenous_inflow_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heterogenous_inflow_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindDataBase.check_heterogenous_inflow_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindDataBase.check_heterogenous_inflow_config" title="Link to this definition">#</a></dt>
-<dd><p>Check that the heterogenous_inflow_config dictionary is properly formatted</p>
+<dt class="sig sig-object py" id="floris.wind_data.WindDataBase.check_heterogeneous_inflow_config">
+<span class="sig-name descname"><span class="pre">check_heterogeneous_inflow_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heterogeneous_inflow_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindDataBase.check_heterogeneous_inflow_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindDataBase.check_heterogeneous_inflow_config" title="Link to this definition">#</a></dt>
+<dd><p>Check that the heterogeneous_inflow_config dictionary is properly formatted</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>heterogenous_inflow_config (dict): A dictionary containing the following keys:</dt><dd><ul class="simple">
+<dt>heterogeneous_inflow_config (dict): A dictionary containing the following keys:</dt><dd><ul class="simple">
 <li><dl class="simple">
 <dt>'speed_multipliers': A 2D NumPy array (size n_findex x num_points)</dt><dd><p>of speed multipliers.</p>
 </dd>
@@ -612,13 +643,13 @@ method.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="floris.wind_data.WindDataBase.get_speed_multipliers_by_wd">
-<span class="sig-name descname"><span class="pre">get_speed_multipliers_by_wd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heterogenous_inflow_config_by_wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindDataBase.get_speed_multipliers_by_wd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindDataBase.get_speed_multipliers_by_wd" title="Link to this definition">#</a></dt>
-<dd><p>Processes heterogenous inflow configuration data to generate a speed multiplier array
+<span class="sig-name descname"><span class="pre">get_speed_multipliers_by_wd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heterogeneous_inflow_config_by_wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindDataBase.get_speed_multipliers_by_wd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindDataBase.get_speed_multipliers_by_wd" title="Link to this definition">#</a></dt>
+<dd><p>Processes heterogeneous inflow configuration data to generate a speed multiplier array
 aligned with the wind directions. Accounts for the cyclical nature of wind directions.
 Args:</p>
 <blockquote>
 <div><dl class="simple">
-<dt>heterogenous_inflow_config_by_wd (dict): A dictionary containing the following keys:</dt><dd><ul class="simple">
+<dt>heterogeneous_inflow_config_by_wd (dict): A dictionary containing the following keys:</dt><dd><ul class="simple">
 <li><dl class="simple">
 <dt>'speed_multipliers': A 2D NumPy array (size num_wd x num_points)</dt><dd><p>of speed multipliers.</p>
 </dd>
@@ -644,15 +675,15 @@ based on the closest matching wind direction in 'het_wd'.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="floris.wind_data.WindDataBase.get_heterogenous_inflow_config">
-<span class="sig-name descname"><span class="pre">get_heterogenous_inflow_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heterogenous_inflow_config_by_wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindDataBase.get_heterogenous_inflow_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindDataBase.get_heterogenous_inflow_config" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="floris.wind_data.WindDataBase.get_heterogeneous_inflow_config">
+<span class="sig-name descname"><span class="pre">get_heterogeneous_inflow_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heterogeneous_inflow_config_by_wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindDataBase.get_heterogeneous_inflow_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindDataBase.get_heterogeneous_inflow_config" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="floris.wind_data.WindRose">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.wind_data.</span></span><span class="sig-name descname"><span class="pre">WindRose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ti_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_zero_freq_occurrence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogenous_inflow_config_by_wd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindRose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindRose" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.wind_data.</span></span><span class="sig-name descname"><span class="pre">WindRose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ti_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_zero_freq_occurrence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogeneous_inflow_config_by_wd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindRose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindRose" title="Link to this definition">#</a></dt>
 <dd><p>The WindRose class is used to drive FLORIS and optimization operations in
 which the inflow is characterized by the frequency of binned wind speed and
 wind direction values.  Turbulence intensities are defined as a function of
@@ -679,7 +710,7 @@ each bin to compute the total value of the energy produced</p>
 </dd>
 <dt>compute_zero_freq_occurrence: Flag indicating whether to compute zero</dt><dd><p>frequency occurrences (bool, optional).  Defaults to False.</p>
 </dd>
-<dt>heterogenous_inflow_config_by_wd (dict, optional): A dictionary containing the following</dt><dd><p>keys. Defaults to None.
+<dt>heterogeneous_inflow_config_by_wd (dict, optional): A dictionary containing the following</dt><dd><p>keys. Defaults to None.
 * 'speed_multipliers': A 2D NumPy array (size num_wd x num_points)</p>
 <blockquote>
 <div><p>of speed multipliers.</p>
@@ -702,7 +733,7 @@ each bin to compute the total value of the energy produced</p>
 <li><p><strong>freq_table</strong> (<em>NDArrayFloat</em><em> | </em><em>None</em>) -- </p></li>
 <li><p><strong>value_table</strong> (<em>NDArrayFloat</em><em> | </em><em>None</em>) -- </p></li>
 <li><p><strong>compute_zero_freq_occurrence</strong> (<em>bool</em>) -- </p></li>
-<li><p><strong>heterogenous_inflow_config_by_wd</strong> (<em>dict</em><em> | </em><em>None</em>) -- </p></li>
+<li><p><strong>heterogeneous_inflow_config_by_wd</strong> (<em>dict</em><em> | </em><em>None</em>) -- </p></li>
 </ul>
 </dd>
 </dl>
@@ -799,16 +830,86 @@ each wind speed.</p>
 <dt class="sig sig-object py" id="floris.wind_data.WindRose.plot_ti_over_ws">
 <span class="sig-name descname"><span class="pre">plot_ti_over_ws</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'None'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindRose.plot_ti_over_ws"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindRose.plot_ti_over_ws" title="Link to this definition">#</a></dt>
 <dd><p>Scatter plot the turbulence_intensities against wind_speeds</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>ax (<code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>, optional): The figure axes</dt><dd><p>on which the turbulence intensity is plotted. Defaults to None.</p>
+</dd>
+</dl>
+<p>marker (str, optional): Scatter plot marker style. Defaults to &quot;.&quot;.
+ls (str, optional): Scatter plot line style. Defaults to &quot;None&quot;.
+color (str, optional): Scatter plot color. Defaults to &quot;k&quot;.</p>
+</dd>
+<dt>Returns:</dt><dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>: A figure axes object containing
+the plotted turbulence intensities as a function of wind speed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.wind_data.WindRose.assign_value_using_wd_ws_function">
+<span class="sig-name descname"><span class="pre">assign_value_using_wd_ws_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindRose.assign_value_using_wd_ws_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindRose.assign_value_using_wd_ws_function" title="Link to this definition">#</a></dt>
+<dd><p>Use the passed in function to assign new values to the value table.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>ax (<code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>, optional): The figure axes</dt><dd><p>on which the wind rose is plotted. Defaults to None.</p>
+<dt>func (function): Function which accepts wind_directions as its</dt><dd><p>first argument and wind_speeds as second argument and returns
+values.</p>
 </dd>
-<dt>plot_kwargs (dict, optional): Keyword arguments to be passed to</dt><dd><p>ax.plot().</p>
+<dt>normalize (bool, optional): If True, the value array will be</dt><dd><p>normalized by the mean value. Defaults to False.</p>
 </dd>
 </dl>
 </dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.wind_data.WindRose.assign_value_piecewise_linear">
+<span class="sig-name descname"><span class="pre">assign_value_piecewise_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_zero_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.425</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ws_knee</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slope_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slope_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.135</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_to_zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindRose.assign_value_piecewise_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindRose.assign_value_piecewise_linear" title="Link to this definition">#</a></dt>
+<dd><p>Define value as a continuous piecewise linear function of wind speed
+with two line segments. The default parameters yield a value function
+that approximates the normalized mean electricity price vs. wind speed
+curve for the SPP market in the U.S. for years 2018-2020 from figure 7
+in Simley et al. &quot;The value of wake steering wind farm flow control in
+US energy markets,&quot; Wind Energy Science, 2024.
+<a class="reference external" href="https://doi.org/10.5194/wes-9-219-2024">https://doi.org/10.5194/wes-9-219-2024</a>. This default value function is
+constant at low wind speeds, then linearly decreases above 4.5 m/s.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>value_zero_ws (float, optional): The value when wind speed is zero.</dt><dd><p>Defaults to 1.425.</p>
+</dd>
+<dt>ws_knee (float, optional): The wind speed separating line segments</dt><dd><p>1 and 2. Default = 4.5 m/s.</p>
+</dd>
+<dt>slope_1 (float, optional): The slope of the first line segment</dt><dd><p>(unit of value per m/s). Defaults to zero.</p>
+</dd>
+</dl>
+<p>slope_2 (float, optional): The slope of the second line segment
+(unit of value per m/s). Defaults to -0.135.
+limit_to_zero (bool, optional): If True, negative values will be</p>
+<blockquote>
+<div><p>set to zero. Defaults to False.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>normalize (bool, optional): If True, the value array will be</dt><dd><p>normalized by the mean value. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.wind_data.WindRose.plot_value_over_ws">
+<span class="sig-name descname"><span class="pre">plot_value_over_ws</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'None'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindRose.plot_value_over_ws"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindRose.plot_value_over_ws" title="Link to this definition">#</a></dt>
+<dd><p>Scatter plot the value of the energy generated against wind speed.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>ax (<code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>, optional): The figure axes</dt><dd><p>on which the value is plotted. Defaults to None.</p>
+</dd>
+</dl>
+<p>marker (str, optional): Scatter plot marker style. Defaults to &quot;.&quot;.
+ls (str, optional): Scatter plot line style. Defaults to &quot;None&quot;.
+color (str, optional): Scatter plot color. Defaults to &quot;k&quot;.</p>
+</dd>
 <dt>Returns:</dt><dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>: A figure axes object containing
-the plotted wind rose.</p>
+the plotted value as a function of wind speed.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -866,7 +967,7 @@ ws_col (str): Name of the column in the CSV file that contains the wind speed</p
 
 <dl class="py class">
 <dt class="sig sig-object py" id="floris.wind_data.WindTIRose">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.wind_data.</span></span><span class="sig-name descname"><span class="pre">WindTIRose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbulence_intensities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_zero_freq_occurrence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogenous_inflow_config_by_wd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindTIRose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindTIRose" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.wind_data.</span></span><span class="sig-name descname"><span class="pre">WindTIRose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbulence_intensities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_zero_freq_occurrence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogeneous_inflow_config_by_wd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindTIRose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindTIRose" title="Link to this definition">#</a></dt>
 <dd><p>WindTIRose is similar to the WindRose class, but contains turbulence
 intensity as an additional wind rose dimension instead of being defined
 as a function of wind direction and wind speed. The class is used to drive
@@ -893,7 +994,7 @@ to compute the total value of the energy produced.</p>
 </dd>
 <dt>compute_zero_freq_occurrence: Flag indicating whether to compute zero</dt><dd><p>frequency occurrences (bool, optional).  Defaults to False.</p>
 </dd>
-<dt>heterogenous_inflow_config_by_wd (dict, optional): A dictionary containing the following</dt><dd><p>keys. Defaults to None.
+<dt>heterogeneous_inflow_config_by_wd (dict, optional): A dictionary containing the following</dt><dd><p>keys. Defaults to None.
 * 'speed_multipliers': A 2D NumPy array (size num_wd x num_points)</p>
 <blockquote>
 <div><p>of speed multipliers.</p>
@@ -916,7 +1017,7 @@ to compute the total value of the energy produced.</p>
 <li><p><strong>freq_table</strong> (<em>NDArrayFloat</em><em> | </em><em>None</em>) -- </p></li>
 <li><p><strong>value_table</strong> (<em>NDArrayFloat</em><em> | </em><em>None</em>) -- </p></li>
 <li><p><strong>compute_zero_freq_occurrence</strong> (<em>bool</em>) -- </p></li>
-<li><p><strong>heterogenous_inflow_config_by_wd</strong> (<em>dict</em><em> | </em><em>None</em>) -- </p></li>
+<li><p><strong>heterogeneous_inflow_config_by_wd</strong> (<em>dict</em><em> | </em><em>None</em>) -- </p></li>
 </ul>
 </dd>
 </dl>
@@ -998,16 +1099,87 @@ the plotted wind rose.</p>
 <dt class="sig sig-object py" id="floris.wind_data.WindTIRose.plot_ti_over_ws">
 <span class="sig-name descname"><span class="pre">plot_ti_over_ws</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindTIRose.plot_ti_over_ws"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindTIRose.plot_ti_over_ws" title="Link to this definition">#</a></dt>
 <dd><p>Plot the mean turbulence intensity against wind speed.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>ax (<code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>, optional): The figure axes</dt><dd><p>on which the mean turbulence intensity is plotted. Defaults to None.</p>
+</dd>
+</dl>
+<p>marker (str, optional): Scatter plot marker style. Defaults to &quot;.&quot;.
+ls (str, optional): Scatter plot line style. Defaults to &quot;None&quot;.
+color (str, optional): Scatter plot color. Defaults to &quot;k&quot;.</p>
+</dd>
+<dt>Returns:</dt><dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>: A figure axes object containing
+the plotted mean turbulence intensities as a function of wind speed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.wind_data.WindTIRose.assign_value_using_wd_ws_ti_function">
+<span class="sig-name descname"><span class="pre">assign_value_using_wd_ws_ti_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindTIRose.assign_value_using_wd_ws_ti_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindTIRose.assign_value_using_wd_ws_ti_function" title="Link to this definition">#</a></dt>
+<dd><p>Use the passed in function to assign new values to the value table.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>ax (<code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>, optional): The figure axes</dt><dd><p>on which the wind rose is plotted. Defaults to None.</p>
+<dt>func (function): Function which accepts wind_directions as its</dt><dd><p>first argument, wind_speeds as its second argument, and
+turbulence_intensities as its third argument and returns
+values.</p>
 </dd>
-<dt>plot_kwargs (dict, optional): Keyword arguments to be passed to</dt><dd><p>ax.plot().</p>
+<dt>normalize (bool, optional): If True, the value array will be</dt><dd><p>normalized by the mean value. Defaults to False.</p>
 </dd>
 </dl>
 </dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.wind_data.WindTIRose.assign_value_piecewise_linear">
+<span class="sig-name descname"><span class="pre">assign_value_piecewise_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_zero_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.425</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ws_knee</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slope_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slope_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.135</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_to_zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindTIRose.assign_value_piecewise_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindTIRose.assign_value_piecewise_linear" title="Link to this definition">#</a></dt>
+<dd><p>Define value as a continuous piecewise linear function of wind speed
+with two line segments. The default parameters yield a value function
+that approximates the normalized mean electricity price vs. wind speed
+curve for the SPP market in the U.S. for years 2018-2020 from figure 7
+in Simley et al. &quot;The value of wake steering wind farm flow control in
+US energy markets,&quot; Wind Energy Science, 2024.
+<a class="reference external" href="https://doi.org/10.5194/wes-9-219-2024">https://doi.org/10.5194/wes-9-219-2024</a>. This default value function is
+constant at low wind speeds, then linearly decreases above 4.5 m/s.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>value_zero_ws (float, optional): The value when wind speed is zero.</dt><dd><p>Defaults to 1.425.</p>
+</dd>
+<dt>ws_knee (float, optional): The wind speed separating line segments</dt><dd><p>1 and 2. Default = 4.5 m/s.</p>
+</dd>
+<dt>slope_1 (float, optional): The slope of the first line segment</dt><dd><p>(unit of value per m/s). Defaults to zero.</p>
+</dd>
+</dl>
+<p>slope_2 (float, optional): The slope of the second line segment
+(unit of value per m/s). Defaults to -0.135.
+limit_to_zero (bool, optional): If True, negative values will be</p>
+<blockquote>
+<div><p>set to zero. Defaults to False.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>normalize (bool, optional): If True, the value array will be</dt><dd><p>normalized by the mean value. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.wind_data.WindTIRose.plot_value_over_ws">
+<span class="sig-name descname"><span class="pre">plot_value_over_ws</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'None'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#WindTIRose.plot_value_over_ws"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.WindTIRose.plot_value_over_ws" title="Link to this definition">#</a></dt>
+<dd><p>Scatter plot the value of the energy generated against wind speed.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>ax (<code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>, optional): The figure axes</dt><dd><p>on which the value is plotted. Defaults to None.</p>
+</dd>
+</dl>
+<p>marker (str, optional): Scatter plot marker style. Defaults to &quot;.&quot;.
+ls (str, optional): Scatter plot line style. Defaults to &quot;None&quot;.
+color (str, optional): Scatter plot color. Defaults to &quot;k&quot;.</p>
+</dd>
 <dt>Returns:</dt><dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.pyplot.axes</span></code>: A figure axes object containing
-the plotted wind rose.</p>
+the plotted value as a function of wind speed.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1062,7 +1234,7 @@ ws_col (str): Name of the column in the CSV file that contains the wind speed</p
 
 <dl class="py class">
 <dt class="sig sig-object py" id="floris.wind_data.TimeSeries">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.wind_data.</span></span><span class="sig-name descname"><span class="pre">TimeSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbulence_intensities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogenous_inflow_config_by_wd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogenous_inflow_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#TimeSeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.TimeSeries" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.wind_data.</span></span><span class="sig-name descname"><span class="pre">TimeSeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wind_directions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbulence_intensities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogeneous_inflow_config_by_wd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heterogeneous_inflow_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#TimeSeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.TimeSeries" title="Link to this definition">#</a></dt>
 <dd><p>The TimeSeries class is used to drive FLORIS and optimization operations in
 which the inflow is by a sequence of wind direction, wind speed and
 turbulence intensity values.  Each input of wind direction, wind speed, and
@@ -1082,7 +1254,7 @@ value.</p>
 </dd>
 <dt>values (NDArrayFloat, optional): Values associated with each wind</dt><dd><p>direction, wind speed, and turbulence intensity. Defaults to None.</p>
 </dd>
-<dt>heterogenous_inflow_config_by_wd (dict, optional): A dictionary containing the following</dt><dd><p>keys. Defaults to None.
+<dt>heterogeneous_inflow_config_by_wd (dict, optional): A dictionary containing the following</dt><dd><p>keys. Defaults to None.
 * 'speed_multipliers': A 2D NumPy array (size num_wd x num_points)</p>
 <blockquote>
 <div><p>of speed multipliers.</p>
@@ -1093,7 +1265,7 @@ value.</p>
 <li><p>'y': A 1D NumPy array (size num_points) of y-coordinates (meters).</p></li>
 </ul>
 </dd>
-<dt>heterogenous_inflow_config (dict, optional): A dictionary containing the following keys.</dt><dd><p>Defaults to None.
+<dt>heterogeneous_inflow_config (dict, optional): A dictionary containing the following keys.</dt><dd><p>Defaults to None.
 * 'speed_multipliers': A 2D NumPy array (size n_findex x num_points)</p>
 <blockquote>
 <div><p>of speed multipliers.</p>
@@ -1113,8 +1285,8 @@ value.</p>
 <li><p><strong>wind_speeds</strong> (<em>float</em><em> | </em><em>NDArrayFloat</em>) -- </p></li>
 <li><p><strong>turbulence_intensities</strong> (<em>float</em><em> | </em><em>NDArrayFloat</em>) -- </p></li>
 <li><p><strong>values</strong> (<em>NDArrayFloat</em><em> | </em><em>None</em>) -- </p></li>
-<li><p><strong>heterogenous_inflow_config_by_wd</strong> (<em>dict</em><em> | </em><em>None</em>) -- </p></li>
-<li><p><strong>heterogenous_inflow_config</strong> (<em>dict</em><em> | </em><em>None</em>) -- </p></li>
+<li><p><strong>heterogeneous_inflow_config_by_wd</strong> (<em>dict</em><em> | </em><em>None</em>) -- </p></li>
+<li><p><strong>heterogeneous_inflow_config</strong> (<em>dict</em><em> | </em><em>None</em>) -- </p></li>
 </ul>
 </dd>
 </dl>
@@ -1154,6 +1326,56 @@ FLORIS. When the default Iref and offset are used, the TI at
 </dd>
 <dt>offset (float): Offset value to equation. Default = 3.8, as defined</dt><dd><p>in the IEC standard to give the expected value of TI for
 each wind speed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.wind_data.TimeSeries.assign_value_using_wd_ws_function">
+<span class="sig-name descname"><span class="pre">assign_value_using_wd_ws_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#TimeSeries.assign_value_using_wd_ws_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.TimeSeries.assign_value_using_wd_ws_function" title="Link to this definition">#</a></dt>
+<dd><p>Use the passed in function to assign new values to the value table.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>func (function): Function which accepts wind_directions as its</dt><dd><p>first argument and wind_speeds as second argument and returns
+values.</p>
+</dd>
+<dt>normalize (bool, optional): If True, the value array will be</dt><dd><p>normalized by the mean value. Defaults to False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.wind_data.TimeSeries.assign_value_piecewise_linear">
+<span class="sig-name descname"><span class="pre">assign_value_piecewise_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_zero_ws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.425</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ws_knee</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slope_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slope_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.135</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_to_zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/wind_data.html#TimeSeries.assign_value_piecewise_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.wind_data.TimeSeries.assign_value_piecewise_linear" title="Link to this definition">#</a></dt>
+<dd><p>Define value as a continuous piecewise linear function of wind speed
+with two line segments. The default parameters yield a value function
+that approximates the normalized mean electricity price vs. wind speed
+curve for the SPP market in the U.S. for years 2018-2020 from figure 7
+in Simley et al. &quot;The value of wake steering wind farm flow control in
+US energy markets,&quot; Wind Energy Science, 2024.
+<a class="reference external" href="https://doi.org/10.5194/wes-9-219-2024">https://doi.org/10.5194/wes-9-219-2024</a>. This default value function is
+constant at low wind speeds, then linearly decreases above 4.5 m/s.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>value_zero_ws (float, optional): The value when wind speed is zero.</dt><dd><p>Defaults to 1.425.</p>
+</dd>
+<dt>ws_knee (float, optional): The wind speed separating line segments</dt><dd><p>1 and 2. Default = 4.5 m/s.</p>
+</dd>
+<dt>slope_1 (float, optional): The slope of the first line segment</dt><dd><p>(unit of value per m/s). Defaults to zero.</p>
+</dd>
+</dl>
+<p>slope_2 (float, optional): The slope of the second line segment
+(unit of value per m/s). Defaults to -0.135.
+limit_to_zero (bool, optional): If True, negative values will be</p>
+<blockquote>
+<div><p>set to zero. Defaults to False.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>normalize (bool, optional): If True, the value array will be</dt><dd><p>normalized by the mean value. Defaults to False.</p>
 </dd>
 </dl>
 </dd>
@@ -1293,10 +1515,11 @@ Defaults to None.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.unpack"><code class="docutils literal notranslate"><span class="pre">WindDataBase.unpack()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.unpack_for_reinitialize"><code class="docutils literal notranslate"><span class="pre">WindDataBase.unpack_for_reinitialize()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.unpack_freq"><code class="docutils literal notranslate"><span class="pre">WindDataBase.unpack_freq()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.check_heterogenous_inflow_config_by_wd"><code class="docutils literal notranslate"><span class="pre">WindDataBase.check_heterogenous_inflow_config_by_wd()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.check_heterogenous_inflow_config"><code class="docutils literal notranslate"><span class="pre">WindDataBase.check_heterogenous_inflow_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.unpack_value"><code class="docutils literal notranslate"><span class="pre">WindDataBase.unpack_value()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.check_heterogeneous_inflow_config_by_wd"><code class="docutils literal notranslate"><span class="pre">WindDataBase.check_heterogeneous_inflow_config_by_wd()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.check_heterogeneous_inflow_config"><code class="docutils literal notranslate"><span class="pre">WindDataBase.check_heterogeneous_inflow_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.get_speed_multipliers_by_wd"><code class="docutils literal notranslate"><span class="pre">WindDataBase.get_speed_multipliers_by_wd()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.get_heterogenous_inflow_config"><code class="docutils literal notranslate"><span class="pre">WindDataBase.get_heterogenous_inflow_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindDataBase.get_heterogeneous_inflow_config"><code class="docutils literal notranslate"><span class="pre">WindDataBase.get_heterogeneous_inflow_config()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose"><code class="docutils literal notranslate"><span class="pre">WindRose</span></code></a><ul class="nav section-nav flex-column">
@@ -1306,6 +1529,9 @@ Defaults to None.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.assign_ti_using_wd_ws_function"><code class="docutils literal notranslate"><span class="pre">WindRose.assign_ti_using_wd_ws_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.assign_ti_using_IEC_method"><code class="docutils literal notranslate"><span class="pre">WindRose.assign_ti_using_IEC_method()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.plot_ti_over_ws"><code class="docutils literal notranslate"><span class="pre">WindRose.plot_ti_over_ws()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.assign_value_using_wd_ws_function"><code class="docutils literal notranslate"><span class="pre">WindRose.assign_value_using_wd_ws_function()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.assign_value_piecewise_linear"><code class="docutils literal notranslate"><span class="pre">WindRose.assign_value_piecewise_linear()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.plot_value_over_ws"><code class="docutils literal notranslate"><span class="pre">WindRose.plot_value_over_ws()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindRose.read_csv_long"><code class="docutils literal notranslate"><span class="pre">WindRose.read_csv_long()</span></code></a></li>
 </ul>
 </li>
@@ -1314,6 +1540,9 @@ Defaults to None.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.resample_wind_rose"><code class="docutils literal notranslate"><span class="pre">WindTIRose.resample_wind_rose()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.plot_wind_rose"><code class="docutils literal notranslate"><span class="pre">WindTIRose.plot_wind_rose()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.plot_ti_over_ws"><code class="docutils literal notranslate"><span class="pre">WindTIRose.plot_ti_over_ws()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.assign_value_using_wd_ws_ti_function"><code class="docutils literal notranslate"><span class="pre">WindTIRose.assign_value_using_wd_ws_ti_function()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.assign_value_piecewise_linear"><code class="docutils literal notranslate"><span class="pre">WindTIRose.assign_value_piecewise_linear()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.plot_value_over_ws"><code class="docutils literal notranslate"><span class="pre">WindTIRose.plot_value_over_ws()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.WindTIRose.read_csv_long"><code class="docutils literal notranslate"><span class="pre">WindTIRose.read_csv_long()</span></code></a></li>
 </ul>
 </li>
@@ -1321,6 +1550,8 @@ Defaults to None.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.unpack"><code class="docutils literal notranslate"><span class="pre">TimeSeries.unpack()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.assign_ti_using_wd_ws_function"><code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_ti_using_wd_ws_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.assign_ti_using_IEC_method"><code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_ti_using_IEC_method()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.assign_value_using_wd_ws_function"><code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_value_using_wd_ws_function()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.assign_value_piecewise_linear"><code class="docutils literal notranslate"><span class="pre">TimeSeries.assign_value_piecewise_linear()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.to_WindRose"><code class="docutils literal notranslate"><span class="pre">TimeSeries.to_WindRose()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.wind_data.TimeSeries.to_WindTIRose"><code class="docutils literal notranslate"><span class="pre">TimeSeries.to_WindTIRose()</span></code></a></li>
 </ul>

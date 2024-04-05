@@ -199,7 +199,6 @@
 <li class="toctree-l1"><a class="reference internal" href="intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
@@ -262,6 +261,23 @@
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -476,18 +492,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Wind Data Objects</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winddatabase">WindDataBase</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries">TimeSeries</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries-instantiation">TimeSeries Instantiation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#value">Value</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries">TimeSeries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries-instantiation">TimeSeries Instantiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#value">Value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-turbulence-intensity">Generating Turbulence Intensity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-value">Generating Value</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-value">Generating Value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windrose">WindRose</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windtirose">WindTIRose</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversions">Conversions</a></li>
@@ -498,9 +511,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -525,12 +535,11 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="timeseries">
-<h1>TimeSeries<a class="headerlink" href="#timeseries" title="Link to this heading">#</a></h1>
+<section id="timeseries">
+<h2>TimeSeries<a class="headerlink" href="#timeseries" title="Link to this heading">#</a></h2>
 <p>TimeSeries objects are used to represent data which are in a time-series form, or more generally and data which is represented as a list of conditions without frequency weighting (i.e. not a wind rose).  In addition to representing time series input conditions, TimeSeries objects are useful for generating sweep inputs where most values are help constant while one input is swept through a range of values.  Also useful can be an input of identical repeated inputs which can be useful if some control setting is going to be swept.  TimeSeries represents data most similarly to how data structures within FLORIS are represented in that there are N wind_directions, wind_speeds etc., in the TimeSeries, the n_findex value in FLORIS will be N.</p>
 <section id="timeseries-instantiation">
-<h2>TimeSeries Instantiation<a class="headerlink" href="#timeseries-instantiation" title="Link to this heading">#</a></h2>
+<h3>TimeSeries Instantiation<a class="headerlink" href="#timeseries-instantiation" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">TimeSeries</span>
@@ -550,7 +559,7 @@ document.write(`
 </div>
 </section>
 <section id="broadcasting">
-<h2>Broadcasting<a class="headerlink" href="#broadcasting" title="Link to this heading">#</a></h2>
+<h3>Broadcasting<a class="headerlink" href="#broadcasting" title="Link to this heading">#</a></h3>
 <p>Unlike FlorisModel, TimeSeries objects do allow broadcasting.  As long as one of the inputs is a numpy array, the other inputs can be specified as a float, which will be broadcasted to the length of the numpy array.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -562,7 +571,7 @@ document.write(`
 </div>
 </section>
 <section id="value">
-<h2>Value<a class="headerlink" href="#value" title="Link to this heading">#</a></h2>
+<h3>Value<a class="headerlink" href="#value" title="Link to this heading">#</a></h3>
 <p>In addition to wind directions, wind speeds and turbulence intensities, TimeSeries objects can also hold an array of values.  These values can be used for example to represent electricity market prices.<br />
 If values are included in the TimeSeries object, they must be the same length as the wind directions, wind speeds, and turbulence intensities.  If included, values enable calculation of Annual Value Production (AVP), in addition to AEP, and certain optimization routines, such as layout, can be configured to maximize value instead of energy production.</p>
 <div class="cell docutils container">
@@ -573,6 +582,7 @@ If values are included in the TimeSeries object, they must be the same length as
 </div>
 </div>
 </div>
+</section>
 <section id="generating-turbulence-intensity">
 <h3>Generating Turbulence Intensity<a class="headerlink" href="#generating-turbulence-intensity" title="Link to this heading">#</a></h3>
 <p>The TimeSeries object also includes functions for generating TI as a function of wind direction and wind speed.  This can be accomplished by passing in a custom function, or by taking use of the IEC 61400-1 standard</p>
@@ -594,14 +604,14 @@ If values are included in the TimeSeries object, they must be the same length as
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Turbulence Intensity&#39;)
 </pre></div>
 </div>
-<img alt="_images/d152d7e57577bfb32adce0e8bf2c212fedbd0c8bf7b053ce06537c5f15d5aa60.png" src="_images/d152d7e57577bfb32adce0e8bf2c212fedbd0c8bf7b053ce06537c5f15d5aa60.png" />
+<img alt="_images/c4bf7c53529484a49e8d59efa60bf7db3c61639961242e4390c7032636de11b4.png" src="_images/c4bf7c53529484a49e8d59efa60bf7db3c61639961242e4390c7032636de11b4.png" />
 </div>
 </div>
-</section>
 </section>
 <section id="generating-value">
-<h2>Generating Value<a class="headerlink" href="#generating-value" title="Link to this heading">#</a></h2>
+<h3>Generating Value<a class="headerlink" href="#generating-value" title="Link to this heading">#</a></h3>
 <p>TODO</p>
+</section>
 </section>
 <section id="windrose">
 <h2>WindRose<a class="headerlink" href="#windrose" title="Link to this heading">#</a></h2>
@@ -731,7 +741,7 @@ If values are included in the TimeSeries object, they must be the same length as
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;PolarAxes: &gt;
 </pre></div>
 </div>
-<img alt="_images/96871edd97a9155b9455e6efcacd5af673f8a4c79a837d1d57de78b2da4bf50f.png" src="_images/96871edd97a9155b9455e6efcacd5af673f8a4c79a837d1d57de78b2da4bf50f.png" />
+<img alt="_images/ed43d5f44752f34d1f6de9829d36b4f0eee283085e2f08c87181ba45e207356e.png" src="_images/ed43d5f44752f34d1f6de9829d36b4f0eee283085e2f08c87181ba45e207356e.png" />
 </div>
 </div>
 </section>
@@ -1004,18 +1014,15 @@ Farm AEP is 18556238165.53745
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Wind Data Objects</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winddatabase">WindDataBase</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries">TimeSeries</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries-instantiation">TimeSeries Instantiation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#value">Value</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries">TimeSeries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries-instantiation">TimeSeries Instantiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting">Broadcasting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#value">Value</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-turbulence-intensity">Generating Turbulence Intensity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-value">Generating Value</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-value">Generating Value</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windrose">WindRose</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windtirose">WindTIRose</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversions">Conversions</a></li>
@@ -1026,9 +1033,6 @@ Farm AEP is 18556238165.53745
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

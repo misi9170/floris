@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -464,15 +480,12 @@ document.write(`
 <span class="sd">            arrays with shape (N coordinates, 3).</span>
 <span class="sd">        turbine_diameters (:py:obj:`NDArrayFloat`): The rotor diameters of each turbine.</span>
 <span class="sd">        wind_directions (:py:obj:`NDArrayFloat`): Wind directions supplied by the user.</span>
-<span class="sd">        time_series (:py:obj:`bool`): Flag to indicate whether the supplied wind data is a time</span>
-<span class="sd">            series.</span>
 <span class="sd">        grid_resolution (:py:obj:`int` | :py:obj:`Iterable(int,)`): Grid resolution with values</span>
 <span class="sd">            specific to each grid type.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">turbine_coordinates</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">converter</span><span class="o">=</span><span class="n">floris_array_converter</span><span class="p">)</span>
     <span class="n">turbine_diameters</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">converter</span><span class="o">=</span><span class="n">floris_array_converter</span><span class="p">)</span>
     <span class="n">wind_directions</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">converter</span><span class="o">=</span><span class="n">floris_array_converter</span><span class="p">)</span>
-    <span class="n">time_series</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
     <span class="n">grid_resolution</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="n">field</span><span class="p">()</span>
 
     <span class="n">n_turbines</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -550,8 +563,6 @@ document.write(`
 <span class="sd">            arrays with shape (N coordinates, 3).</span>
 <span class="sd">        turbine_diameters (:py:obj:`NDArrayFloat`): The rotor diameters of each turbine.</span>
 <span class="sd">        wind_directions (:py:obj:`NDArrayFloat`): Wind directions supplied by the user.</span>
-<span class="sd">        time_series (:py:obj:`bool`): Flag to indicate whether the supplied wind data is a time</span>
-<span class="sd">            series.</span>
 <span class="sd">        grid_resolution (:py:obj:`int`): The number of points in each</span>
 <span class="sd">            direction of the square grid on the rotor plane. For example, grid_resolution=3</span>
 <span class="sd">            creates a 3x3 grid within the rotor swept area.</span>
@@ -715,8 +726,6 @@ document.write(`
 <span class="sd">            arrays with shape (N coordinates, 3).</span>
 <span class="sd">        turbine_diameters (:py:obj:`NDArrayFloat`): The rotor diameters of each turbine.</span>
 <span class="sd">        wind_directions (:py:obj:`NDArrayFloat`): Wind directions supplied by the user.</span>
-<span class="sd">        time_series (:py:obj:`bool`): Flag to indicate whether the supplied wind data is a time</span>
-<span class="sd">            series.</span>
 <span class="sd">        grid_resolution (:py:obj:`int`): The number of points to</span>
 <span class="sd">            include in the cubature method. This value must be in the range [1, 10], and the</span>
 <span class="sd">            corresponding cubature weights are set automatically.</span>
@@ -887,8 +896,6 @@ document.write(`
 <span class="sd">            arrays with shape (N coordinates, 3).</span>
 <span class="sd">        turbine_diameters (:py:obj:`NDArrayFloat`): The rotor diameters of each turbine.</span>
 <span class="sd">        wind_directions (:py:obj:`NDArrayFloat`): Wind directions supplied by the user.</span>
-<span class="sd">        time_series (:py:obj:`bool`): Flag to indicate whether the supplied wind data is a time</span>
-<span class="sd">            series.</span>
 <span class="sd">        grid_resolution (:py:obj:`Iterable(int,)`): The number of grid points to create in each</span>
 <span class="sd">            planar direction. Must be 3 components for resolution in the x, y, and z directions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -964,8 +971,6 @@ document.write(`
 <span class="sd">            arrays with shape (N coordinates, 3).</span>
 <span class="sd">        turbine_diameters (:py:obj:`NDArrayFloat`): The rotor diameters of each turbine.</span>
 <span class="sd">        wind_directions (:py:obj:`NDArrayFloat`): Wind directions supplied by the user.</span>
-<span class="sd">        time_series (:py:obj:`bool`): Flag to indicate whether the supplied wind data is a time</span>
-<span class="sd">            series.</span>
 <span class="sd">        grid_resolution (:py:obj:`Iterable(int,)`): The number of grid points to create in each</span>
 <span class="sd">            planar direction. Must be 2 components for resolution in the x and y directions.</span>
 <span class="sd">            The z direction is set to 3 planes at -10.0, 0.0, and +10.0 relative to the</span>
@@ -1087,8 +1092,6 @@ document.write(`
 <span class="sd">        turbine_diameters (:py:obj:`NDArrayFloat`):  Not used for PointsGrid, but</span>
 <span class="sd">            required for the `Grid` super-class.</span>
 <span class="sd">        wind_directions (:py:obj:`NDArrayFloat`): Wind directions supplied by the user.</span>
-<span class="sd">        time_series (:py:obj:`bool`):  Not used for PointsGrid, but</span>
-<span class="sd">            required for the `Grid` super-class.</span>
 <span class="sd">        grid_resolution (:py:obj:`int` | :py:obj:`Iterable(int,)`): Not used for PointsGrid, but</span>
 <span class="sd">            required for the `Grid` super-class.</span>
 

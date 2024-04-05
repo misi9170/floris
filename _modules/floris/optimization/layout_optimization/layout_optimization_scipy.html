@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -428,6 +444,32 @@ document.write(`
 <div class="viewcode-block" id="LayoutOptimizationScipy">
 <a class="viewcode-back" href="../../../../_autosummary/floris.optimization.layout_optimization.layout_optimization_scipy.html#floris.optimization.layout_optimization.layout_optimization_scipy.LayoutOptimizationScipy">[docs]</a>
 <span class="k">class</span> <span class="nc">LayoutOptimizationScipy</span><span class="p">(</span><span class="n">LayoutOptimization</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class provides an interface for optimizing the layout of wind turbines</span>
+<span class="sd">    using the Scipy optimization library.  The optimization objective is to</span>
+<span class="sd">    maximize annual energy production (AEP) or annual value production (AVP).</span>
+
+
+<span class="sd">    Args:</span>
+<span class="sd">        fmodel (FlorisModel): A FlorisModel object.</span>
+<span class="sd">        boundaries (iterable(float, float)): Pairs of x- and y-coordinates</span>
+<span class="sd">            that represent the boundary&#39;s vertices (m).</span>
+<span class="sd">        bnds (iterable, optional): Bounds for the optimization</span>
+<span class="sd">            variables (pairs of min/max values for each variable (m)). If</span>
+<span class="sd">            none are specified, they are set to 0 and 1. Defaults to None.</span>
+<span class="sd">        min_dist (float, optional): The minimum distance to be maintained</span>
+<span class="sd">            between turbines during the optimization (m). If not specified,</span>
+<span class="sd">            initializes to 2 rotor diameters. Defaults to None.</span>
+<span class="sd">        solver (str, optional): Sets the solver used by Scipy. Defaults to &#39;SLSQP&#39;.</span>
+<span class="sd">        optOptions (dict, optional): Dictionary for setting the</span>
+<span class="sd">            optimization options. Defaults to None.</span>
+<span class="sd">        enable_geometric_yaw (bool, optional): If True, enables geometric yaw</span>
+<span class="sd">            optimization. Defaults to False.</span>
+<span class="sd">        use_value (bool, optional): If True, the layout optimization objective</span>
+<span class="sd">            is to maximize annual value production using the value array in the</span>
+<span class="sd">            FLORIS model&#39;s WindData object. If False, the optimization</span>
+<span class="sd">            objective is to maximize AEP. Defaults to False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">fmodel</span><span class="p">,</span>
@@ -437,29 +479,15 @@ document.write(`
         <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">,</span>
         <span class="n">optOptions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">enable_geometric_yaw</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">use_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        _summary_</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            fmodel (FlorisModel): A FlorisModel object.</span>
-<span class="sd">            boundaries (iterable(float, float)): Pairs of x- and y-coordinates</span>
-<span class="sd">                that represent the boundary&#39;s vertices (m).</span>
-<span class="sd">            bnds (iterable, optional): Bounds for the optimization</span>
-<span class="sd">                variables (pairs of min/max values for each variable (m)). If</span>
-<span class="sd">                none are specified, they are set to 0 and 1. Defaults to None.</span>
-<span class="sd">            min_dist (float, optional): The minimum distance to be maintained</span>
-<span class="sd">                between turbines during the optimization (m). If not specified,</span>
-<span class="sd">                initializes to 2 rotor diameters. Defaults to None.</span>
-<span class="sd">            solver (str, optional): Sets the solver used by Scipy. Defaults to &#39;SLSQP&#39;.</span>
-<span class="sd">            optOptions (dict, optional): Dicitonary for setting the</span>
-<span class="sd">                optimization options. Defaults to None.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">fmodel</span><span class="p">,</span>
             <span class="n">boundaries</span><span class="p">,</span>
             <span class="n">min_dist</span><span class="o">=</span><span class="n">min_dist</span><span class="p">,</span>
-            <span class="n">enable_geometric_yaw</span><span class="o">=</span><span class="n">enable_geometric_yaw</span>
+            <span class="n">enable_geometric_yaw</span><span class="o">=</span><span class="n">enable_geometric_yaw</span><span class="p">,</span>
+            <span class="n">use_value</span><span class="o">=</span><span class="n">use_value</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">boundaries_norm</span> <span class="o">=</span> <span class="p">[</span>
@@ -520,7 +548,10 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yaw_angles</span><span class="o">=</span><span class="n">yaw_angles</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_AEP</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_value</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AVP</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_AEP_or_AVP</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_AEP_or_AVP</span>
 
 
     <span class="k">def</span> <span class="nf">_change_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locs</span><span class="p">):</span>
@@ -626,7 +657,7 @@ document.write(`
     <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method finds the optimized layout of wind turbines for power</span>
-<span class="sd">        production given the provided frequencies of occurance of wind</span>
+<span class="sd">        production given the provided frequencies of occurrence of wind</span>
 <span class="sd">        conditions (wind speed, direction).</span>
 
 <span class="sd">        Returns:</span>

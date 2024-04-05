@@ -200,7 +200,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../intro_concepts.html">Introductory Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../advanced_concepts.html">Advanced Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../wind_data_user.html">Wind Data Objects</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../../../../floating_wind_turbine.html">Floating Wind Turbine Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../turbine_interaction.html">Turbine Library Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_models_user.html">Turbine Operation Models</a></li>
@@ -263,6 +262,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.utilities.html">floris.utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.type_dec.html">floris.type_dec</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../_autosummary/floris.logging_manager.html">floris.logging_manager</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/001_opening_floris_computing_power.html">Example 1: Opening FLORIS and Computing Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/002_visualizations.html">Example 2: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/003_wind_data_objects.html">Example 3: Wind Data Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/004_set.html">Example 4: Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/005_getting_power.html">Example 5: Getting Turbine and Farm Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/006_get_farm_aep.html">Example 6: Getting Expected Power and AEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/007_sweeping_variables.html">Example 7: Sweeping Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/008_uncertain_models.html">Example 8: Uncertain Models</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../examples/009_compare_farm_power_with_neighbor.html">Example 9: Compare farm power with neighboring farm</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/001_wind_data_comparisons.html">Example: Wind Data Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/002_generate_ti.html">Example: Generate TI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../examples/examples_wind_data/003_generate_value.html">Example: Generate value</a></li>
 </ul>
 </li>
 </ul>
@@ -427,6 +443,39 @@ document.write(`
 <div class="viewcode-block" id="LayoutOptimizationPyOptSparse">
 <a class="viewcode-back" href="../../../../_autosummary/floris.optimization.layout_optimization.layout_optimization_pyoptsparse.html#floris.optimization.layout_optimization.layout_optimization_pyoptsparse.LayoutOptimizationPyOptSparse">[docs]</a>
 <span class="k">class</span> <span class="nc">LayoutOptimizationPyOptSparse</span><span class="p">(</span><span class="n">LayoutOptimization</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class provides an interface for optimizing the layout of wind turbines</span>
+<span class="sd">    using the pyOptSparse optimization library.  The optimization objective is to</span>
+<span class="sd">    maximize annual energy production (AEP) or annual value production (AVP).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fmodel (FlorisModel): A FlorisModel object.</span>
+<span class="sd">        boundaries (iterable(float, float)): Pairs of x- and y-coordinates</span>
+<span class="sd">            that represent the boundary&#39;s vertices (m).</span>
+<span class="sd">        min_dist (float, optional): The minimum distance to be maintained</span>
+<span class="sd">            between turbines during the optimization (m). If not specified,</span>
+<span class="sd">            initializes to 2 rotor diameters. Defaults to None.</span>
+<span class="sd">        solver (str, optional): Sets the solver used by pyOptSparse. Defaults</span>
+<span class="sd">            to &#39;SLSQP&#39;.</span>
+<span class="sd">        optOptions (dict, optional): Dictionary for setting the</span>
+<span class="sd">            optimization options. Defaults to None.</span>
+<span class="sd">        timeLimit (float, optional): Variable passed to pyOptSparse optimizer.</span>
+<span class="sd">            The maximum amount of time for optimizer to run (seconds). If None,</span>
+<span class="sd">            no time limit is imposed. Defaults to None.</span>
+<span class="sd">        storeHistory (str, optional): Variable passed to pyOptSparse optimizer.</span>
+<span class="sd">            File name of the history file into which the history of the</span>
+<span class="sd">            pyOptSparse optimization will be stored. Defaults to &quot;hist.hist&quot;.</span>
+<span class="sd">        hotStart (str, optional): Variable passed to pyOptSparse optimizer.</span>
+<span class="sd">            File name of the history file to “replay” for the optimization.</span>
+<span class="sd">            If None, pyOptSparse initializes the optimization from scratch.</span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        enable_geometric_yaw (bool, optional): If True, enables geometric yaw</span>
+<span class="sd">            optimization. Defaults to False.</span>
+<span class="sd">        use_value (bool, optional): If True, the layout optimization objective</span>
+<span class="sd">            is to maximize annual value production using the value array in the</span>
+<span class="sd">            FLORIS model&#39;s WindData object. If False, the optimization</span>
+<span class="sd">            objective is to maximize AEP. Defaults to False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">fmodel</span><span class="p">,</span>
@@ -438,9 +487,16 @@ document.write(`
         <span class="n">storeHistory</span><span class="o">=</span><span class="s1">&#39;hist.hist&#39;</span><span class="p">,</span>
         <span class="n">hotStart</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">enable_geometric_yaw</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">use_value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">fmodel</span><span class="p">,</span> <span class="n">boundaries</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="n">min_dist</span><span class="p">,</span>
-                         <span class="n">enable_geometric_yaw</span><span class="o">=</span><span class="n">enable_geometric_yaw</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">fmodel</span><span class="p">,</span>
+            <span class="n">boundaries</span><span class="p">,</span>
+            <span class="n">min_dist</span><span class="o">=</span><span class="n">min_dist</span><span class="p">,</span>
+            <span class="n">enable_geometric_yaw</span><span class="o">=</span><span class="n">enable_geometric_yaw</span><span class="p">,</span>
+            <span class="n">use_value</span><span class="o">=</span><span class="n">use_value</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">x0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">layout_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xmax</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">layout_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ymax</span><span class="p">)</span>
@@ -461,7 +517,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err_msg</span><span class="p">,</span> <span class="n">stack_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
 
-        <span class="c1"># Insantiate ptOptSparse optimization object with name and objective function</span>
+        <span class="c1"># Instantiate pyOptSparse optimization object with name and objective function</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optProb</span> <span class="o">=</span> <span class="n">pyoptsparse</span><span class="o">.</span><span class="n">Optimization</span><span class="p">(</span><span class="s1">&#39;layout&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj_func</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">optProb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_var_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">optProb</span><span class="p">)</span>
@@ -517,7 +573,10 @@ document.write(`
 
         <span class="c1"># Compute the objective function</span>
         <span class="n">funcs</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">funcs</span><span class="p">[</span><span class="s2">&quot;obj&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_AEP</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_value</span><span class="p">:</span>
+            <span class="n">funcs</span><span class="p">[</span><span class="s2">&quot;obj&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AVP</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_AEP_or_AVP</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">funcs</span><span class="p">[</span><span class="s2">&quot;obj&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmodel</span><span class="o">.</span><span class="n">get_farm_AEP</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_AEP_or_AVP</span>
 
         <span class="c1"># Compute constraints, if any are defined for the optimization</span>
         <span class="n">funcs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_cons</span><span class="p">(</span><span class="n">funcs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
