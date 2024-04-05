@@ -53,12 +53,12 @@
     <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -67,7 +67,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/examples_wind_data/001_wind_data_comparisons';</script>
@@ -291,17 +291,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -677,20 +678,17 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">floris.floris_model.FlorisModel</span> <span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> <span class=" -Color -Color-Yellow">Computing AVP with uniform frequencies. Results results may not reflect annual operation.</span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">floris.floris_model.FlorisModel</span> <span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> <span class=" -Color -Color-Yellow">Computing AVP with uniform value equal to 1. Results will be equivalent to annual energy production.</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AEP from TimeSeries 37.34 GWh
+AEP from WindRose 37.50 GWh
+AEP from WindTIRose 37.50 GWh
+Annual Value Production (AVP) from TimeSeries 933568.70 dollars
+AVP from WindRose 937812.63 dollars
+AVP from WindTIRose 937891.87 dollars
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AEP from TimeSeries 36.81 GWh
-AEP from WindRose 36.73 GWh
-AEP from WindTIRose 36.73 GWh
-Annual Value Production (AVP) from TimeSeries 905735.76 dollars
-AVP from WindRose 901859.11 dollars
-AVP from WindTIRose 901932.56 dollars
-</pre></div>
-</div>
-<img alt="../../_images/f38b4d720a03658d03c548ab21adf748f59355dfe7b5737574e87fbe34a3dba8.png" src="../../_images/f38b4d720a03658d03c548ab21adf748f59355dfe7b5737574e87fbe34a3dba8.png" />
-<img alt="../../_images/9e9acd34de25097a24e5d9d22874280cc14f6859e3b55adce2086fdc65c72490.png" src="../../_images/9e9acd34de25097a24e5d9d22874280cc14f6859e3b55adce2086fdc65c72490.png" />
-<img alt="../../_images/5c2f60c6efd7740ba4e388decef293d1a280ab92ac2e0afb8ec1e3746063fb79.png" src="../../_images/5c2f60c6efd7740ba4e388decef293d1a280ab92ac2e0afb8ec1e3746063fb79.png" />
+<img alt="../../_images/50eb306b0ee532c8b0aaacfffeb3ce2fe4c984adefb7043dfc8de617da08fa83.png" src="../../_images/50eb306b0ee532c8b0aaacfffeb3ce2fe4c984adefb7043dfc8de617da08fa83.png" />
+<img alt="../../_images/9fde88272b6e8c83f075c0d3bc271c1a7c6f8b3492346d8ab4c367015a3b18d4.png" src="../../_images/9fde88272b6e8c83f075c0d3bc271c1a7c6f8b3492346d8ab4c367015a3b18d4.png" />
+<img alt="../../_images/2afa4efd4a3362b7dfb57aafafb8f6d0786b328e47d7117cc55edbe29c720658.png" src="../../_images/2afa4efd4a3362b7dfb57aafafb8f6d0786b328e47d7117cc55edbe29c720658.png" />
 </div>
 </div>
 </section>

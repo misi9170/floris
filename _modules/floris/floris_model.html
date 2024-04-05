@@ -52,12 +52,12 @@
     <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -66,7 +66,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="https://unpkg.com/mermaid@10.8/dist/mermaid.min.js"></script>
@@ -292,17 +292,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -530,6 +531,7 @@ document.write(`
     <span class="n">floris_array_converter</span><span class="p">,</span>
     <span class="n">NDArrayBool</span><span class="p">,</span>
     <span class="n">NDArrayFloat</span><span class="p">,</span>
+    <span class="n">NDArrayStr</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">floris.utilities</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">nested_get</span><span class="p">,</span>
@@ -732,14 +734,22 @@ document.write(`
         <span class="c1"># Create a new instance of floris and attach to self</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">core</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">floris_dict</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_set_operation</span><span class="p">(</span>
+<div class="viewcode-block" id="FlorisModel.set_operation">
+<a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.set_operation">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_operation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">yaw_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">power_setpoints</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_modes</span><span class="p">:</span> <span class="n">NDArrayStr</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_frequencies</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">disable_turbines</span><span class="p">:</span> <span class="n">NDArrayBool</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Apply operating setpoints to the floris object.</span>
+
+<span class="sd">        This function is not meant to be called directly by most users---users should instead call</span>
+<span class="sd">        the set() method.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            yaw_angles (NDArrayFloat | list[float] | None, optional): Turbine yaw angles. Defaults</span>
@@ -751,9 +761,19 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Add operating conditions to the floris object</span>
         <span class="k">if</span> <span class="n">yaw_angles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">yaw_angles</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;yaw_angles has a size of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">yaw_angles</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> in the 1st &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;dimension, must be equal to n_turbines=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_yaw_angles</span><span class="p">(</span><span class="n">yaw_angles</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">power_setpoints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">power_setpoints</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;power_setpoints has a size of </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">power_setpoints</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> in the 1st&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot; dimension, must be equal to n_turbines=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
             <span class="n">power_setpoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">power_setpoints</span><span class="p">)</span>
 
             <span class="c1"># Convert any None values to the default power setpoint</span>
@@ -763,6 +783,32 @@ document.write(`
             <span class="n">power_setpoints</span> <span class="o">=</span> <span class="n">floris_array_converter</span><span class="p">(</span><span class="n">power_setpoints</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_power_setpoints</span><span class="p">(</span><span class="n">power_setpoints</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">awc_modes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">awc_modes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[[</span><span class="s2">&quot;baseline&quot;</span><span class="p">]</span>
+                <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">]</span>
+                <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_modes</span> <span class="o">=</span> <span class="n">awc_modes</span>
+
+        <span class="k">if</span> <span class="n">awc_amplitudes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">awc_amplitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_amplitudes</span> <span class="o">=</span> <span class="n">awc_amplitudes</span>
+
+        <span class="k">if</span> <span class="n">awc_frequencies</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">awc_frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_frequencies</span> <span class="o">=</span> <span class="n">awc_frequencies</span>
 
         <span class="c1"># Check for turbines to disable</span>
         <span class="k">if</span> <span class="n">disable_turbines</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -791,6 +837,10 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">yaw_angles</span><span class="p">[</span><span class="n">disable_turbines</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">power_setpoints</span><span class="p">[</span><span class="n">disable_turbines</span><span class="p">]</span> <span class="o">=</span> <span class="n">POWER_SETPOINT_DISABLED</span>
 
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">yaw_angles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="n">power_setpoints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="n">disable_turbines</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">UNINITIALIZED</span></div>
+
+
 <div class="viewcode-block" id="FlorisModel.set">
 <a class="viewcode-back" href="../../_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.set">[docs]</a>
     <span class="k">def</span> <span class="nf">set</span><span class="p">(</span>
@@ -811,6 +861,9 @@ document.write(`
         <span class="n">wind_data</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">WindDataBase</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">yaw_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">power_setpoints</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_modes</span><span class="p">:</span> <span class="n">NDArrayStr</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_frequencies</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">disable_turbines</span><span class="p">:</span> <span class="n">NDArrayBool</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -849,6 +902,9 @@ document.write(`
         <span class="c1"># Initialize a new Floris object after saving the setpoints</span>
         <span class="n">_yaw_angles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">yaw_angles</span>
         <span class="n">_power_setpoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">power_setpoints</span>
+        <span class="n">_awc_modes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_modes</span>
+        <span class="n">_awc_amplitudes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_amplitudes</span>
+        <span class="n">_awc_frequencies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_frequencies</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reinitialize</span><span class="p">(</span>
             <span class="n">wind_speeds</span><span class="o">=</span><span class="n">wind_speeds</span><span class="p">,</span>
             <span class="n">wind_directions</span><span class="o">=</span><span class="n">wind_directions</span><span class="p">,</span>
@@ -875,11 +931,20 @@ document.write(`
             <span class="o">|</span> <span class="p">(</span><span class="n">_power_setpoints</span> <span class="o">==</span> <span class="n">POWER_SETPOINT_DISABLED</span><span class="p">)</span>
         <span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_power_setpoints</span><span class="p">(</span><span class="n">_power_setpoints</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_awc_modes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_awc_modes</span><span class="p">(</span><span class="n">_awc_modes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">_awc_amplitudes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_awc_amplitudes</span><span class="p">(</span><span class="n">_awc_amplitudes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">_awc_frequencies</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_awc_frequencies</span><span class="p">(</span><span class="n">_awc_frequencies</span><span class="p">)</span>
 
         <span class="c1"># Set the operation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_operation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_operation</span><span class="p">(</span>
             <span class="n">yaw_angles</span><span class="o">=</span><span class="n">yaw_angles</span><span class="p">,</span>
             <span class="n">power_setpoints</span><span class="o">=</span><span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="n">awc_modes</span><span class="o">=</span><span class="n">awc_modes</span><span class="p">,</span>
+            <span class="n">awc_amplitudes</span><span class="o">=</span><span class="n">awc_amplitudes</span><span class="p">,</span>
+            <span class="n">awc_frequencies</span><span class="o">=</span><span class="n">awc_frequencies</span><span class="p">,</span>
             <span class="n">disable_turbines</span><span class="o">=</span><span class="n">disable_turbines</span><span class="p">,</span>
         <span class="p">)</span></div>
 
@@ -950,6 +1015,8 @@ document.write(`
             <span class="n">yaw_angles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">yaw_angles</span><span class="p">,</span>
             <span class="n">tilt_angles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">tilt_angles</span><span class="p">,</span>
             <span class="n">power_setpoints</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="n">awc_modes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_modes</span><span class="p">,</span>
+            <span class="n">awc_amplitudes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_amplitudes</span><span class="p">,</span>
             <span class="n">tilt_interps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_tilt_interps</span><span class="p">,</span>
             <span class="n">turbine_type_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_type_map</span><span class="p">,</span>
             <span class="n">turbine_power_thrust_tables</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_power_thrust_tables</span><span class="p">,</span>
@@ -1359,11 +1426,7 @@ document.write(`
                 <span class="s2">&quot;operation.&quot;</span>
             <span class="p">)</span>
 
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span>
-            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span><span class="p">,</span> <span class="n">WindRose</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span><span class="p">,</span> <span class="n">WindTIRose</span><span class="p">)</span>
-        <span class="p">):</span>
+        <span class="k">if</span> <span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">wind_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
                 <span class="s2">&quot;Computing AVP with uniform value equal to 1. Results will be equivalent to &quot;</span>
                 <span class="s2">&quot;annual energy production.&quot;</span>
@@ -1385,6 +1448,8 @@ document.write(`
             <span class="n">yaw_angles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">yaw_angles</span><span class="p">,</span>
             <span class="n">tilt_angles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">tilt_angles</span><span class="p">,</span>
             <span class="n">power_setpoints</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="n">awc_modes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_modes</span><span class="p">,</span>
+            <span class="n">awc_amplitudes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_amplitudes</span><span class="p">,</span>
             <span class="n">axial_induction_functions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_axial_induction_functions</span><span class="p">,</span>
             <span class="n">tilt_interps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_tilt_interps</span><span class="p">,</span>
             <span class="n">correct_cp_ct_for_tilt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">correct_cp_ct_for_tilt</span><span class="p">,</span>
@@ -1406,6 +1471,8 @@ document.write(`
             <span class="n">yaw_angles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">yaw_angles</span><span class="p">,</span>
             <span class="n">tilt_angles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">tilt_angles</span><span class="p">,</span>
             <span class="n">power_setpoints</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="n">awc_modes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_modes</span><span class="p">,</span>
+            <span class="n">awc_amplitudes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">awc_amplitudes</span><span class="p">,</span>
             <span class="n">thrust_coefficient_functions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_thrust_coefficient_functions</span><span class="p">,</span>
             <span class="n">tilt_interps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_tilt_interps</span><span class="p">,</span>
             <span class="n">correct_cp_ct_for_tilt</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">correct_cp_ct_for_tilt</span><span class="p">,</span>
@@ -1441,6 +1508,9 @@ document.write(`
         <span class="n">ti</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">yaw_angles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">power_setpoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_amplitudes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_frequencies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">disable_turbines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1490,6 +1560,9 @@ document.write(`
             <span class="n">solver_settings</span><span class="o">=</span><span class="n">solver_settings</span><span class="p">,</span>
             <span class="n">yaw_angles</span><span class="o">=</span><span class="n">yaw_angles</span><span class="p">,</span>
             <span class="n">power_setpoints</span><span class="o">=</span><span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="n">awc_modes</span><span class="o">=</span><span class="n">awc_modes</span><span class="p">,</span>
+            <span class="n">awc_amplitudes</span><span class="o">=</span><span class="n">awc_amplitudes</span><span class="p">,</span>
+            <span class="n">awc_frequencies</span><span class="o">=</span><span class="n">awc_frequencies</span><span class="p">,</span>
             <span class="n">disable_turbines</span><span class="o">=</span><span class="n">disable_turbines</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -1498,7 +1571,7 @@ document.write(`
 
         <span class="c1"># Get the points of data in a dataframe</span>
         <span class="c1"># TODO this just seems to be flattening and storing the data in a df; is this necessary?</span>
-        <span class="c1"># It seems the biggest depenedcy is on CutPlane and the subsequent visualization tools.</span>
+        <span class="c1"># It seems the biggest dependency is on CutPlane and the subsequent visualization tools.</span>
         <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plane_of_points</span><span class="p">(</span>
             <span class="n">normal_vector</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
             <span class="n">planar_coordinate</span><span class="o">=</span><span class="n">downstream_dist</span><span class="p">,</span>
@@ -1530,6 +1603,9 @@ document.write(`
         <span class="n">ti</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">yaw_angles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">power_setpoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_amplitudes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_frequencies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">disable_turbines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1587,6 +1663,9 @@ document.write(`
             <span class="n">solver_settings</span><span class="o">=</span><span class="n">solver_settings</span><span class="p">,</span>
             <span class="n">yaw_angles</span><span class="o">=</span><span class="n">yaw_angles</span><span class="p">,</span>
             <span class="n">power_setpoints</span><span class="o">=</span><span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="n">awc_modes</span><span class="o">=</span><span class="n">awc_modes</span><span class="p">,</span>
+            <span class="n">awc_amplitudes</span><span class="o">=</span><span class="n">awc_amplitudes</span><span class="p">,</span>
+            <span class="n">awc_frequencies</span><span class="o">=</span><span class="n">awc_frequencies</span><span class="p">,</span>
             <span class="n">disable_turbines</span><span class="o">=</span><span class="n">disable_turbines</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -1632,6 +1711,9 @@ document.write(`
         <span class="n">ti</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">yaw_angles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">power_setpoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_modes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_amplitudes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">awc_frequencies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">disable_turbines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1694,6 +1776,9 @@ document.write(`
             <span class="n">solver_settings</span><span class="o">=</span><span class="n">solver_settings</span><span class="p">,</span>
             <span class="n">yaw_angles</span><span class="o">=</span><span class="n">yaw_angles</span><span class="p">,</span>
             <span class="n">power_setpoints</span><span class="o">=</span><span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="n">awc_modes</span><span class="o">=</span><span class="n">awc_modes</span><span class="p">,</span>
+            <span class="n">awc_amplitudes</span><span class="o">=</span><span class="n">awc_amplitudes</span><span class="p">,</span>
+            <span class="n">awc_frequencies</span><span class="o">=</span><span class="n">awc_frequencies</span><span class="p">,</span>
             <span class="n">disable_turbines</span><span class="o">=</span><span class="n">disable_turbines</span><span class="p">,</span>
         <span class="p">)</span>
 

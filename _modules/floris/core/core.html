@@ -52,12 +52,12 @@
     <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -66,7 +66,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="https://unpkg.com/mermaid@10.8/dist/mermaid.min.js"></script>
@@ -292,17 +292,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -589,6 +590,9 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_yaw_angles_to_ref_yaw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_tilt_to_ref_tilt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_power_setpoints_to_ref_power</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_awc_modes_to_ref_mode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_awc_amplitudes_to_ref_amp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">set_awc_frequencies_to_ref_freq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flow_field</span><span class="o">.</span><span class="n">n_findex</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;turbine_grid&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">TurbineGrid</span><span class="p">(</span>
@@ -665,6 +669,17 @@ document.write(`
                 <span class="s2">&quot;The current model does not account for vertical wake deflection due to &quot;</span> <span class="o">+</span>
                 <span class="s2">&quot;tilt. Corrections to power and thrust coefficient can be included, but no &quot;</span> <span class="o">+</span>
                 <span class="s2">&quot;vertical wake deflection will occur.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">operation_model_awc</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">td</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">farm</span><span class="o">.</span><span class="n">turbine_definitions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;operation_model&quot;</span> <span class="ow">in</span> <span class="n">td</span> <span class="ow">and</span> <span class="n">td</span><span class="p">[</span><span class="s2">&quot;operation_model&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;awc&quot;</span><span class="p">:</span>
+                <span class="n">operation_model_awc</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">vel_model</span> <span class="o">!=</span> <span class="s2">&quot;empirical_gauss&quot;</span> <span class="ow">and</span> <span class="n">operation_model_awc</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;The current model `</span><span class="si">{</span><span class="n">vel_model</span><span class="si">}</span><span class="s2">` does not account for additional wake mixing &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;due to active wake control. Corrections to power and thrust coefficient can &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot;be included, but no enhanced wake recovery will occur.&quot;</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">vel_model</span><span class="o">==</span><span class="s2">&quot;cc&quot;</span><span class="p">:</span>

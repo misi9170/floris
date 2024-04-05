@@ -53,12 +53,12 @@
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
@@ -67,7 +67,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'wind_data_user';</script>
@@ -291,17 +291,18 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -853,7 +854,7 @@ wind_rose.value_table
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7a3d7de98ea44012bfaa530ac8824b92f701d39bad495f234c961a81512e39ca.png" src="_images/7a3d7de98ea44012bfaa530ac8824b92f701d39bad495f234c961a81512e39ca.png" />
+<img alt="_images/2c996d7a9762482cfee70a61c4c44ced78d62e3ac3629c4581674495984954e6.png" src="_images/2c996d7a9762482cfee70a61c4c44ced78d62e3ac3629c4581674495984954e6.png" />
 <img alt="_images/dd91cab9ca0182579fbf3ebdc6aacf23f098e290d264dcf2200e8232b3f4d2d8.png" src="_images/dd91cab9ca0182579fbf3ebdc6aacf23f098e290d264dcf2200e8232b3f4d2d8.png" />
 <img alt="_images/765251d3e3de313717f2cf945d801aa1541f84d6d1ef85438531d4284a4f86e2.png" src="_images/765251d3e3de313717f2cf945d801aa1541f84d6d1ef85438531d4284a4f86e2.png" />
 </div>
@@ -928,9 +929,6 @@ wind_rose.value_table
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">floris.floris_model.FlorisModel</span> <span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> <span class=" -Color -Color-Yellow">Computing AVP with uniform frequencies. Results results may not reflect annual operation.</span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">floris.floris_model.FlorisModel</span> <span class=" -Color -Color-Bold -Color-Bold-Black">WARNING</span> <span class=" -Color -Color-Yellow">Computing AVP with uniform value equal to 1. Results will be equivalent to annual energy production.</span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Turbine power have shape (5, 2) and are [[1753954.45917917  354990.76412771]

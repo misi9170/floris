@@ -52,12 +52,12 @@
     <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -66,7 +66,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="https://unpkg.com/mermaid@10.8/dist/mermaid.min.js"></script>
@@ -292,17 +292,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -1046,6 +1047,124 @@ document.write(`
         <span class="p">)[</span><span class="n">neither_mask</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">axial_inductions</span></div>
+</div>
+
+
+<div class="viewcode-block" id="AWCTurbine">
+<a class="viewcode-back" href="../../../../_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine">[docs]</a>
+<span class="nd">@define</span>
+<span class="k">class</span> <span class="nc">AWCTurbine</span><span class="p">(</span><span class="n">BaseOperationModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    power_thrust_table is a dictionary (normally defined on the turbine input yaml)</span>
+<span class="sd">    that contains the parameters necessary to evaluate power(), thrust(), and axial_induction().</span>
+
+<span class="sd">    Feel free to put any Helix tuning parameters into here (they can be added to the turbine yaml).</span>
+<span class="sd">    Also, feel free to add any commanded inputs to power(), thrust_coefficient(), or</span>
+<span class="sd">    axial_induction(). For this operation model to receive those arguments, they&#39;ll need to be</span>
+<span class="sd">    added to the kwargs dictionaries in the respective functions on turbine.py. They won&#39;t affect</span>
+<span class="sd">    the other operation models.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AWCTurbine.power">
+<a class="viewcode-back" href="../../../../_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.power">[docs]</a>
+    <span class="k">def</span> <span class="nf">power</span><span class="p">(</span>
+        <span class="n">power_thrust_table</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">velocities</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
+        <span class="n">air_density</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">awc_modes</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">average_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cubic-mean&quot;</span><span class="p">,</span>
+        <span class="n">cubature_weights</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">_</span> <span class="c1"># &lt;- Allows other models to accept other keyword arguments</span>
+    <span class="p">):</span>
+        <span class="n">base_powers</span> <span class="o">=</span> <span class="n">SimpleTurbine</span><span class="o">.</span><span class="n">power</span><span class="p">(</span>
+            <span class="n">power_thrust_table</span><span class="o">=</span><span class="n">power_thrust_table</span><span class="p">,</span>
+            <span class="n">velocities</span><span class="o">=</span><span class="n">velocities</span><span class="p">,</span>
+            <span class="n">air_density</span><span class="o">=</span><span class="n">air_density</span><span class="p">,</span>
+            <span class="n">average_method</span><span class="o">=</span><span class="n">average_method</span><span class="p">,</span>
+            <span class="n">cubature_weights</span><span class="o">=</span><span class="n">cubature_weights</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">awc_modes</span> <span class="o">==</span> <span class="s1">&#39;helix&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span>
+                <span class="n">base_powers</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">power_thrust_table</span><span class="p">[</span><span class="s1">&#39;power&#39;</span><span class="p">])</span>
+                <span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">UserWarning</span><span class="p">(</span>
+                    <span class="s1">&#39;The selected wind speed is above or near rated wind speed. &#39;</span>
+                    <span class="s1">&#39;`AWCTurbine` operation model is not designed &#39;</span>
+                    <span class="s1">&#39;or verified for above-rated conditions.&#39;</span>
+                    <span class="p">)</span>
+            <span class="k">return</span> <span class="n">base_powers</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span>
+                <span class="n">power_thrust_table</span><span class="p">[</span><span class="s1">&#39;helix_power_b&#39;</span><span class="p">]</span>
+                <span class="o">+</span> <span class="n">power_thrust_table</span><span class="p">[</span><span class="s1">&#39;helix_power_c&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">base_powers</span>
+                <span class="p">)</span>
+                <span class="o">*</span><span class="n">awc_amplitudes</span><span class="o">**</span><span class="n">power_thrust_table</span><span class="p">[</span><span class="s1">&#39;helix_a&#39;</span><span class="p">]</span>
+            <span class="p">)</span> <span class="c1">## TODO: Should probably add max function here</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">awc_modes</span> <span class="o">==</span> <span class="s1">&#39;baseline&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">base_powers</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">UserWarning</span><span class="p">(</span>
+                <span class="s1">&#39;Active wake mixing strategies other than the `helix` strategy &#39;</span>
+                <span class="s1">&#39;have not yet been implemented in FLORIS. Returning baseline power.&#39;</span>
+                <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="AWCTurbine.thrust_coefficient">
+<a class="viewcode-back" href="../../../../_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.thrust_coefficient">[docs]</a>
+    <span class="k">def</span> <span class="nf">thrust_coefficient</span><span class="p">(</span>
+        <span class="n">power_thrust_table</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">velocities</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
+        <span class="n">awc_modes</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">average_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cubic-mean&quot;</span><span class="p">,</span>
+        <span class="n">cubature_weights</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">_</span> <span class="c1"># &lt;- Allows other models to accept other keyword arguments</span>
+    <span class="p">):</span>
+        <span class="n">base_thrust_coefficients</span> <span class="o">=</span> <span class="n">SimpleTurbine</span><span class="o">.</span><span class="n">thrust_coefficient</span><span class="p">(</span>
+            <span class="n">power_thrust_table</span><span class="o">=</span><span class="n">power_thrust_table</span><span class="p">,</span>
+            <span class="n">velocities</span><span class="o">=</span><span class="n">velocities</span><span class="p">,</span>
+            <span class="n">average_method</span><span class="o">=</span><span class="n">average_method</span><span class="p">,</span>
+            <span class="n">cubature_weights</span><span class="o">=</span><span class="n">cubature_weights</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">awc_modes</span> <span class="o">==</span> <span class="s1">&#39;helix&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">base_thrust_coefficients</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span>
+                <span class="n">power_thrust_table</span><span class="p">[</span><span class="s1">&#39;helix_thrust_b&#39;</span><span class="p">]</span>
+                <span class="o">+</span> <span class="n">power_thrust_table</span><span class="p">[</span><span class="s1">&#39;helix_thrust_c&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">base_thrust_coefficients</span>
+                <span class="p">)</span>
+                <span class="o">*</span><span class="n">awc_amplitudes</span><span class="o">**</span><span class="n">power_thrust_table</span><span class="p">[</span><span class="s1">&#39;helix_a&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">awc_modes</span> <span class="o">==</span> <span class="s1">&#39;baseline&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">base_thrust_coefficients</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">UserWarning</span><span class="p">(</span>
+                <span class="s1">&#39;Active wake mixing strategies other than the `helix` strategy &#39;</span>
+                <span class="s1">&#39;have not yet been implemented in FLORIS. Returning baseline power.&#39;</span>
+                <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AWCTurbine.axial_induction">
+<a class="viewcode-back" href="../../../../_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.axial_induction">[docs]</a>
+    <span class="k">def</span> <span class="nf">axial_induction</span><span class="p">(</span>
+        <span class="n">power_thrust_table</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">velocities</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
+        <span class="n">awc_modes</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
+        <span class="n">average_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cubic-mean&quot;</span><span class="p">,</span>
+        <span class="n">cubature_weights</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">_</span> <span class="c1"># &lt;- Allows other models to accept other keyword arguments</span>
+    <span class="p">):</span>
+        <span class="n">thrust_coefficient</span> <span class="o">=</span> <span class="n">AWCTurbine</span><span class="o">.</span><span class="n">thrust_coefficient</span><span class="p">(</span>
+            <span class="n">power_thrust_table</span><span class="o">=</span><span class="n">power_thrust_table</span><span class="p">,</span>
+            <span class="n">velocities</span><span class="o">=</span><span class="n">velocities</span><span class="p">,</span>
+            <span class="n">awc_modes</span><span class="o">=</span><span class="n">awc_modes</span><span class="p">,</span>
+            <span class="n">awc_amplitudes</span><span class="o">=</span><span class="n">awc_amplitudes</span><span class="p">,</span>
+            <span class="n">average_method</span><span class="o">=</span><span class="n">average_method</span><span class="p">,</span>
+            <span class="n">cubature_weights</span><span class="o">=</span><span class="n">cubature_weights</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">thrust_coefficient</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span></div>
 </div>
 
 </pre></div>

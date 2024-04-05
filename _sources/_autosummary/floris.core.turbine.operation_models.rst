@@ -23,6 +23,7 @@ floris.core.turbine.operation\_models
 
    .. autosummary::
    
+      AWCTurbine
       BaseOperationModel
       CosineLossTurbine
       MixedOperationTurbine

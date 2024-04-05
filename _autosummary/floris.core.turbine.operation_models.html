@@ -53,12 +53,12 @@
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -67,7 +67,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_autosummary/floris.core.turbine.operation_models';</script>
@@ -289,17 +289,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -589,6 +590,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.MixedOperationTurbine.axial_induction"><code class="docutils literal notranslate"><span class="pre">MixedOperationTurbine.axial_induction()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.AWCTurbine"><code class="docutils literal notranslate"><span class="pre">AWCTurbine</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.AWCTurbine.power"><code class="docutils literal notranslate"><span class="pre">AWCTurbine.power()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.AWCTurbine.thrust_coefficient"><code class="docutils literal notranslate"><span class="pre">AWCTurbine.thrust_coefficient()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.AWCTurbine.axial_induction"><code class="docutils literal notranslate"><span class="pre">AWCTurbine.axial_induction()</span></code></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -618,19 +625,22 @@ document.write(`
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.BaseOperationModel" title="floris.core.turbine.operation_models.BaseOperationModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseOperationModel</span></code></a>()</p></td>
-<td><p>Base class for turbine operation models.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.CosineLossTurbine" title="floris.core.turbine.operation_models.CosineLossTurbine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CosineLossTurbine</span></code></a>()</p></td>
-<td><p>Static class defining an actuator disk turbine model that may be misaligned with the flow.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.MixedOperationTurbine" title="floris.core.turbine.operation_models.MixedOperationTurbine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MixedOperationTurbine</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.SimpleDeratingTurbine" title="floris.core.turbine.operation_models.SimpleDeratingTurbine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimpleDeratingTurbine</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.AWCTurbine" title="floris.core.turbine.operation_models.AWCTurbine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AWCTurbine</span></code></a>()</p></td>
 <td><p>power_thrust_table is a dictionary (normally defined on the turbine input yaml) that contains the parameters necessary to evaluate power(), thrust(), and axial_induction().</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.SimpleTurbine" title="floris.core.turbine.operation_models.SimpleTurbine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimpleTurbine</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.BaseOperationModel" title="floris.core.turbine.operation_models.BaseOperationModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseOperationModel</span></code></a>()</p></td>
+<td><p>Base class for turbine operation models.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.CosineLossTurbine" title="floris.core.turbine.operation_models.CosineLossTurbine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CosineLossTurbine</span></code></a>()</p></td>
+<td><p>Static class defining an actuator disk turbine model that may be misaligned with the flow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.MixedOperationTurbine" title="floris.core.turbine.operation_models.MixedOperationTurbine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MixedOperationTurbine</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.SimpleDeratingTurbine" title="floris.core.turbine.operation_models.SimpleDeratingTurbine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimpleDeratingTurbine</span></code></a>()</p></td>
+<td><p>power_thrust_table is a dictionary (normally defined on the turbine input yaml) that contains the parameters necessary to evaluate power(), thrust(), and axial_induction().</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.SimpleTurbine" title="floris.core.turbine.operation_models.SimpleTurbine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimpleTurbine</span></code></a>()</p></td>
 <td><p>Static class defining an actuator disk turbine model that is fully aligned with the flow.</p></td>
 </tr>
 </tbody>
@@ -941,6 +951,72 @@ the other operation models.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="floris.core.turbine.operation_models.AWCTurbine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.core.turbine.operation_models.</span></span><span class="sig-name descname"><span class="pre">AWCTurbine</span></span><a class="reference internal" href="../_modules/floris/core/turbine/operation_models.html#AWCTurbine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.operation_models.AWCTurbine" title="Link to this definition">#</a></dt>
+<dd><p>power_thrust_table is a dictionary (normally defined on the turbine input yaml)
+that contains the parameters necessary to evaluate power(), thrust(), and axial_induction().</p>
+<p>Feel free to put any Helix tuning parameters into here (they can be added to the turbine yaml).
+Also, feel free to add any commanded inputs to power(), thrust_coefficient(), or
+axial_induction(). For this operation model to receive those arguments, they'll need to be
+added to the kwargs dictionaries in the respective functions on turbine.py. They won't affect
+the other operation models.</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.core.turbine.operation_models.AWCTurbine.power">
+<span class="sig-name descname"><span class="pre">power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_modes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_amplitudes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cubic-mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cubature_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/operation_models.html#AWCTurbine.power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.operation_models.AWCTurbine.power" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>power_thrust_table</strong> (<em>dict</em>) -- </p></li>
+<li><p><strong>velocities</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>air_density</strong> (<em>float</em>) -- </p></li>
+<li><p><strong>awc_modes</strong> (<em>str</em>) -- </p></li>
+<li><p><strong>awc_amplitudes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>] </em><em>| </em><em>None</em>) -- </p></li>
+<li><p><strong>average_method</strong> (<em>str</em>) -- </p></li>
+<li><p><strong>cubature_weights</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>] </em><em>| </em><em>None</em>) -- </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.core.turbine.operation_models.AWCTurbine.thrust_coefficient">
+<span class="sig-name descname"><span class="pre">thrust_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_modes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_amplitudes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cubic-mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cubature_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/operation_models.html#AWCTurbine.thrust_coefficient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.operation_models.AWCTurbine.thrust_coefficient" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>power_thrust_table</strong> (<em>dict</em>) -- </p></li>
+<li><p><strong>velocities</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>awc_modes</strong> (<em>str</em>) -- </p></li>
+<li><p><strong>awc_amplitudes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>] </em><em>| </em><em>None</em>) -- </p></li>
+<li><p><strong>average_method</strong> (<em>str</em>) -- </p></li>
+<li><p><strong>cubature_weights</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>] </em><em>| </em><em>None</em>) -- </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.core.turbine.operation_models.AWCTurbine.axial_induction">
+<span class="sig-name descname"><span class="pre">axial_induction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_modes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_amplitudes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cubic-mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cubature_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/operation_models.html#AWCTurbine.axial_induction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.operation_models.AWCTurbine.axial_induction" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>power_thrust_table</strong> (<em>dict</em>) -- </p></li>
+<li><p><strong>velocities</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>awc_modes</strong> (<em>str</em>) -- </p></li>
+<li><p><strong>awc_amplitudes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>average_method</strong> (<em>str</em>) -- </p></li>
+<li><p><strong>cubature_weights</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>] </em><em>| </em><em>None</em>) -- </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
     <script type="text/x-thebe-config">
@@ -1018,6 +1094,12 @@ the other operation models.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.MixedOperationTurbine.power"><code class="docutils literal notranslate"><span class="pre">MixedOperationTurbine.power()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.MixedOperationTurbine.thrust_coefficient"><code class="docutils literal notranslate"><span class="pre">MixedOperationTurbine.thrust_coefficient()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.MixedOperationTurbine.axial_induction"><code class="docutils literal notranslate"><span class="pre">MixedOperationTurbine.axial_induction()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.AWCTurbine"><code class="docutils literal notranslate"><span class="pre">AWCTurbine</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.AWCTurbine.power"><code class="docutils literal notranslate"><span class="pre">AWCTurbine.power()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.AWCTurbine.thrust_coefficient"><code class="docutils literal notranslate"><span class="pre">AWCTurbine.thrust_coefficient()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.AWCTurbine.axial_induction"><code class="docutils literal notranslate"><span class="pre">AWCTurbine.axial_induction()</span></code></a></li>
 </ul>
 </li>
 </ul>

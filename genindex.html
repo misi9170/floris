@@ -52,12 +52,12 @@
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
@@ -66,7 +66,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="https://unpkg.com/mermaid@10.8/dist/mermaid.min.js"></script>
@@ -292,17 +292,18 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -586,8 +587,6 @@ document.write(`
         <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRose.assign_ti_using_IEC_method">(floris.wind_data.WindRose method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.TimeSeries.assign_ti_using_wd_ws_function">assign_ti_using_wd_ws_function() (floris.wind_data.TimeSeries method)</a>
 
       <ul>
@@ -608,6 +607,8 @@ document.write(`
         <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindRose.assign_value_using_wd_ws_function">(floris.wind_data.WindRose method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.wind_data.html#floris.wind_data.WindTIRose.assign_value_using_wd_ws_ti_function">assign_value_using_wd_ws_ti_function() (floris.wind_data.WindTIRose method)</a>
 </li>
       <li><a href="_autosummary/floris.core.wake_turbulence.wake_induced_mixing.html#floris.core.wake_turbulence.wake_induced_mixing.WakeInducedMixing.atmospheric_ti_gain">atmospheric_ti_gain (floris.core.wake_turbulence.wake_induced_mixing.WakeInducedMixing attribute)</a>
@@ -620,13 +621,37 @@ document.write(`
       </ul></li>
       <li><a href="_autosummary/floris.core.rotor_velocity.html#floris.core.rotor_velocity.average_velocity">average_velocity() (in module floris.core.rotor_velocity)</a>
 </li>
+      <li><a href="_autosummary/floris.core.wake_velocity.empirical_gauss.html#floris.core.wake_velocity.empirical_gauss.awc_added_wake_mixing">awc_added_wake_mixing() (in module floris.core.wake_velocity.empirical_gauss)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.awc_amplitudes">awc_amplitudes (floris.core.farm.Farm attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.awc_amplitudes_sorted">awc_amplitudes_sorted (floris.core.farm.Farm attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.awc_frequencies">awc_frequencies (floris.core.farm.Farm attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.awc_frequencies_sorted">awc_frequencies_sorted (floris.core.farm.Farm attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.wake_velocity.empirical_gauss.html#floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit.awc_mode">awc_mode (floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.awc_modes">awc_modes (floris.core.farm.Farm attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.awc_modes_sorted">awc_modes_sorted (floris.core.farm.Farm attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.wake_velocity.empirical_gauss.html#floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit.awc_wake_denominator">awc_wake_denominator (floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.wake_velocity.empirical_gauss.html#floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit.awc_wake_exp">awc_wake_exp (floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit attribute)</a>
+</li>
+      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine">AWCTurbine (class in floris.core.turbine.operation_models)</a>
+</li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.VelocityProfilesFigure.ax_height">ax_height (floris.flow_visualization.VelocityProfilesFigure attribute)</a>
 </li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.VelocityProfilesFigure.ax_width">ax_width (floris.flow_visualization.VelocityProfilesFigure attribute)</a>
 </li>
-      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.BaseOperationModel.axial_induction">axial_induction() (floris.core.turbine.operation_models.BaseOperationModel static method)</a>
+      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.axial_induction">axial_induction() (floris.core.turbine.operation_models.AWCTurbine method)</a>
 
       <ul>
+        <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.BaseOperationModel.axial_induction">(floris.core.turbine.operation_models.BaseOperationModel static method)</a>
+</li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.CosineLossTurbine.axial_induction">(floris.core.turbine.operation_models.CosineLossTurbine method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.MixedOperationTurbine.axial_induction">(floris.core.turbine.operation_models.MixedOperationTurbine method)</a>
@@ -893,6 +918,8 @@ document.write(`
       <li><a href="_autosummary/floris.core.wake_velocity.empirical_gauss.html#floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit">EmpiricalGaussVelocityDeficit (class in floris.core.wake_velocity.empirical_gauss)</a>
 </li>
       <li><a href="_autosummary/floris.core.wake_deflection.empirical_gauss.html#floris.core.wake_deflection.empirical_gauss.EmpiricalGaussVelocityDeflection">EmpiricalGaussVelocityDeflection (class in floris.core.wake_deflection.empirical_gauss)</a>
+</li>
+      <li><a href="_autosummary/floris.core.wake.html#floris.core.wake.WakeModelManager.enable_active_wake_mixing">enable_active_wake_mixing (floris.core.wake.WakeModelManager attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -2007,9 +2034,11 @@ document.write(`
 </li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.PointsGrid">PointsGrid (class in floris.core.grid)</a>
 </li>
-      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.BaseOperationModel.power">power() (floris.core.turbine.operation_models.BaseOperationModel static method)</a>
+      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.power">power() (floris.core.turbine.operation_models.AWCTurbine method)</a>
 
       <ul>
+        <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.BaseOperationModel.power">(floris.core.turbine.operation_models.BaseOperationModel static method)</a>
+</li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.CosineLossTurbine.power">(floris.core.turbine.operation_models.CosineLossTurbine method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.MixedOperationTurbine.power">(floris.core.turbine.operation_models.MixedOperationTurbine method)</a>
@@ -2209,6 +2238,18 @@ document.write(`
         <li><a href="_autosummary/floris.uncertain_floris_model.html#floris.uncertain_floris_model.UncertainFlorisModel.set">(floris.uncertain_floris_model.UncertainFlorisModel method)</a>
 </li>
       </ul></li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_amplitudes">set_awc_amplitudes() (floris.core.farm.Farm method)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_amplitudes_to_ref_amp">set_awc_amplitudes_to_ref_amp() (floris.core.farm.Farm method)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_frequencies">set_awc_frequencies() (floris.core.farm.Farm method)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_frequencies_to_ref_freq">set_awc_frequencies_to_ref_freq() (floris.core.farm.Farm method)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_modes">set_awc_modes() (floris.core.farm.Farm method)</a>
+</li>
+      <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_modes_to_ref_mode">set_awc_modes_to_ref_mode() (floris.core.farm.Farm method)</a>
+</li>
       <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.FlowFieldGrid.set_grid">set_grid() (floris.core.grid.FlowFieldGrid method)</a>
 
       <ul>
@@ -2223,6 +2264,8 @@ document.write(`
         <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.TurbineGrid.set_grid">(floris.core.grid.TurbineGrid method)</a>
 </li>
       </ul></li>
+      <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.set_operation">set_operation() (floris.floris_model.FlorisModel method)</a>
+</li>
       <li><a href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.set_operation_model">set_operation_model() (floris.floris_model.FlorisModel method)</a>
 </li>
       <li><a href="_autosummary/floris.cut_plane.html#floris.cut_plane.set_origin">set_origin() (in module floris.cut_plane)</a>
@@ -2239,14 +2282,14 @@ document.write(`
 </li>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_yaw_angles">set_yaw_angles() (floris.core.farm.Farm method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_yaw_angles_to_ref_yaw">set_yaw_angles_to_ref_yaw() (floris.core.farm.Farm method)</a>
 </li>
       <li><a href="_autosummary/floris.layout_visualization.html#floris.layout_visualization.shade_region">shade_region() (in module floris.layout_visualization)</a>
 </li>
       <li><a href="_autosummary/floris.flow_visualization.html#floris.flow_visualization.show">show() (in module floris.flow_visualization)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.core.wake_velocity.empirical_gauss.html#floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit.sigma_0_D">sigma_0_D (floris.core.wake_velocity.empirical_gauss.EmpiricalGaussVelocityDeficit attribute)</a>
 </li>
       <li><a href="_autosummary/floris.core.wake_velocity.turbopark.html#floris.core.wake_velocity.turbopark.TurbOParkVelocityDeficit.sigma_max_rel">sigma_max_rel (floris.core.wake_velocity.turbopark.TurbOParkVelocityDeficit attribute)</a>
@@ -2311,9 +2354,11 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_autosummary/floris.utilities.html#floris.utilities.tand">tand() (in module floris.utilities)</a>
 </li>
-      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.BaseOperationModel.thrust_coefficient">thrust_coefficient() (floris.core.turbine.operation_models.BaseOperationModel static method)</a>
+      <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.AWCTurbine.thrust_coefficient">thrust_coefficient() (floris.core.turbine.operation_models.AWCTurbine method)</a>
 
       <ul>
+        <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.BaseOperationModel.thrust_coefficient">(floris.core.turbine.operation_models.BaseOperationModel static method)</a>
+</li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.CosineLossTurbine.thrust_coefficient">(floris.core.turbine.operation_models.CosineLossTurbine method)</a>
 </li>
         <li><a href="_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.MixedOperationTurbine.thrust_coefficient">(floris.core.turbine.operation_models.MixedOperationTurbine method)</a>
@@ -2365,10 +2410,10 @@ document.write(`
 </li>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.turbine_definitions">turbine_definitions (floris.core.farm.Farm attribute)</a>
 </li>
-      <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.Grid.turbine_diameters">turbine_diameters (floris.core.grid.Grid attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/floris.core.grid.html#floris.core.grid.Grid.turbine_diameters">turbine_diameters (floris.core.grid.Grid attribute)</a>
+</li>
       <li><a href="_autosummary/floris.core.farm.html#floris.core.farm.Farm.turbine_library_path">turbine_library_path (floris.core.farm.Farm attribute)</a>
 
       <ul>

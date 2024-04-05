@@ -53,12 +53,12 @@
     <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -67,7 +67,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples/examples_control_optimization/006_compare_yaw_optimizers';</script>
@@ -291,17 +291,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -1347,9 +1348,9 @@ Optimization terminated successfully    (Exit mode 0)
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Performing optimizations with Geometric Yaw...
 
- Time spent, Geometric Yaw: 0.19 s.
- Time spent, Serial Refine: 1.10 s.
- Time spent, SciPy (SLSQP): 52.59 s.
+ Time spent, Geometric Yaw: 0.21 s.
+ Time spent, Serial Refine: 1.06 s.
+ Time spent, SciPy (SLSQP): 51.17 s.
 </pre></div>
 </div>
 <img alt="../../_images/7eefd5698cb5b8bfb142078ce377d36347c866c2e052932eb939c334c39d31ac.png" src="../../_images/7eefd5698cb5b8bfb142078ce377d36347c866c2e052932eb939c334c39d31ac.png" />
@@ -1357,7 +1358,7 @@ Optimization terminated successfully    (Exit mode 0)
 <img alt="../../_images/fd8df850f216cfc500c693709cbccdc425d46db714bbef62cb0dc1484f10c1f7.png" src="../../_images/fd8df850f216cfc500c693709cbccdc425d46db714bbef62cb0dc1484f10c1f7.png" />
 <img alt="../../_images/29b8296c6cf902bf22447f744f67167135d071fde9f5f25dd1ad566d5ee2432f.png" src="../../_images/29b8296c6cf902bf22447f744f67167135d071fde9f5f25dd1ad566d5ee2432f.png" />
 <img alt="../../_images/c6c4496373e9aaa1bfc898292d30e50fa2375cf51bf859c4de95788cc96d1e5c.png" src="../../_images/c6c4496373e9aaa1bfc898292d30e50fa2375cf51bf859c4de95788cc96d1e5c.png" />
-<img alt="../../_images/59d2dbc08385fb1405bc13edf863a5770f78d5bdeee45b4af39689185d390ce2.png" src="../../_images/59d2dbc08385fb1405bc13edf863a5770f78d5bdeee45b4af39689185d390ce2.png" />
+<img alt="../../_images/c47c0a0003b51d6c909b69de3e4c1708d5a46223ceb148059dbc14d5aff2c3fb.png" src="../../_images/c47c0a0003b51d6c909b69de3e4c1708d5a46223ceb148059dbc14d5aff2c3fb.png" />
 </div>
 </div>
 </section>

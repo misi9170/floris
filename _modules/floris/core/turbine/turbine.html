@@ -52,12 +52,12 @@
     <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -66,7 +66,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="https://unpkg.com/mermaid@10.8/dist/mermaid.min.js"></script>
@@ -292,17 +292,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -514,6 +515,7 @@ document.write(`
 
 <span class="kn">from</span> <span class="nn">floris.core</span> <span class="kn">import</span> <span class="n">BaseClass</span>
 <span class="kn">from</span> <span class="nn">floris.core.turbine</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AWCTurbine</span><span class="p">,</span>
     <span class="n">CosineLossTurbine</span><span class="p">,</span>
     <span class="n">MixedOperationTurbine</span><span class="p">,</span>
     <span class="n">SimpleDeratingTurbine</span><span class="p">,</span>
@@ -527,6 +529,7 @@ document.write(`
     <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">NDArrayInt</span><span class="p">,</span>
     <span class="n">NDArrayObject</span><span class="p">,</span>
+    <span class="n">NDArrayStr</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">floris.utilities</span> <span class="kn">import</span> <span class="n">cosd</span>
 
@@ -537,6 +540,7 @@ document.write(`
         <span class="s2">&quot;cosine-loss&quot;</span><span class="p">:</span> <span class="n">CosineLossTurbine</span><span class="p">,</span>
         <span class="s2">&quot;simple-derating&quot;</span><span class="p">:</span> <span class="n">SimpleDeratingTurbine</span><span class="p">,</span>
         <span class="s2">&quot;mixed&quot;</span><span class="p">:</span> <span class="n">MixedOperationTurbine</span><span class="p">,</span>
+        <span class="s2">&quot;awc&quot;</span><span class="p">:</span> <span class="n">AWCTurbine</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">}</span>
 
@@ -581,6 +585,8 @@ document.write(`
     <span class="n">yaw_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">tilt_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">power_setpoints</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
+    <span class="n">awc_modes</span><span class="p">:</span> <span class="n">NDArrayStr</span><span class="p">,</span>
+    <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">tilt_interps</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">interp1d</span><span class="p">],</span>
     <span class="n">turbine_type_map</span><span class="p">:</span> <span class="n">NDArrayObject</span><span class="p">,</span>
     <span class="n">turbine_power_thrust_tables</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
@@ -603,6 +609,12 @@ document.write(`
 <span class="sd">        tilt_angles (NDArrayFloat[findex, turbines]): The tilt angle for each turbine.</span>
 <span class="sd">        power_setpoints: (NDArrayFloat[findex, turbines]): Maximum power setpoint for each</span>
 <span class="sd">            turbine [W].</span>
+<span class="sd">        awc_modes: (NDArrayStr[findex, turbines]): awc excitation mode (currently, only &quot;baseline&quot;</span>
+<span class="sd">            and &quot;helix&quot; are implemented).</span>
+<span class="sd">        awc_modes: (NDArrayStr[findex, turbines]): awc excitation mode (currently, only &quot;baseline&quot;</span>
+<span class="sd">            and &quot;helix&quot; are implemented).</span>
+<span class="sd">        awc_amplitudes: (NDArrayFloat[findex, turbines]): awc excitation amplitude for each</span>
+<span class="sd">            turbine [deg].</span>
 <span class="sd">        tilt_interps (Iterable[tuple]): The tilt interpolation functions for each</span>
 <span class="sd">            turbine.</span>
 <span class="sd">        turbine_type_map: (NDArrayObject[wd, ws, turbines]): The Turbine type definition for</span>
@@ -637,6 +649,8 @@ document.write(`
         <span class="n">yaw_angles</span> <span class="o">=</span> <span class="n">yaw_angles</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="n">tilt_angles</span> <span class="o">=</span> <span class="n">tilt_angles</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="n">power_setpoints</span> <span class="o">=</span> <span class="n">power_setpoints</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
+        <span class="n">awc_modes</span> <span class="o">=</span> <span class="n">awc_modes</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
+        <span class="n">awc_amplitudes</span> <span class="o">=</span> <span class="n">awc_amplitudes</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="n">turbine_type_map</span> <span class="o">=</span> <span class="n">turbine_type_map</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">correct_cp_ct_for_tilt</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="k">pass</span>
@@ -667,6 +681,8 @@ document.write(`
             <span class="s2">&quot;yaw_angles&quot;</span><span class="p">:</span> <span class="n">yaw_angles</span><span class="p">,</span>
             <span class="s2">&quot;tilt_angles&quot;</span><span class="p">:</span> <span class="n">tilt_angles</span><span class="p">,</span>
             <span class="s2">&quot;power_setpoints&quot;</span><span class="p">:</span> <span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="s2">&quot;awc_modes&quot;</span><span class="p">:</span> <span class="n">awc_modes</span><span class="p">,</span>
+            <span class="s2">&quot;awc_amplitudes&quot;</span><span class="p">:</span> <span class="n">awc_amplitudes</span><span class="p">,</span>
             <span class="s2">&quot;tilt_interp&quot;</span><span class="p">:</span> <span class="n">tilt_interps</span><span class="p">[</span><span class="n">turb_type</span><span class="p">],</span>
             <span class="s2">&quot;average_method&quot;</span><span class="p">:</span> <span class="n">average_method</span><span class="p">,</span>
             <span class="s2">&quot;cubature_weights&quot;</span><span class="p">:</span> <span class="n">cubature_weights</span><span class="p">,</span>
@@ -689,6 +705,8 @@ document.write(`
     <span class="n">yaw_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">tilt_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">power_setpoints</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
+    <span class="n">awc_modes</span><span class="p">:</span> <span class="n">NDArrayStr</span><span class="p">,</span>
+    <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">thrust_coefficient_functions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">],</span>
     <span class="n">tilt_interps</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">interp1d</span><span class="p">],</span>
     <span class="n">correct_cp_ct_for_tilt</span><span class="p">:</span> <span class="n">NDArrayBool</span><span class="p">,</span>
@@ -712,6 +730,10 @@ document.write(`
 <span class="sd">        tilt_angles (NDArrayFloat[findex, turbines]): The tilt angle for each turbine.</span>
 <span class="sd">        power_setpoints: (NDArrayFloat[findex, turbines]): Maximum power setpoint for each</span>
 <span class="sd">            turbine [W].</span>
+<span class="sd">        awc_modes: (NDArrayStr[findex, turbines]): awc excitation mode (currently, only &quot;baseline&quot;</span>
+<span class="sd">            and &quot;helix&quot; are implemented).</span>
+<span class="sd">        awc_amplitudes: (NDArrayFloat[findex, turbines]): awc excitation amplitude for each</span>
+<span class="sd">            turbine [deg].</span>
 <span class="sd">        thrust_coefficient_functions (dict): The thrust coefficient functions for each turbine. Keys</span>
 <span class="sd">            are the turbine type string and values are the callable functions.</span>
 <span class="sd">        tilt_interps (Iterable[tuple]): The tilt interpolation functions for each</span>
@@ -741,6 +763,8 @@ document.write(`
         <span class="n">yaw_angles</span> <span class="o">=</span> <span class="n">yaw_angles</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="n">tilt_angles</span> <span class="o">=</span> <span class="n">tilt_angles</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="n">power_setpoints</span> <span class="o">=</span> <span class="n">power_setpoints</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
+        <span class="n">awc_modes</span> <span class="o">=</span> <span class="n">awc_modes</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
+        <span class="n">awc_amplitudes</span> <span class="o">=</span> <span class="n">awc_amplitudes</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="n">turbine_type_map</span> <span class="o">=</span> <span class="n">turbine_type_map</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">correct_cp_ct_for_tilt</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="k">pass</span>
@@ -771,6 +795,8 @@ document.write(`
             <span class="s2">&quot;yaw_angles&quot;</span><span class="p">:</span> <span class="n">yaw_angles</span><span class="p">,</span>
             <span class="s2">&quot;tilt_angles&quot;</span><span class="p">:</span> <span class="n">tilt_angles</span><span class="p">,</span>
             <span class="s2">&quot;power_setpoints&quot;</span><span class="p">:</span> <span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="s2">&quot;awc_modes&quot;</span><span class="p">:</span> <span class="n">awc_modes</span><span class="p">,</span>
+            <span class="s2">&quot;awc_amplitudes&quot;</span><span class="p">:</span> <span class="n">awc_amplitudes</span><span class="p">,</span>
             <span class="s2">&quot;tilt_interp&quot;</span><span class="p">:</span> <span class="n">tilt_interps</span><span class="p">[</span><span class="n">turb_type</span><span class="p">],</span>
             <span class="s2">&quot;average_method&quot;</span><span class="p">:</span> <span class="n">average_method</span><span class="p">,</span>
             <span class="s2">&quot;cubature_weights&quot;</span><span class="p">:</span> <span class="n">cubature_weights</span><span class="p">,</span>
@@ -796,6 +822,8 @@ document.write(`
     <span class="n">yaw_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">tilt_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">power_setpoints</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
+    <span class="n">awc_modes</span><span class="p">:</span> <span class="n">NDArrayStr</span><span class="p">,</span>
+    <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">axial_induction_functions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
     <span class="n">tilt_interps</span><span class="p">:</span> <span class="n">NDArrayObject</span><span class="p">,</span>
     <span class="n">correct_cp_ct_for_tilt</span><span class="p">:</span> <span class="n">NDArrayBool</span><span class="p">,</span>
@@ -816,6 +844,8 @@ document.write(`
 <span class="sd">        tilt_angles (NDArrayFloat[findex, turbines]): The tilt angle for each turbine.</span>
 <span class="sd">        power_setpoints: (NDArrayFloat[findex, turbines]): Maximum power setpoint for each</span>
 <span class="sd">            turbine [W].</span>
+<span class="sd">        awc_amplitudes: (NDArrayFloat[findex, turbines]): awc excitation amplitude for each</span>
+<span class="sd">            turbine [deg].</span>
 <span class="sd">        axial_induction_functions (dict): The axial induction functions for each turbine. Keys are</span>
 <span class="sd">            the turbine type string and values are the callable functions.</span>
 <span class="sd">        tilt_interps (Iterable[tuple]): The tilt interpolation functions for each</span>
@@ -845,6 +875,8 @@ document.write(`
         <span class="n">yaw_angles</span> <span class="o">=</span> <span class="n">yaw_angles</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="n">tilt_angles</span> <span class="o">=</span> <span class="n">tilt_angles</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="n">power_setpoints</span> <span class="o">=</span> <span class="n">power_setpoints</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
+        <span class="n">awc_modes</span> <span class="o">=</span> <span class="n">awc_modes</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
+        <span class="n">awc_amplitudes</span> <span class="o">=</span> <span class="n">awc_amplitudes</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="n">turbine_type_map</span> <span class="o">=</span> <span class="n">turbine_type_map</span><span class="p">[:,</span> <span class="n">ix_filter</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">correct_cp_ct_for_tilt</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="k">pass</span>
@@ -875,6 +907,8 @@ document.write(`
             <span class="s2">&quot;yaw_angles&quot;</span><span class="p">:</span> <span class="n">yaw_angles</span><span class="p">,</span>
             <span class="s2">&quot;tilt_angles&quot;</span><span class="p">:</span> <span class="n">tilt_angles</span><span class="p">,</span>
             <span class="s2">&quot;power_setpoints&quot;</span><span class="p">:</span> <span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="s2">&quot;awc_modes&quot;</span><span class="p">:</span> <span class="n">awc_modes</span><span class="p">,</span>
+            <span class="s2">&quot;awc_amplitudes&quot;</span><span class="p">:</span> <span class="n">awc_amplitudes</span><span class="p">,</span>
             <span class="s2">&quot;tilt_interp&quot;</span><span class="p">:</span> <span class="n">tilt_interps</span><span class="p">[</span><span class="n">turb_type</span><span class="p">],</span>
             <span class="s2">&quot;average_method&quot;</span><span class="p">:</span> <span class="n">average_method</span><span class="p">,</span>
             <span class="s2">&quot;cubature_weights&quot;</span><span class="p">:</span> <span class="n">cubature_weights</span><span class="p">,</span>

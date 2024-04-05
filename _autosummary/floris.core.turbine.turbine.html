@@ -53,12 +53,12 @@
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -67,7 +67,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_autosummary/floris.core.turbine.turbine';</script>
@@ -289,17 +289,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -647,7 +648,7 @@ nearest specified condition</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="floris.core.turbine.turbine.power">
-<span class="sig-prename descclassname"><span class="pre">floris.core.turbine.turbine.</span></span><span class="sig-name descname"><span class="pre">power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_setpoints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_interps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_type_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_power_thrust_tables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cubic-mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cubature_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct_cp_ct_for_tilt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multidim_condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/turbine.html#power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.turbine.power" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">floris.core.turbine.turbine.</span></span><span class="sig-name descname"><span class="pre">power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_setpoints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_modes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_amplitudes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_interps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_type_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_power_thrust_tables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cubic-mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cubature_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct_cp_ct_for_tilt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multidim_condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/turbine.html#power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.turbine.power" title="Link to this definition">#</a></dt>
 <dd><p>Power produced by a turbine adjusted for yaw and tilt. Value
 given in Watts.</p>
 <dl class="field-list simple">
@@ -662,6 +663,8 @@ given in Watts.</p>
 <li><p><strong>yaw_angles</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>tilt_angles</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>power_setpoints</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>awc_modes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>str_</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>awc_amplitudes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>tilt_interps</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>interp1d</em><em>]</em>) -- </p></li>
 <li><p><strong>turbine_type_map</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>object_</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>turbine_power_thrust_tables</strong> (<em>dict</em>) -- </p></li>
@@ -690,6 +693,12 @@ power_setpoints: (NDArrayFloat[findex, turbines]): Maximum power setpoint for ea
 <div><p>turbine [W].</p>
 </div></blockquote>
 <dl class="simple">
+<dt>awc_modes: (NDArrayStr[findex, turbines]): awc excitation mode (currently, only &quot;baseline&quot;</dt><dd><p>and &quot;helix&quot; are implemented).</p>
+</dd>
+<dt>awc_modes: (NDArrayStr[findex, turbines]): awc excitation mode (currently, only &quot;baseline&quot;</dt><dd><p>and &quot;helix&quot; are implemented).</p>
+</dd>
+<dt>awc_amplitudes: (NDArrayFloat[findex, turbines]): awc excitation amplitude for each</dt><dd><p>turbine [deg].</p>
+</dd>
 <dt>tilt_interps (Iterable[tuple]): The tilt interpolation functions for each</dt><dd><p>turbine.</p>
 </dd>
 <dt>turbine_type_map: (NDArrayObject[wd, ws, turbines]): The Turbine type definition for</dt><dd><p>each turbine.</p>
@@ -717,7 +726,7 @@ None.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="floris.core.turbine.turbine.thrust_coefficient">
-<span class="sig-prename descclassname"><span class="pre">floris.core.turbine.turbine.</span></span><span class="sig-name descname"><span class="pre">thrust_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_setpoints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thrust_coefficient_functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_interps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct_cp_ct_for_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_type_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_power_thrust_tables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cubic-mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cubature_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multidim_condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/turbine.html#thrust_coefficient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.turbine.thrust_coefficient" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">floris.core.turbine.turbine.</span></span><span class="sig-name descname"><span class="pre">thrust_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_setpoints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_modes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_amplitudes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thrust_coefficient_functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_interps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct_cp_ct_for_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_type_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_power_thrust_tables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cubic-mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cubature_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multidim_condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/turbine.html#thrust_coefficient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.turbine.thrust_coefficient" title="Link to this definition">#</a></dt>
 <dd><p>Thrust coefficient of a turbine.
 The value is obtained from the coefficient of thrust specified by the callables specified
 in the thrust_coefficient_functions.</p>
@@ -732,6 +741,8 @@ in the thrust_coefficient_functions.</p>
 <li><p><strong>yaw_angles</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>tilt_angles</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>power_setpoints</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>awc_modes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>str_</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>awc_amplitudes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>thrust_coefficient_functions</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Callable</em><em>]</em>) -- </p></li>
 <li><p><strong>tilt_interps</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>interp1d</em><em>]</em>) -- </p></li>
 <li><p><strong>correct_cp_ct_for_tilt</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>bool_</em><em>]</em><em>]</em>) -- </p></li>
@@ -757,6 +768,10 @@ power_setpoints: (NDArrayFloat[findex, turbines]): Maximum power setpoint for ea
 <div><p>turbine [W].</p>
 </div></blockquote>
 <dl class="simple">
+<dt>awc_modes: (NDArrayStr[findex, turbines]): awc excitation mode (currently, only &quot;baseline&quot;</dt><dd><p>and &quot;helix&quot; are implemented).</p>
+</dd>
+<dt>awc_amplitudes: (NDArrayFloat[findex, turbines]): awc excitation amplitude for each</dt><dd><p>turbine [deg].</p>
+</dd>
 <dt>thrust_coefficient_functions (dict): The thrust coefficient functions for each turbine. Keys</dt><dd><p>are the turbine type string and values are the callable functions.</p>
 </dd>
 <dt>tilt_interps (Iterable[tuple]): The tilt interpolation functions for each</dt><dd><p>turbine.</p>
@@ -784,7 +799,7 @@ None.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="floris.core.turbine.turbine.axial_induction">
-<span class="sig-prename descclassname"><span class="pre">floris.core.turbine.turbine.</span></span><span class="sig-name descname"><span class="pre">axial_induction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_setpoints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axial_induction_functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_interps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct_cp_ct_for_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_type_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_power_thrust_tables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cubic-mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cubature_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multidim_condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/turbine.html#axial_induction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.turbine.axial_induction" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">floris.core.turbine.turbine.</span></span><span class="sig-name descname"><span class="pre">axial_induction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_setpoints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_modes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">awc_amplitudes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axial_induction_functions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_interps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct_cp_ct_for_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_type_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turbine_power_thrust_tables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ix_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cubic-mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cubature_weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multidim_condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/turbine.html#axial_induction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.turbine.axial_induction" title="Link to this definition">#</a></dt>
 <dd><p>Axial induction factor of the turbine incorporating
 the thrust coefficient and yaw angle.</p>
 <dl class="field-list simple">
@@ -798,6 +813,8 @@ the thrust coefficient and yaw angle.</p>
 <li><p><strong>yaw_angles</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>tilt_angles</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>power_setpoints</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>awc_modes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>str_</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>awc_amplitudes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>axial_induction_functions</strong> (<em>dict</em>) -- </p></li>
 <li><p><strong>tilt_interps</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>object_</em><em>]</em><em>]</em>) -- </p></li>
 <li><p><strong>correct_cp_ct_for_tilt</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>bool_</em><em>]</em><em>]</em>) -- </p></li>
@@ -822,6 +839,8 @@ power_setpoints: (NDArrayFloat[findex, turbines]): Maximum power setpoint for ea
 <div><p>turbine [W].</p>
 </div></blockquote>
 <dl class="simple">
+<dt>awc_amplitudes: (NDArrayFloat[findex, turbines]): awc excitation amplitude for each</dt><dd><p>turbine [deg].</p>
+</dd>
 <dt>axial_induction_functions (dict): The axial induction functions for each turbine. Keys are</dt><dd><p>the turbine type string and values are the callable functions.</p>
 </dd>
 <dt>tilt_interps (Iterable[tuple]): The tilt interpolation functions for each</dt><dd><p>turbine.</p>

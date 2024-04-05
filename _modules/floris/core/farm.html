@@ -52,12 +52,12 @@
     <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -66,7 +66,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script src="https://unpkg.com/mermaid@10.8/dist/mermaid.min.js"></script>
@@ -292,17 +292,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -529,6 +530,7 @@ document.write(`
     <span class="n">iter_validator</span><span class="p">,</span>
     <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">NDArrayObject</span><span class="p">,</span>
+    <span class="n">NDArrayStr</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">floris.utilities</span> <span class="kn">import</span> <span class="n">load_yaml</span>
 
@@ -587,6 +589,15 @@ document.write(`
 
     <span class="n">power_setpoints</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">power_setpoints_sorted</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">awc_modes</span><span class="p">:</span> <span class="n">NDArrayStr</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">awc_modes_sorted</span><span class="p">:</span> <span class="n">NDArrayStr</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">awc_amplitudes_sorted</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">awc_frequencies</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">awc_frequencies_sorted</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="n">hub_heights</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">hub_heights_sorted</span><span class="p">:</span> <span class="n">NDArrayFloat</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
@@ -750,6 +761,21 @@ document.write(`
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">power_setpoints_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">power_setpoints</span><span class="p">,</span>
+            <span class="n">sorted_indices</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awc_modes_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awc_modes</span><span class="p">,</span>
+            <span class="n">sorted_indices</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awc_amplitudes_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awc_amplitudes</span><span class="p">,</span>
+            <span class="n">sorted_indices</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awc_frequencies_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awc_frequencies</span><span class="p">,</span>
             <span class="n">sorted_indices</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
             <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="p">)</span>
@@ -923,6 +949,50 @@ document.write(`
         <span class="n">power_setpoints</span> <span class="o">=</span> <span class="n">POWER_SETPOINT_DEFAULT</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_findex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_power_setpoints</span><span class="p">(</span><span class="n">power_setpoints</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">power_setpoints_sorted</span> <span class="o">=</span> <span class="n">POWER_SETPOINT_DEFAULT</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_findex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Farm.set_awc_modes">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_modes">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_awc_modes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">awc_modes</span><span class="p">:</span> <span class="n">NDArrayStr</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awc_modes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">awc_modes</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Farm.set_awc_modes_to_ref_mode">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_modes_to_ref_mode">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_awc_modes_to_ref_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_findex</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="c1"># awc_modes = np.empty((n_findex, self.n_turbines))\</span>
+        <span class="n">awc_modes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="s2">&quot;baseline&quot;</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">]</span><span class="o">*</span><span class="n">n_findex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_awc_modes</span><span class="p">(</span><span class="n">awc_modes</span><span class="p">)</span>
+        <span class="c1"># self.awc_modes_sorted = np.empty((n_findex, self.n_turbines))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awc_modes_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="s2">&quot;baseline&quot;</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">]</span><span class="o">*</span><span class="n">n_findex</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Farm.set_awc_amplitudes">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_amplitudes">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_awc_amplitudes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">awc_amplitudes</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awc_amplitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">awc_amplitudes</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Farm.set_awc_amplitudes_to_ref_amp">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_amplitudes_to_ref_amp">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_awc_amplitudes_to_ref_amp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_findex</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">awc_amplitudes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_findex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_awc_amplitudes</span><span class="p">(</span><span class="n">awc_amplitudes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awc_amplitudes_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_findex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Farm.set_awc_frequencies">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_frequencies">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_awc_frequencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">awc_frequencies</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awc_frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">awc_frequencies</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Farm.set_awc_frequencies_to_ref_freq">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.farm.html#floris.core.farm.Farm.set_awc_frequencies_to_ref_freq">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_awc_frequencies_to_ref_freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_findex</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">awc_frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_findex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_awc_frequencies</span><span class="p">(</span><span class="n">awc_frequencies</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awc_frequencies_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_findex</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_turbines</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Farm.calculate_tilt_for_eff_velocities">

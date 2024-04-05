@@ -53,12 +53,12 @@
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-L8RGXZCW3F"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JV2SK7CNPR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
@@ -67,7 +67,7 @@
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){ dataLayer.push(arguments); }
                 gtag('js', new Date());
-                gtag('config', 'G-L8RGXZCW3F');
+                gtag('config', 'G-JV2SK7CNPR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_autosummary/floris.core.farm';</script>
@@ -291,17 +291,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/001_derating_control.html">Example of using the simple-derating control model in FLORIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/002_disable_turbines.html">Example 001: Disable turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/003_setting_yaw_and_disabling.html">Example: Setting yaw angles and disabling turbine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_control_types/004_helix_active_wake_mixing.html">Example: Helix active wake mixing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Emgauss</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_emgauss/001_empirical_gauss_velocity_deficit_parameters.html">Example: Empirical Gaussian velocity deficit parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_emgauss/002_empirical_gauss_deflection_parameters.html">Example: Empirical Gaussian deflection parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/examples_emgauss/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Floating</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_floating/001_floating_turbine_models.html">Example: Floating turbines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/examples_floating/002_floating_vs_fixedbottom_farm.html">Example: Floating vs fixed-bottom farm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples_floating/003_tilt_driven_vertical_wake_deflection.html">Example: Tilt-driven vertical wake deflection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples - Get flow</span></p>
 <ul class="nav bd-sidenav">
@@ -575,6 +576,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.tilt_angles_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.tilt_angles_sorted</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.power_setpoints"><code class="docutils literal notranslate"><span class="pre">Farm.power_setpoints</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.power_setpoints_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.power_setpoints_sorted</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_modes"><code class="docutils literal notranslate"><span class="pre">Farm.awc_modes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_modes_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.awc_modes_sorted</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_amplitudes"><code class="docutils literal notranslate"><span class="pre">Farm.awc_amplitudes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_amplitudes_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.awc_amplitudes_sorted</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_frequencies"><code class="docutils literal notranslate"><span class="pre">Farm.awc_frequencies</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_frequencies_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.awc_frequencies_sorted</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.hub_heights"><code class="docutils literal notranslate"><span class="pre">Farm.hub_heights</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.hub_heights_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.hub_heights_sorted</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.turbine_map"><code class="docutils literal notranslate"><span class="pre">Farm.turbine_map</span></code></a></li>
@@ -613,6 +620,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_tilt_to_ref_tilt"><code class="docutils literal notranslate"><span class="pre">Farm.set_tilt_to_ref_tilt()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_power_setpoints"><code class="docutils literal notranslate"><span class="pre">Farm.set_power_setpoints()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_power_setpoints_to_ref_power"><code class="docutils literal notranslate"><span class="pre">Farm.set_power_setpoints_to_ref_power()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_modes"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_modes()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_modes_to_ref_mode"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_modes_to_ref_mode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_amplitudes"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_amplitudes()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_amplitudes_to_ref_amp"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_amplitudes_to_ref_amp()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_frequencies"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_frequencies()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_frequencies_to_ref_freq"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_frequencies_to_ref_freq()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.calculate_tilt_for_eff_velocities"><code class="docutils literal notranslate"><span class="pre">Farm.calculate_tilt_for_eff_velocities()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.finalize"><code class="docutils literal notranslate"><span class="pre">Farm.finalize()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.coordinates"><code class="docutils literal notranslate"><span class="pre">Farm.coordinates</span></code></a></li>
@@ -754,6 +767,36 @@ library (.../floris/turbine_library/), or a user-provided
 <dl class="py attribute">
 <dt class="sig sig-object py" id="floris.core.farm.Farm.power_setpoints_sorted">
 <span class="sig-name descname"><span class="pre">power_setpoints_sorted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArrayFloat</span></em><a class="headerlink" href="#floris.core.farm.Farm.power_setpoints_sorted" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.awc_modes">
+<span class="sig-name descname"><span class="pre">awc_modes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArrayStr</span></em><a class="headerlink" href="#floris.core.farm.Farm.awc_modes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.awc_modes_sorted">
+<span class="sig-name descname"><span class="pre">awc_modes_sorted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArrayStr</span></em><a class="headerlink" href="#floris.core.farm.Farm.awc_modes_sorted" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.awc_amplitudes">
+<span class="sig-name descname"><span class="pre">awc_amplitudes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArrayFloat</span></em><a class="headerlink" href="#floris.core.farm.Farm.awc_amplitudes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.awc_amplitudes_sorted">
+<span class="sig-name descname"><span class="pre">awc_amplitudes_sorted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArrayFloat</span></em><a class="headerlink" href="#floris.core.farm.Farm.awc_amplitudes_sorted" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.awc_frequencies">
+<span class="sig-name descname"><span class="pre">awc_frequencies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArrayFloat</span></em><a class="headerlink" href="#floris.core.farm.Farm.awc_frequencies" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.awc_frequencies_sorted">
+<span class="sig-name descname"><span class="pre">awc_frequencies_sorted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArrayFloat</span></em><a class="headerlink" href="#floris.core.farm.Farm.awc_frequencies_sorted" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1022,6 +1065,66 @@ library (.../floris/turbine_library/), or a user-provided
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.set_awc_modes">
+<span class="sig-name descname"><span class="pre">set_awc_modes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">awc_modes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/farm.html#Farm.set_awc_modes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.farm.Farm.set_awc_modes" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>awc_modes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>str_</em><em>]</em><em>]</em>) -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.set_awc_modes_to_ref_mode">
+<span class="sig-name descname"><span class="pre">set_awc_modes_to_ref_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_findex</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/farm.html#Farm.set_awc_modes_to_ref_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.farm.Farm.set_awc_modes_to_ref_mode" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n_findex</strong> (<em>int</em>) -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.set_awc_amplitudes">
+<span class="sig-name descname"><span class="pre">set_awc_amplitudes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">awc_amplitudes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/farm.html#Farm.set_awc_amplitudes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.farm.Farm.set_awc_amplitudes" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>awc_amplitudes</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.set_awc_amplitudes_to_ref_amp">
+<span class="sig-name descname"><span class="pre">set_awc_amplitudes_to_ref_amp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_findex</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/farm.html#Farm.set_awc_amplitudes_to_ref_amp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.farm.Farm.set_awc_amplitudes_to_ref_amp" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n_findex</strong> (<em>int</em>) -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.set_awc_frequencies">
+<span class="sig-name descname"><span class="pre">set_awc_frequencies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">awc_frequencies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/farm.html#Farm.set_awc_frequencies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.farm.Farm.set_awc_frequencies" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>awc_frequencies</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="floris.core.farm.Farm.set_awc_frequencies_to_ref_freq">
+<span class="sig-name descname"><span class="pre">set_awc_frequencies_to_ref_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_findex</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/farm.html#Farm.set_awc_frequencies_to_ref_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.farm.Farm.set_awc_frequencies_to_ref_freq" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n_findex</strong> (<em>int</em>) -- </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="floris.core.farm.Farm.calculate_tilt_for_eff_velocities">
 <span class="sig-name descname"><span class="pre">calculate_tilt_for_eff_velocities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotor_effective_velocities</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/farm.html#Farm.calculate_tilt_for_eff_velocities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.farm.Farm.calculate_tilt_for_eff_velocities" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1117,6 +1220,12 @@ library (.../floris/turbine_library/), or a user-provided
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.tilt_angles_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.tilt_angles_sorted</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.power_setpoints"><code class="docutils literal notranslate"><span class="pre">Farm.power_setpoints</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.power_setpoints_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.power_setpoints_sorted</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_modes"><code class="docutils literal notranslate"><span class="pre">Farm.awc_modes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_modes_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.awc_modes_sorted</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_amplitudes"><code class="docutils literal notranslate"><span class="pre">Farm.awc_amplitudes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_amplitudes_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.awc_amplitudes_sorted</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_frequencies"><code class="docutils literal notranslate"><span class="pre">Farm.awc_frequencies</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.awc_frequencies_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.awc_frequencies_sorted</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.hub_heights"><code class="docutils literal notranslate"><span class="pre">Farm.hub_heights</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.hub_heights_sorted"><code class="docutils literal notranslate"><span class="pre">Farm.hub_heights_sorted</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.turbine_map"><code class="docutils literal notranslate"><span class="pre">Farm.turbine_map</span></code></a></li>
@@ -1155,6 +1264,12 @@ library (.../floris/turbine_library/), or a user-provided
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_tilt_to_ref_tilt"><code class="docutils literal notranslate"><span class="pre">Farm.set_tilt_to_ref_tilt()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_power_setpoints"><code class="docutils literal notranslate"><span class="pre">Farm.set_power_setpoints()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_power_setpoints_to_ref_power"><code class="docutils literal notranslate"><span class="pre">Farm.set_power_setpoints_to_ref_power()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_modes"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_modes()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_modes_to_ref_mode"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_modes_to_ref_mode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_amplitudes"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_amplitudes()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_amplitudes_to_ref_amp"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_amplitudes_to_ref_amp()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_frequencies"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_frequencies()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.set_awc_frequencies_to_ref_freq"><code class="docutils literal notranslate"><span class="pre">Farm.set_awc_frequencies_to_ref_freq()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.calculate_tilt_for_eff_velocities"><code class="docutils literal notranslate"><span class="pre">Farm.calculate_tilt_for_eff_velocities()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.finalize"><code class="docutils literal notranslate"><span class="pre">Farm.finalize()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.farm.Farm.coordinates"><code class="docutils literal notranslate"><span class="pre">Farm.coordinates</span></code></a></li>
