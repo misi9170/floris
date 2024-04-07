@@ -9,12 +9,6 @@ floris.core.turbine.operation\_models
 
    
    
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      rotor_velocity_air_density_correction
-   
    
 
    

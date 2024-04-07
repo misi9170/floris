@@ -19,8 +19,9 @@ floris.core.rotor\_velocity
       cubic_cubature
       cubic_mean
       rotor_effective_velocity
-      rotor_velocity_tilt_correction
-      rotor_velocity_yaw_correction
+      rotor_velocity_air_density_correction
+      rotor_velocity_tilt_cosine_correction
+      rotor_velocity_yaw_cosine_correction
       simple_cubature
       simple_mean
    

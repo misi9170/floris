@@ -73,7 +73,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'input_reference_turbine';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Examples Index" href="examples.html" />
+    <link rel="next" title="Wake Models" href="wake_models.html" />
     <link rel="prev" title="Main Input File Reference" href="input_reference_main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="python"/>
@@ -204,7 +204,6 @@
 <li class="toctree-l1"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -582,10 +581,24 @@ match the root name of the file.</p>
 <dt>operation_model</dt><dd><p>Model for power and thrust curve interpretation.</p>
 </dd>
 <dt>power_thrust_table</dt><dd><dl class="simple">
-<p>Cp and Ct as a function of wind speed for the turbine's full range of operating conditions.</p>
-<dt>ref_air_density</dt><dd><p>The air density at which the Cp and Ct curves are defined.</p>
+<p>Parameters needed to evaluate the power and thrust produced by the turbine.</p>
+<dt>ref_air_density</dt><dd><p>The air density at which the power and thrust_coefficient curves are defined.</p>
 </dd>
-<dt>wind_speed</dt><dd></dd>
+<dt>ref_tilt</dt><dd><p>The tilt angle at which the Cp and Ct curves are defined. This is used to capture
+the effects of a floating platform on a turbine's power and wake.</p>
+</dd>
+<dt>cosine_loss_exponent_tilt</dt><dd><p>Cosine exponent for power loss due to tilt.</p>
+</dd>
+<dt>cosine_loss_exponent_yaw</dt><dd><p>Cosine exponent for power loss due to yaw misalignment.</p>
+</dd>
+<dt>helix_a</dt><dd><p>Helix parameters</p>
+</dd>
+<dt>wind_speed</dt><dd><p>wind speeds for look-up tables of power and thrust_coefficient</p>
+</dd>
+<dt>power</dt><dd><p>power values (specified in kW) for lookup by wind speed</p>
+</dd>
+<dt>thrust_coefficient</dt><dd><p>thrust coefficient values (unitless) for lookup by wind speed</p>
+</dd>
 </dl>
 </dd>
 <dt>multi_dimensional_cp_ct</dt><dd><p>A boolean flag used when the user wants FLORIS to use the user-supplied multi-dimensional
@@ -640,11 +653,11 @@ in <code class="docutils literal notranslate"><span class="pre">floris/turbine_l
       </div>
     </a>
     <a class="right-next"
-       href="examples.html"
+       href="wake_models.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Examples Index</p>
+        <p class="prev-next-title">Wake Models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

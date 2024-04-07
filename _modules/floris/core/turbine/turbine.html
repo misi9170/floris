@@ -205,7 +205,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -633,15 +632,6 @@ document.write(`
 <span class="sd">    Returns:</span>
 <span class="sd">        NDArrayFloat: The power, in Watts, for each turbine after adjusting for yaw and tilt.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO: Change the order of input arguments to be consistent with the other</span>
-    <span class="c1"># utility functions - velocities first...</span>
-    <span class="c1"># Update to power calculation which replaces the fixed cosine_loss_exponent_yaw exponent</span>
-    <span class="c1"># (which applies to the cosine of the yaw misalignment) with an exponent pW, that changes the</span>
-    <span class="c1"># effective wind speed input to the power calculation, rather than scaling the power.  This</span>
-    <span class="c1"># better handles power loss to yaw in above rated conditions</span>
-    <span class="c1">#</span>
-    <span class="c1"># Based on the paper &quot;Optimising yaw control at wind farm level&quot; by</span>
-    <span class="c1"># Ervin Bossanyi</span>
 
     <span class="c1"># Down-select inputs if ix_filter is given</span>
     <span class="k">if</span> <span class="n">ix_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

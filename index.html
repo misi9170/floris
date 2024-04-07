@@ -205,7 +205,6 @@
 <li class="toctree-l1"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -589,25 +588,29 @@ the conversation in <a class="reference external" href="https://github.com/NREL/
 <p>FLORIS is a Python package run on the command line typically by providing
 an input file with an initial configuration. It can be installed with
 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">floris</span></code> (see <a class="reference internal" href="installation.html#installation"><span class="std std-ref">Installation</span></a>). The typical entry point is
-<code class="xref py py-class docutils literal notranslate"><span class="pre">FlorisInterface</span></code> which accepts the path to the
+<a class="reference internal" href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel" title="floris.floris_model.FlorisModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlorisModel</span></code></a> which accepts the path to the
 input file as an argument. From there, changes can be made to the initial
-configuration through the <code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.reinitialize()</span></code>
+configuration through the <a class="reference internal" href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.set" title="floris.floris_model.FlorisModel.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisModel.set()</span></code></a>
 routine, and the simulation is executed with
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.calculate_wake()</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris.tools</span> <span class="kn">import</span> <span class="n">FlorisInterface</span>
-<span class="n">fi</span> <span class="o">=</span> <span class="n">FlorisInterface</span><span class="p">(</span><span class="s2">&quot;path/to/input.yaml&quot;</span><span class="p">)</span>
-<span class="n">fi</span><span class="o">.</span><span class="n">reinitialize</span><span class="p">(</span><span class="n">wind_directions</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
-<span class="n">fi</span><span class="o">.</span><span class="n">calculate_wake</span><span class="p">()</span>
+<a class="reference internal" href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.run" title="floris.floris_model.FlorisModel.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisModel.run()</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">floris</span> <span class="kn">import</span> <span class="n">FlorisModel</span>
+<span class="n">fmodel</span> <span class="o">=</span> <span class="n">FlorisModel</span><span class="p">(</span><span class="s2">&quot;path/to/input.yaml&quot;</span><span class="p">)</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">wind_directions</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+    <span class="n">wind_speeds</span><span class="o">=</span><span class="p">[</span><span class="mf">8.0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">turbulence_intensities</span><span class="o">=</span><span class="p">[</span><span class="mf">0.06</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span>
+<span class="p">)</span>
+<span class="n">fmodel</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Finally, results can be analyzed via post-processing functions available within
-<code class="xref py py-class docutils literal notranslate"><span class="pre">FlorisInterface</span></code> such as
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.get_turbine_layout()</span></code>,
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.get_turbine_powers()</span></code> and
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisInterface.get_farm_AEP()</span></code>, and
-a visualization package is available in <code class="xref py py-mod docutils literal notranslate"><span class="pre">floris.tools.visualization</span></code>.
+<a class="reference internal" href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel" title="floris.floris_model.FlorisModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlorisModel</span></code></a> such as
+<a class="reference internal" href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_turbine_layout" title="floris.floris_model.FlorisModel.get_turbine_layout"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisModel.get_turbine_layout()</span></code></a>,
+<a class="reference internal" href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_turbine_powers" title="floris.floris_model.FlorisModel.get_turbine_powers"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisModel.get_turbine_powers()</span></code></a> and
+<a class="reference internal" href="_autosummary/floris.floris_model.html#floris.floris_model.FlorisModel.get_farm_AEP" title="floris.floris_model.FlorisModel.get_farm_AEP"><code class="xref py py-meth docutils literal notranslate"><span class="pre">FlorisModel.get_farm_AEP()</span></code></a>, and
+a visualization package is available in <a class="reference internal" href="_autosummary/floris.flow_visualization.html#module-floris.flow_visualization" title="floris.flow_visualization"><code class="xref py py-mod docutils literal notranslate"><span class="pre">floris.flow_visualization</span></code></a>.
 A collection of examples are included in the <a class="reference external" href="https://github.com/NREL/floris/tree/main/examples">repository</a>
-and described in detail in <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples Index</span></a>.</p>
+and described in detail in <span class="xref std std-ref">examples</span>.</p>
 </section>
 <section id="engaging-on-github">
 <h2>Engaging on GitHub<a class="headerlink" href="#engaging-on-github" title="Link to this heading">#</a></h2>

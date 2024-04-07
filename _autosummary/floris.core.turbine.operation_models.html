@@ -202,7 +202,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -559,7 +558,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.rotor_velocity_air_density_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_air_density_correction()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.BaseOperationModel"><code class="docutils literal notranslate"><span class="pre">BaseOperationModel</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.BaseOperationModel.power"><code class="docutils literal notranslate"><span class="pre">BaseOperationModel.power()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.BaseOperationModel.thrust_coefficient"><code class="docutils literal notranslate"><span class="pre">BaseOperationModel.thrust_coefficient()</span></code></a></li>
@@ -609,19 +607,6 @@ document.write(`
                   
   <section id="module-floris.core.turbine.operation_models">
 <span id="floris-core-turbine-operation-models"></span><h1>floris.core.turbine.operation_models<a class="headerlink" href="#module-floris.core.turbine.operation_models" title="Link to this heading">#</a></h1>
-<p class="rubric">Functions</p>
-<table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.turbine.operation_models.rotor_velocity_air_density_correction" title="floris.core.turbine.operation_models.rotor_velocity_air_density_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotor_velocity_air_density_correction</span></code></a>(...)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">rtype<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</span></p>
-</dd>
-</dl>
-</p></td>
-</tr>
-</tbody>
-</table>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
@@ -645,23 +630,6 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<dl class="py function">
-<dt class="sig sig-object py" id="floris.core.turbine.operation_models.rotor_velocity_air_density_correction">
-<span class="sig-prename descclassname"><span class="pre">floris.core.turbine.operation_models.</span></span><span class="sig-name descname"><span class="pre">rotor_velocity_air_density_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_air_density</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/turbine/operation_models.html#rotor_velocity_air_density_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.operation_models.rotor_velocity_air_density_correction" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</span></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>velocities</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
-<li><p><strong>air_density</strong> (<em>float</em>) -- </p></li>
-<li><p><strong>ref_air_density</strong> (<em>float</em>) -- </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="floris.core.turbine.operation_models.BaseOperationModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">floris.core.turbine.operation_models.</span></span><span class="sig-name descname"><span class="pre">BaseOperationModel</span></span><a class="reference internal" href="../_modules/floris/core/turbine/operation_models.html#BaseOperationModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.turbine.operation_models.BaseOperationModel" title="Link to this definition">#</a></dt>
@@ -717,7 +685,6 @@ handling for yaw or tilt angles.</p>
 <p>As with all turbine submodules, implements only static power() and thrust_coefficient() methods,
 which are called by power() and thrust_coefficient() on turbine.py, respectively. This class is
 not intended to be instantiated; it simply defines a library of static methods.</p>
-<p>TODO: Should the turbine submodels each implement axial_induction()?</p>
 <dl class="field-list simple">
 </dl>
 <dl class="py method">
@@ -778,7 +745,6 @@ This turbine submodel is the default, and matches the turbine model in FLORIS v3
 <p>As with all turbine submodules, implements only static power() and thrust_coefficient() methods,
 which are called by power() and thrust_coefficient() on turbine.py, respectively. This class is
 not intended to be instantiated; it simply defines a library of static methods.</p>
-<p>TODO: Should the turbine submodels each implement axial_induction()?</p>
 <dl class="field-list simple">
 </dl>
 <dl class="py method">
@@ -1065,7 +1031,6 @@ the other operation models.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.rotor_velocity_air_density_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_air_density_correction()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.BaseOperationModel"><code class="docutils literal notranslate"><span class="pre">BaseOperationModel</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.BaseOperationModel.power"><code class="docutils literal notranslate"><span class="pre">BaseOperationModel.power()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.turbine.operation_models.BaseOperationModel.thrust_coefficient"><code class="docutils literal notranslate"><span class="pre">BaseOperationModel.thrust_coefficient()</span></code></a></li>

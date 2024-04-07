@@ -204,7 +204,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -561,8 +560,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_yaw_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_yaw_correction()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_tilt_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_tilt_correction()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_yaw_cosine_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_yaw_cosine_correction()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_tilt_cosine_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_tilt_cosine_correction()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.simple_mean"><code class="docutils literal notranslate"><span class="pre">simple_mean()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.cubic_mean"><code class="docutils literal notranslate"><span class="pre">cubic_mean()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.simple_cubature"><code class="docutils literal notranslate"><span class="pre">simple_cubature()</span></code></a></li>
@@ -571,6 +570,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.compute_tilt_angles_for_floating_turbines_map"><code class="docutils literal notranslate"><span class="pre">compute_tilt_angles_for_floating_turbines_map()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.compute_tilt_angles_for_floating_turbines"><code class="docutils literal notranslate"><span class="pre">compute_tilt_angles_for_floating_turbines()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_effective_velocity"><code class="docutils literal notranslate"><span class="pre">rotor_effective_velocity()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_air_density_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_air_density_correction()</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -620,7 +620,7 @@ document.write(`
 </dl>
 </p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.rotor_velocity.rotor_velocity_tilt_correction" title="floris.core.rotor_velocity.rotor_velocity_tilt_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotor_velocity_tilt_correction</span></code></a>(tilt_angles, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.rotor_velocity.rotor_velocity_air_density_correction" title="floris.core.rotor_velocity.rotor_velocity_air_density_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotor_velocity_air_density_correction</span></code></a>(...)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">rtype<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</span></p>
@@ -628,7 +628,7 @@ document.write(`
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#floris.core.rotor_velocity.rotor_velocity_yaw_correction" title="floris.core.rotor_velocity.rotor_velocity_yaw_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotor_velocity_yaw_correction</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#floris.core.rotor_velocity.rotor_velocity_tilt_cosine_correction" title="floris.core.rotor_velocity.rotor_velocity_tilt_cosine_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotor_velocity_tilt_cosine_correction</span></code></a>(...)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">rtype<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</span></p>
@@ -636,17 +636,25 @@ document.write(`
 </dl>
 </p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.rotor_velocity.simple_cubature" title="floris.core.rotor_velocity.simple_cubature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">simple_cubature</span></code></a>(array, cubature_weights[, axis])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.rotor_velocity.rotor_velocity_yaw_cosine_correction" title="floris.core.rotor_velocity.rotor_velocity_yaw_cosine_correction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotor_velocity_yaw_cosine_correction</span></code></a>(...)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</span></p>
+</dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#floris.core.rotor_velocity.simple_cubature" title="floris.core.rotor_velocity.simple_cubature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">simple_cubature</span></code></a>(array, cubature_weights[, axis])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#floris.core.rotor_velocity.simple_mean" title="floris.core.rotor_velocity.simple_mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">simple_mean</span></code></a>(array[, axis])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#floris.core.rotor_velocity.simple_mean" title="floris.core.rotor_velocity.simple_mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">simple_mean</span></code></a>(array[, axis])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py function">
-<dt class="sig sig-object py" id="floris.core.rotor_velocity.rotor_velocity_yaw_correction">
-<span class="sig-prename descclassname"><span class="pre">floris.core.rotor_velocity.</span></span><span class="sig-name descname"><span class="pre">rotor_velocity_yaw_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cosine_loss_exponent_yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotor_effective_velocities</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/rotor_velocity.html#rotor_velocity_yaw_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.rotor_velocity.rotor_velocity_yaw_correction" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="floris.core.rotor_velocity.rotor_velocity_yaw_cosine_correction">
+<span class="sig-prename descclassname"><span class="pre">floris.core.rotor_velocity.</span></span><span class="sig-name descname"><span class="pre">rotor_velocity_yaw_cosine_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cosine_loss_exponent_yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotor_effective_velocities</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/rotor_velocity.html#rotor_velocity_yaw_cosine_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.rotor_velocity.rotor_velocity_yaw_cosine_correction" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</span></p>
@@ -662,8 +670,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="floris.core.rotor_velocity.rotor_velocity_tilt_correction">
-<span class="sig-prename descclassname"><span class="pre">floris.core.rotor_velocity.</span></span><span class="sig-name descname"><span class="pre">rotor_velocity_tilt_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tilt_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosine_loss_exponent_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct_cp_ct_for_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotor_effective_velocities</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/rotor_velocity.html#rotor_velocity_tilt_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.rotor_velocity.rotor_velocity_tilt_correction" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="floris.core.rotor_velocity.rotor_velocity_tilt_cosine_correction">
+<span class="sig-prename descclassname"><span class="pre">floris.core.rotor_velocity.</span></span><span class="sig-name descname"><span class="pre">rotor_velocity_tilt_cosine_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tilt_angles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cosine_loss_exponent_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_interp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correct_cp_ct_for_tilt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotor_effective_velocities</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/rotor_velocity.html#rotor_velocity_tilt_cosine_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.rotor_velocity.rotor_velocity_tilt_cosine_correction" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</span></p>
@@ -810,6 +818,23 @@ Defaults to None.</p>
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="floris.core.rotor_velocity.rotor_velocity_air_density_correction">
+<span class="sig-prename descclassname"><span class="pre">floris.core.rotor_velocity.</span></span><span class="sig-name descname"><span class="pre">rotor_velocity_air_density_correction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air_density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_air_density</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/floris/core/rotor_velocity.html#rotor_velocity_air_density_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#floris.core.rotor_velocity.rotor_velocity_air_density_correction" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</span></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>velocities</strong> (<em>ndarray</em><em>[</em><em>Any</em><em>, </em><em>dtype</em><em>[</em><em>float64</em><em>]</em><em>]</em>) -- </p></li>
+<li><p><strong>air_density</strong> (<em>float</em>) -- </p></li>
+<li><p><strong>ref_air_density</strong> (<em>float</em>) -- </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
     <script type="text/x-thebe-config">
@@ -858,8 +883,8 @@ Defaults to None.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_yaw_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_yaw_correction()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_tilt_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_tilt_correction()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_yaw_cosine_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_yaw_cosine_correction()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_tilt_cosine_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_tilt_cosine_correction()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.simple_mean"><code class="docutils literal notranslate"><span class="pre">simple_mean()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.cubic_mean"><code class="docutils literal notranslate"><span class="pre">cubic_mean()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.simple_cubature"><code class="docutils literal notranslate"><span class="pre">simple_cubature()</span></code></a></li>
@@ -868,6 +893,7 @@ Defaults to None.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.compute_tilt_angles_for_floating_turbines_map"><code class="docutils literal notranslate"><span class="pre">compute_tilt_angles_for_floating_turbines_map()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.compute_tilt_angles_for_floating_turbines"><code class="docutils literal notranslate"><span class="pre">compute_tilt_angles_for_floating_turbines()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_effective_velocity"><code class="docutils literal notranslate"><span class="pre">rotor_effective_velocity()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floris.core.rotor_velocity.rotor_velocity_air_density_correction"><code class="docutils literal notranslate"><span class="pre">rotor_velocity_air_density_correction()</span></code></a></li>
 </ul>
   </nav></div>
 

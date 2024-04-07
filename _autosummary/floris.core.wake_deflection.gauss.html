@@ -202,7 +202,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -757,7 +756,12 @@ See property on super-class for more details.</p></li>
 <span id="id32">[<a class="reference internal" href="#id8" title="Majid Bastankhah and Fernando Porté-Agel. Experimental and theoretical study of wind turbine wakes in yawed conditions. Journal of Fluid Mechanics, 806:506–541, 2016.">1</a>]</span> and <span id="id33">[<a class="reference internal" href="#id21" title="Jennifer King, Paul Fleming, Ryan King, and Luis A. Martinez-Tossas. Controls-oriented model to capture secondary effects of wake steering. Submitted to Wind Energy Science, 2019.">2</a>]</span>
 for details on the methods used.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p># TODO</p>
+<dt>Args:</dt><dd><p>x_i (np.array): x-coordinates of turbine i.
+y_i (np.array): y-coordinates of turbine i.
+yaw_i (np.array): Yaw angle of turbine i.
+turbulence_intensity_i (np.array): Turbulence intensity at turbine i.
+ct_i (np.array): Thrust coefficient of turbine i.
+rotor_diameter_i (float): Rotor diameter of turbine i.</p>
 </dd>
 <dt>Returns:</dt><dd><p>np.array: Deflection field for the wake.</p>
 </dd>

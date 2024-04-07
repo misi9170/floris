@@ -205,7 +205,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -773,7 +772,7 @@ document.write(`
 <a class="viewcode-back" href="../../../../_autosummary/floris.core.wake_velocity.empirical_gauss.html#floris.core.wake_velocity.empirical_gauss.sigmoid_integral">[docs]</a>
 <span class="k">def</span> <span class="nf">sigmoid_integral</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="c1">#TODO: Can this be made faster?</span>
+    <span class="c1"># TODO: Can this be made faster?</span>
     <span class="n">above_smoothing_zone</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">center</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span>
     <span class="n">y</span><span class="p">[</span><span class="n">above_smoothing_zone</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">center</span><span class="p">)[</span><span class="n">above_smoothing_zone</span><span class="p">]</span>
     <span class="n">in_smoothing_zone</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">center</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">center</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
@@ -815,7 +814,7 @@ document.write(`
     <span class="n">awc_wake_denominator</span>
 <span class="p">):</span>
 
-    <span class="c1">## TODO: Add TI in the mix, finetune amplitude/freq effect</span>
+    <span class="c1"># TODO: Add TI in the mix, finetune amplitude/freq effect</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">awc_mode_i</span> <span class="o">==</span> <span class="s2">&quot;helix&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">awc_amplitude_i</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="n">awc_wake_exp</span><span class="o">/</span><span class="n">awc_wake_denominator</span>
     <span class="k">elif</span> <span class="p">(</span><span class="n">awc_mode_i</span> <span class="o">==</span> <span class="s2">&quot;baseline&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>

@@ -205,7 +205,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -519,8 +518,9 @@ document.write(`
 <span class="kn">from</span> <span class="nn">floris.core.rotor_velocity</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">average_velocity</span><span class="p">,</span>
     <span class="n">compute_tilt_angles_for_floating_turbines</span><span class="p">,</span>
-    <span class="n">rotor_velocity_tilt_correction</span><span class="p">,</span>
-    <span class="n">rotor_velocity_yaw_correction</span><span class="p">,</span>
+    <span class="n">rotor_velocity_air_density_correction</span><span class="p">,</span>
+    <span class="n">rotor_velocity_tilt_cosine_correction</span><span class="p">,</span>
+    <span class="n">rotor_velocity_yaw_cosine_correction</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">floris.type_dec</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">NDArrayFloat</span><span class="p">,</span>
@@ -531,18 +531,6 @@ document.write(`
 
 <span class="n">POWER_SETPOINT_DEFAULT</span> <span class="o">=</span> <span class="mf">1e12</span>
 <span class="n">POWER_SETPOINT_DISABLED</span> <span class="o">=</span> <span class="mf">0.001</span>
-
-<div class="viewcode-block" id="rotor_velocity_air_density_correction">
-<a class="viewcode-back" href="../../../../_autosummary/floris.core.turbine.operation_models.html#floris.core.turbine.operation_models.rotor_velocity_air_density_correction">[docs]</a>
-<span class="k">def</span> <span class="nf">rotor_velocity_air_density_correction</span><span class="p">(</span>
-    <span class="n">velocities</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
-    <span class="n">air_density</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">ref_air_density</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArrayFloat</span><span class="p">:</span>
-    <span class="c1"># Produce equivalent velocities at the reference air density</span>
-    <span class="c1"># TODO: This could go on BaseTurbineModel</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">air_density</span><span class="o">/</span><span class="n">ref_air_density</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">velocities</span></div>
-
 
 
 <div class="viewcode-block" id="BaseOperationModel">
@@ -582,6 +570,9 @@ document.write(`
     <span class="nd">@staticmethod</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">axial_induction</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># TODO: Consider whether we can make a generic axial_induction method</span>
+        <span class="c1"># based purely on thrust_coefficient so that we don&#39;t need to implement</span>
+        <span class="c1"># axial_induciton() in individual operation models.</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;BaseOperationModel.axial_induction&quot;</span><span class="p">)</span></div>
 </div>
 
@@ -597,8 +588,6 @@ document.write(`
 <span class="sd">    As with all turbine submodules, implements only static power() and thrust_coefficient() methods,</span>
 <span class="sd">    which are called by power() and thrust_coefficient() on turbine.py, respectively. This class is</span>
 <span class="sd">    not intended to be instantiated; it simply defines a library of static methods.</span>
-
-<span class="sd">    TODO: Should the turbine submodels each implement axial_induction()?</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SimpleTurbine.power">
@@ -705,8 +694,6 @@ document.write(`
 <span class="sd">    As with all turbine submodules, implements only static power() and thrust_coefficient() methods,</span>
 <span class="sd">    which are called by power() and thrust_coefficient() on turbine.py, respectively. This class is</span>
 <span class="sd">    not intended to be instantiated; it simply defines a library of static methods.</span>
-
-<span class="sd">    TODO: Should the turbine submodels each implement axial_induction()?</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="CosineLossTurbine.power">
@@ -744,13 +731,13 @@ document.write(`
             <span class="n">ref_air_density</span><span class="o">=</span><span class="n">power_thrust_table</span><span class="p">[</span><span class="s2">&quot;ref_air_density&quot;</span><span class="p">]</span>
         <span class="p">)</span>
 
-        <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="n">rotor_velocity_yaw_correction</span><span class="p">(</span>
+        <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="n">rotor_velocity_yaw_cosine_correction</span><span class="p">(</span>
             <span class="n">cosine_loss_exponent_yaw</span><span class="o">=</span><span class="n">power_thrust_table</span><span class="p">[</span><span class="s2">&quot;cosine_loss_exponent_yaw&quot;</span><span class="p">],</span>
             <span class="n">yaw_angles</span><span class="o">=</span><span class="n">yaw_angles</span><span class="p">,</span>
             <span class="n">rotor_effective_velocities</span><span class="o">=</span><span class="n">rotor_effective_velocities</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="n">rotor_velocity_tilt_correction</span><span class="p">(</span>
+        <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="n">rotor_velocity_tilt_cosine_correction</span><span class="p">(</span>
             <span class="n">tilt_angles</span><span class="o">=</span><span class="n">tilt_angles</span><span class="p">,</span>
             <span class="n">ref_tilt</span><span class="o">=</span><span class="n">power_thrust_table</span><span class="p">[</span><span class="s2">&quot;ref_tilt&quot;</span><span class="p">],</span>
             <span class="n">cosine_loss_exponent_tilt</span><span class="o">=</span><span class="n">power_thrust_table</span><span class="p">[</span><span class="s2">&quot;cosine_loss_exponent_tilt&quot;</span><span class="p">],</span>
@@ -1100,7 +1087,7 @@ document.write(`
                 <span class="o">+</span> <span class="n">power_thrust_table</span><span class="p">[</span><span class="s1">&#39;helix_power_c&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">base_powers</span>
                 <span class="p">)</span>
                 <span class="o">*</span><span class="n">awc_amplitudes</span><span class="o">**</span><span class="n">power_thrust_table</span><span class="p">[</span><span class="s1">&#39;helix_a&#39;</span><span class="p">]</span>
-            <span class="p">)</span> <span class="c1">## TODO: Should probably add max function here</span>
+            <span class="p">)</span> <span class="c1"># TODO: Should probably add max function here</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">awc_modes</span> <span class="o">==</span> <span class="s1">&#39;baseline&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
             <span class="k">return</span> <span class="n">base_powers</span>
         <span class="k">else</span><span class="p">:</span>

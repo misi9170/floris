@@ -205,7 +205,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -629,7 +628,7 @@ document.write(`
             <span class="c1"># Another linear ramp, but positive upstream of the far wake and negative in the</span>
             <span class="c1"># far wake; 0 at the start of the far wake</span>
             <span class="n">near_wake_ramp_down</span> <span class="o">=</span> <span class="p">(</span><span class="n">x0</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x0</span> <span class="o">-</span> <span class="n">xR</span><span class="p">)</span>
-            <span class="c1"># near_wake_ramp_down = -1 * (near_wake_ramp_up - 1)  # TODO: this is equivalent, right?</span>
+            <span class="c1"># near_wake_ramp_down = -1 * (near_wake_ramp_up - 1)  # : this is equivalent, right?</span>
 
             <span class="n">sigma_y</span> <span class="o">=</span> <span class="n">near_wake_ramp_down</span> <span class="o">*</span> <span class="mf">0.501</span> <span class="o">*</span> <span class="n">rotor_diameter_i</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ct_i</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
             <span class="n">sigma_y</span> <span class="o">+=</span> <span class="n">near_wake_ramp_up</span> <span class="o">*</span> <span class="n">sigma_y0</span>

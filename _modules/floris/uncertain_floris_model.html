@@ -205,7 +205,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -844,12 +843,6 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">            float: Sum of wind turbine powers in W.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: Turbulence correction used in the power calculation, but may not be in</span>
-        <span class="c1"># the model yet</span>
-        <span class="c1"># TODO: Turbines need a switch for using turbulence correction</span>
-        <span class="c1"># TODO: Uncomment out the following two lines once the above are resolved</span>
-        <span class="c1"># for turbine in self.core.farm.turbines:</span>
-        <span class="c1">#     turbine.use_turbulence_correction = use_turbulence_correction</span>
         <span class="k">if</span> <span class="n">use_turbulence_correction</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
                 <span class="s2">&quot;Turbulence correction is not yet implemented in the power calculation.&quot;</span>

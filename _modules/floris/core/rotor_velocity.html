@@ -205,7 +205,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -519,24 +518,23 @@ document.write(`
 <span class="kn">from</span> <span class="nn">floris.utilities</span> <span class="kn">import</span> <span class="n">cosd</span>
 
 
-<div class="viewcode-block" id="rotor_velocity_yaw_correction">
-<a class="viewcode-back" href="../../../_autosummary/floris.core.rotor_velocity.html#floris.core.rotor_velocity.rotor_velocity_yaw_correction">[docs]</a>
-<span class="k">def</span> <span class="nf">rotor_velocity_yaw_correction</span><span class="p">(</span>
+<div class="viewcode-block" id="rotor_velocity_yaw_cosine_correction">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.rotor_velocity.html#floris.core.rotor_velocity.rotor_velocity_yaw_cosine_correction">[docs]</a>
+<span class="k">def</span> <span class="nf">rotor_velocity_yaw_cosine_correction</span><span class="p">(</span>
     <span class="n">cosine_loss_exponent_yaw</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">yaw_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">rotor_effective_velocities</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArrayFloat</span><span class="p">:</span>
     <span class="c1"># Compute the rotor effective velocity adjusting for yaw settings</span>
     <span class="n">pW</span> <span class="o">=</span> <span class="n">cosine_loss_exponent_yaw</span> <span class="o">/</span> <span class="mf">3.0</span>  <span class="c1"># Convert from cosine_loss_exponent_yaw to w</span>
-    <span class="c1"># TODO: cosine loss hard coded</span>
     <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="n">rotor_effective_velocities</span> <span class="o">*</span> <span class="n">cosd</span><span class="p">(</span><span class="n">yaw_angles</span><span class="p">)</span> <span class="o">**</span> <span class="n">pW</span>
 
     <span class="k">return</span> <span class="n">rotor_effective_velocities</span></div>
 
 
-<div class="viewcode-block" id="rotor_velocity_tilt_correction">
-<a class="viewcode-back" href="../../../_autosummary/floris.core.rotor_velocity.html#floris.core.rotor_velocity.rotor_velocity_tilt_correction">[docs]</a>
-<span class="k">def</span> <span class="nf">rotor_velocity_tilt_correction</span><span class="p">(</span>
+<div class="viewcode-block" id="rotor_velocity_tilt_cosine_correction">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.rotor_velocity.html#floris.core.rotor_velocity.rotor_velocity_tilt_cosine_correction">[docs]</a>
+<span class="k">def</span> <span class="nf">rotor_velocity_tilt_cosine_correction</span><span class="p">(</span>
     <span class="n">tilt_angles</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">ref_tilt</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
     <span class="n">cosine_loss_exponent_tilt</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -555,7 +553,6 @@ document.write(`
     <span class="n">tilt_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">correct_cp_ct_for_tilt</span><span class="p">,</span> <span class="n">tilt_angles</span><span class="p">,</span> <span class="n">old_tilt_angle</span><span class="p">)</span>
 
     <span class="c1"># Compute the rotor effective velocity adjusting for tilt</span>
-    <span class="c1"># TODO: cosine loss hard coded</span>
     <span class="n">relative_tilt</span> <span class="o">=</span> <span class="n">tilt_angles</span> <span class="o">-</span> <span class="n">ref_tilt</span>
     <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">rotor_effective_velocities</span>
@@ -745,14 +742,14 @@ document.write(`
     <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="p">(</span><span class="n">air_density</span><span class="o">/</span><span class="n">ref_air_density</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">average_velocities</span>
 
     <span class="c1"># Compute the rotor effective velocity adjusting for yaw settings</span>
-    <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="n">rotor_velocity_yaw_correction</span><span class="p">(</span>
+    <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="n">rotor_velocity_yaw_cosine_correction</span><span class="p">(</span>
         <span class="n">cosine_loss_exponent_yaw</span><span class="p">,</span>
         <span class="n">yaw_angle</span><span class="p">,</span>
         <span class="n">rotor_effective_velocities</span>
     <span class="p">)</span>
 
     <span class="c1"># Compute the tilt, if using floating turbines</span>
-    <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="n">rotor_velocity_tilt_correction</span><span class="p">(</span>
+    <span class="n">rotor_effective_velocities</span> <span class="o">=</span> <span class="n">rotor_velocity_tilt_cosine_correction</span><span class="p">(</span>
         <span class="n">turbine_type_map</span><span class="p">,</span>
         <span class="n">tilt_angle</span><span class="p">,</span>
         <span class="n">ref_tilt</span><span class="p">,</span>
@@ -763,6 +760,18 @@ document.write(`
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">rotor_effective_velocities</span></div>
+
+
+<div class="viewcode-block" id="rotor_velocity_air_density_correction">
+<a class="viewcode-back" href="../../../_autosummary/floris.core.rotor_velocity.html#floris.core.rotor_velocity.rotor_velocity_air_density_correction">[docs]</a>
+<span class="k">def</span> <span class="nf">rotor_velocity_air_density_correction</span><span class="p">(</span>
+    <span class="n">velocities</span><span class="p">:</span> <span class="n">NDArrayFloat</span><span class="p">,</span>
+    <span class="n">air_density</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">ref_air_density</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArrayFloat</span><span class="p">:</span>
+    <span class="c1"># Produce equivalent velocities at the reference air density</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">air_density</span><span class="o">/</span><span class="n">ref_air_density</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">velocities</span></div>
 
 </pre></div>
 

@@ -204,7 +204,6 @@
 <li class="toctree-l1"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -566,7 +565,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="floating-wind-turbine-modeling">
 <h1>Floating Wind Turbine Modeling<a class="headerlink" href="#floating-wind-turbine-modeling" title="Link to this heading">#</a></h1>
 <p>The FLORIS wind turbine description includes a definition of the performance curves
-(Cp and Ct) as a function of wind speed, and this lookup table is used directly in
+(<code class="docutils literal notranslate"><span class="pre">power</span></code> and <code class="docutils literal notranslate"><span class="pre">thrust_coefficient</span></code>) as a function of wind speed, and this lookup table is used
+directly in
 the calculation of power production for a steady-state atmospheric condition
 (wind speed and wind direction). The power curve definition typically assumes a
 fixed-bottom wind turbine with no active or controllable tilt. However, floating
@@ -582,9 +582,8 @@ an additional input, <code class="docutils literal notranslate"><span class="pre
 steady tilt angle of the turbine based on wind speed. An interpolation is created and
 the tilt angle is computed for each turbine based on effective velocity. Taking into
 account the turbine rotor's built-in tilt, the absolute tilt change can then be used
-to correct Cp and Ct. This tilt angle is then used directly in the selected wake models.</p>
-<p><strong>NOTE</strong> No wake models currently use the tilt for vertical wake deflection,
-but it will be available with the inclusion of an upcoming wake model.</p>
+to correct the power and thrust coefficient.
+This tilt angle is then used directly in the selected wake models.</p>
 </section>
 
     <script type="text/x-thebe-config">

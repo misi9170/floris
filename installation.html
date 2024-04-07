@@ -204,7 +204,6 @@
 <li class="toctree-l1"><a class="reference internal" href="operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -587,16 +586,16 @@ document.write(`
 The following sections detail how download and install FLORIS for each use case.</p>
 <section id="requirements">
 <span id="id2"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
-<p>FLORIS is intended to be used with Python 3.8, 3.9, or 3.10, and it is highly recommended that users
+<p>FLORIS is intended to be used with Python 3.8 and up, and it is highly recommended that users
 work within a virtual environment for both working with and working on FLORIS, to maintain a clean
 and sandboxed environment. The simplest way to get started with virtual environments is through
 <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">conda</a>.</p>
-<p>Installing into a Python environment that contains FLORIS v2 may cause conflicts.
+<p>Installing into a Python environment that contains a previous version of FLORIS may cause conflicts.
 If you intend to use <a class="reference external" href="https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/">pyOptSparse</a>
 with FLORIS, it is recommended to install that package first before installing FLORIS.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If upgrading, it is highly recommended to install FLORIS V4 into a new virtual environment.</p>
+<p>If upgrading, it is highly recommended to install FLORIS v4 into a new virtual environment.</p>
 </div>
 </section>
 <section id="pip">
@@ -608,7 +607,7 @@ with FLORIS, it is recommended to install that package first before installing F
 </section>
 <section id="source-code-installation">
 <span id="source"></span><h2>Source Code Installation<a class="headerlink" href="#source-code-installation" title="Link to this heading">#</a></h2>
-<p>Developers and anyone who intends to inspect the source code can install FLORIS by downloading the
+<p>Developers and anyone who intends to inspect the source code or wants to run examples can install FLORIS by downloading the
 git repository from GitHub with <code class="docutils literal notranslate"><span class="pre">git</span></code> and use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to locally install it. The following commands in a terminal or shell will download and install FLORIS.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the source code from the `main` branch</span>
 git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>main<span class="w"> </span>https://github.com/NREL/floris.git
@@ -631,22 +630,28 @@ and importing FLORIS:</p>
 <span class="go">Help on package floris:</span>
 
 <span class="go">NAME</span>
-<span class="go">    floris - # Copyright 2021 NREL</span>
+<span class="go">    floris - # Copyright 2024 NREL</span>
 
 <span class="go">PACKAGE CONTENTS</span>
+<span class="go">    convert_floris_input_v3_to_v4</span>
+<span class="go">    convert_turbine_v3_to_v4</span>
+<span class="go">    core (package)</span>
+<span class="go">    cut_plane</span>
+<span class="go">    floris_model</span>
+<span class="go">    flow_visualization</span>
+<span class="go">    layout_visualization</span>
 <span class="go">    logging_manager</span>
-<span class="go">    simulation (package)</span>
-<span class="go">    tools (package)</span>
+<span class="go">    optimization (package)</span>
+<span class="go">    parallel_floris_model</span>
+<span class="go">    turbine_library (package)</span>
 <span class="go">    type_dec</span>
+<span class="go">    uncertain_floris_model</span>
 <span class="go">    utilities</span>
-
-<span class="go">DATA</span>
-<span class="go">    ROOT = PosixPath(&#39;/Users/rmudafor/Development/floris&#39;)</span>
-<span class="go">    VERSION = &#39;3.2&#39;</span>
-<span class="go">    version_file = &lt;_io.TextIOWrapper name=&#39;/Users/rmudafor/Development/fl...</span>
+<span class="go">    version</span>
+<span class="go">    wind_data</span>
 
 <span class="go">VERSION</span>
-<span class="go">    3.2</span>
+<span class="go">    4.0</span>
 
 <span class="go">FILE</span>
 <span class="go">    ~/floris/floris/__init__.py</span>
@@ -655,7 +660,7 @@ and importing FLORIS:</p>
 </section>
 <section id="developer-installation">
 <span id="developers"></span><h2>Developer Installation<a class="headerlink" href="#developer-installation" title="Link to this heading">#</a></h2>
-<p>For users that will also be contributing to the FLORIS code repoistory, the process is similar to
+<p>For users that will also be contributing to the FLORIS code repository, the process is similar to
 the source code installation, but with a few extra considerations. The steps are laid out in our
 <a class="reference internal" href="dev_guide.html"><span class="std std-doc">developer's guide</span></a>.</p>
 </section>

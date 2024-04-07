@@ -205,7 +205,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_models_user.html">Turbine Operation Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_main.html">Main Input File Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../input_reference_turbine.html">Turbine Input File Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Examples Index</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory and Background</span></p>
 <ul class="nav bd-sidenav">
@@ -628,7 +627,12 @@ document.write(`
 <span class="sd">        for details on the methods used.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            # TODO</span>
+<span class="sd">            x_i (np.array): x-coordinates of turbine i.</span>
+<span class="sd">            y_i (np.array): y-coordinates of turbine i.</span>
+<span class="sd">            yaw_i (np.array): Yaw angle of turbine i.</span>
+<span class="sd">            turbulence_intensity_i (np.array): Turbulence intensity at turbine i.</span>
+<span class="sd">            ct_i (np.array): Thrust coefficient of turbine i.</span>
+<span class="sd">            rotor_diameter_i (float): Rotor diameter of turbine i.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            np.array: Deflection field for the wake.</span>
