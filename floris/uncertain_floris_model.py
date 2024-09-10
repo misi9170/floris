@@ -6,6 +6,7 @@ import numpy as np
 
 from floris import FlorisModel
 from floris.logging_manager import LoggingManager
+from floris.parallel_floris_model_2 import ParallelFlorisModel
 from floris.type_dec import (
     floris_array_converter,
     NDArrayBool,
@@ -64,7 +65,7 @@ class UncertainFlorisModel(LoggingManager):
 
     def __init__(
         self,
-        configuration: dict | str | Path,
+        configuration: dict | str | Path | FlorisModel | ParallelFlorisModel,
         wd_resolution=1.0,  # Degree
         ws_resolution=1.0,  # m/s
         ti_resolution=0.01,
@@ -98,7 +99,14 @@ class UncertainFlorisModel(LoggingManager):
         self.weights = self._get_weights(self.wd_std, self.wd_sample_points)
 
         # Instantiate the un-expanded FlorisModel
-        self.fmodel_unexpanded = FlorisModel(configuration)
+        if isinstance(configuration, (FlorisModel, ParallelFlorisModel)):
+            self.fmodel_unexpanded = configuration.copy()
+        elif isinstance(configuration, (dict, str, Path)):
+            self.fmodel_unexpanded = FlorisModel(configuration)
+        else:
+            raise ValueError(
+                "configuration must be a FlorisModel, ParallelFlorisModel, dict, str, or Path"
+            )
 
         # Call set at this point with no arguments so ready to run
         self.set()
