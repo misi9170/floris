@@ -170,12 +170,44 @@ class FlowField(BaseClass):
             hull = ConvexHull(bounds)
             polygon = Polygon(bounds[hull.vertices])
             path = mpltPath.Path(polygon.boundary.coords)
-            points = np.column_stack(
-                (
-                    grid.x_sorted_inertial_frame.flatten(),
-                    grid.y_sorted_inertial_frame.flatten(),
+            if hasattr(grid, "x_sorted_inertial_frame"): # or use isinstance?
+                points = np.column_stack(
+                    (
+                        grid.x_sorted_inertial_frame.flatten(),
+                        grid.y_sorted_inertial_frame.flatten(),
+                    )
                 )
-            )
+                if len(self.het_map[0].points[0]) == 2:
+                    speed_ups = self.calculate_speed_ups(
+                        self.het_map,
+                        grid.x_sorted_inertial_frame,
+                        grid.y_sorted_inertial_frame
+                    )
+                elif len(self.het_map[0].points[0]) == 3:
+                    speed_ups = self.calculate_speed_ups(
+                        self.het_map,
+                        grid.x_sorted_inertial_frame,
+                        grid.y_sorted_inertial_frame,
+                        grid.z_sorted
+                    )
+            elif hasattr(grid, "points_x"):
+                points = np.column_stack((grid.points_x, grid.points_y))
+                if len(self.het_map[0].points[0]) == 2:
+                    speed_ups = self.calculate_speed_ups(
+                        self.het_map,
+                        np.repeat(grid.points_x[None,:,None,None], len(self.wind_speeds), axis=0),
+                        np.repeat(grid.points_y[None,:,None,None], len(self.wind_speeds), axis=0),
+                    )
+                elif len(self.het_map[0].points[0]) == 3:
+                    speed_ups = self.calculate_speed_ups(
+                        self.het_map,
+                        np.repeat(grid.points_x[None,:,None,None], len(self.wind_speeds), axis=0),
+                        np.repeat(grid.points_y[None,:,None,None], len(self.wind_speeds), axis=0),
+                        np.repeat(grid.points_z[None,:,None,None], len(self.wind_speeds), axis=0),
+                    )
+            else:
+                raise TypeError("Grid type does not support heterogeneity.")
+
             inside = path.contains_points(points)
             if not np.all(inside):
                 self.logger.warning(
@@ -184,20 +216,6 @@ class FlowField(BaseClass):
                     "been filled with the freestream wind speed. If this is not the desired "
                     "behavior, the user will need to expand the heterogeneous inflow bounds to "
                     "fully cover the calculated flow field area."
-                )
-
-            if len(self.het_map[0].points[0]) == 2:
-                speed_ups = self.calculate_speed_ups(
-                    self.het_map,
-                    grid.x_sorted_inertial_frame,
-                    grid.y_sorted_inertial_frame
-                )
-            elif len(self.het_map[0].points[0]) == 3:
-                speed_ups = self.calculate_speed_ups(
-                    self.het_map,
-                    grid.x_sorted_inertial_frame,
-                    grid.y_sorted_inertial_frame,
-                    grid.z_sorted
                 )
 
         # Create the sheer-law wind profile
