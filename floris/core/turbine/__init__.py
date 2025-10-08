@@ -9,3 +9,4 @@ from floris.core.turbine.operation_models import (
     SimpleTurbine,
 )
 from floris.core.turbine.unified_momentum_model import UnifiedMomentumModelTurbine
+from floris.core.turbine.unified_momentum_model_2 import UnifiedMomentumModelTurbine_2
