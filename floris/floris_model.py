@@ -3,15 +3,14 @@ from __future__ import annotations
 
 import copy
 import inspect
-from logging import disable
 from pathlib import Path
 from typing import (
     Any,
+    Dict,
     List,
     Optional,
     Tuple,
     Union,
-    Dict,
 )
 
 import numpy as np
@@ -30,7 +29,7 @@ from floris.core.turbine.turbine import (
 )
 from floris.cut_plane import CutPlane
 from floris.logging_manager import LoggingManager
-from floris.read_windio import read_wind_farm
+from floris.read_windio import load_windio_input, read_wind_farm
 from floris.type_dec import (
     floris_array_converter,
     NDArrayBool,
@@ -1102,7 +1101,8 @@ class FlorisModel(LoggingManager):
                 'x': self.core.flow_field.heterogeneous_inflow_config['x'],
                 'y': self.core.flow_field.heterogeneous_inflow_config['y'],
                 'speed_multipliers':
-                    self.core.flow_field.heterogeneous_inflow_config['speed_multipliers'][findex:findex+1],
+                    self.core.flow_field.\
+                        heterogeneous_inflow_config['speed_multipliers'][findex:findex+1],
                 'interp_method': self.core.flow_field.heterogeneous_inflow_config['interp_method'],
             }
             if 'z' in self.core.flow_field.heterogeneous_inflow_config:
@@ -1938,7 +1938,7 @@ class FlorisModel(LoggingManager):
 
     def _reset_windio_metadata(self, category: List[str] = None) -> None:
         METADATA_FILEDS = ['wind_farm', 'wind_resource']
-        
+
         if not hasattr(self, "_windio_metadata"):
             category = None
 
@@ -1953,40 +1953,44 @@ class FlorisModel(LoggingManager):
                      wind_farm: Path | Dict = None,
                      model_attrs: Path | Dict = None,
                      ) -> 'FlorisModel':
-        
+
         from .read_windio import load_windio_input
 
         if (wind_energy_system is not None):
             wind_energy_system = load_windio_input(wind_energy_system)
-        
-        def _wes_or_input(input: Path | Dict, input_name: str, wes_nested_key_paths: Tuple[str]) -> Dict:
+
+        def _wes_or_input(
+            input: Path | Dict,
+            input_name: str,
+            wes_nested_key_paths: Tuple[str]
+        ) -> Dict:
             if (input is not None):
                 print(f"{input_name} from wind_energy_system will be ignored.")
                 data_dict = load_windio_input(input)
                 data_dict['_context'] = f".{input_name}"
                 return data_dict
-            
+
             if (wind_energy_system is not None):
                 data_dict = nested_get(wind_energy_system, wes_nested_key_paths)
                 data_dict['_context'] = f".wind_energy_system.{'.'.join(wes_nested_key_paths)}"
                 return data_dict
-            
+
             raise ValueError(f"Either {input_name} or wind_energy_system must be provided.")
 
-        wind_farm_windio = _wes_or_input(wind_farm, 
-                                  "wind_farm", 
+        wind_farm_windio = _wes_or_input(wind_farm,
+                                  "wind_farm",
                                   ("wind_farm",))
-        wind_data_windio = _wes_or_input(wind_resource, 
-                                  "wind_resource", 
+        wind_data_windio = _wes_or_input(wind_resource,
+                                  "wind_resource",
                                   ("site", "energy_resource", "wind_resource"))
-        model_attrs_windio = _wes_or_input(model_attrs, 
-                                    "attributes", 
+        model_attrs_windio = _wes_or_input(model_attrs,
+                                    "attributes",
                                     ("attributes",))
 
         # Start with defaults
         default_param = load_windio_input(Path(__file__).parent / "default_inputs.yaml")
 
-        # Wake model parameters are set once and for all 
+        # Wake model parameters are set once and for all
         from .read_windio import read_wake_model
         wake_model_floris = read_wake_model(model_attrs_windio)
         update_nested_dict(default_param, wake_model_floris)
@@ -1995,12 +1999,12 @@ class FlorisModel(LoggingManager):
         fmodel = FlorisModel(default_param)
         fmodel._reset_windio_metadata()
 
-        # Reconstruct description 
+        # Reconstruct description
         fmodel_name = "FlorisModel from windio"
 
         if (wind_energy_system is not None):
-            fmodel_name = wind_energy_system['name'] 
-        
+            fmodel_name = wind_energy_system['name']
+
         fmodel_name += f" ({wind_farm_windio['name']})"
 
         fmodel.core.name = fmodel_name
@@ -2009,11 +2013,11 @@ class FlorisModel(LoggingManager):
         # Set the various components from windio data
         fmodel.set_farm_from_windio(wind_farm_windio)
         fmodel.set_wind_data_from_windio(wind_data_windio)
-        
+
         return fmodel
 
     def set_wind_data_from_windio(self, wind_resource_windio: Dict) -> None:
-        from .read_windio import read_wind_resource, load_windio_input
+        from .read_windio import load_windio_input, read_wind_resource
         self._reset_windio_metadata(category="wind_resource")
 
         wind_resource_windio = load_windio_input(wind_resource_windio)
@@ -2036,7 +2040,6 @@ class FlorisModel(LoggingManager):
         )
 
     def set_farm_from_windio(self, wind_farm_windio: Dict) -> None:
-        from .read_windio import read_wind_farm, load_windio_input
         self._reset_windio_metadata(category="wind_farm")
 
         wind_farm_windio = load_windio_input(wind_farm_windio)
@@ -2044,7 +2047,7 @@ class FlorisModel(LoggingManager):
 
         self._reset_windio_metadata(category="wind_farm")
         self._windio_metadata["wind_farm"] = wind_farm_floris.pop('_metadata', {})
-        
-        # Set reference height to mean hub height 
+
+        # Set reference height to mean hub height
         hub_heights = [t["hub_height"] for t in wind_farm_floris["turbine_type"]]
         self.set(**wind_farm_floris, reference_wind_height=np.mean(hub_heights))

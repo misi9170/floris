@@ -549,10 +549,11 @@ class FlowFieldPlanarGrid(Grid):
         # These are the rotated coordinates of the wind turbines based on the wind direction
         # Unless keep_inertial_frame is True, in which case we keep original coordinates
         if not self.keep_inertial_frame:
-            x, y, z, self.x_center_of_rotation, self.y_center_of_rotation = rotate_coordinates_rel_west(
-                self.wind_directions,
-                self.turbine_coordinates
-            )
+            x, y, z, self.x_center_of_rotation, self.y_center_of_rotation = \
+                rotate_coordinates_rel_west(
+                    self.wind_directions,
+                    self.turbine_coordinates
+                )
         else:
             # Use coordinates directly without rotation
             x_coordinates, y_coordinates, z_coordinates = self.turbine_coordinates.T
@@ -625,8 +626,11 @@ class FlowFieldPlanarGrid(Grid):
         # Now calculate grid coordinates in original frame (from 270 deg perspective)
         # Skip this if keep_inertial_frame is True since we're already in the inertial frame
         if not self.keep_inertial_frame:
-            self.x_sorted_inertial_frame, self.y_sorted_inertial_frame, self.z_sorted_inertial_frame = \
-                reverse_rotate_coordinates_rel_west(
+            (
+                self.x_sorted_inertial_frame,
+                self.y_sorted_inertial_frame,
+                self.z_sorted_inertial_frame
+            ) = reverse_rotate_coordinates_rel_west(
                     wind_directions=self.wind_directions,
                     grid_x=self.x_sorted,
                     grid_y=self.y_sorted,
@@ -669,7 +673,7 @@ class PointsGrid(Grid):
     points_z: NDArrayFloat = field(converter=floris_array_converter)
     x_center_of_rotation: float | None = field(default=None)
     y_center_of_rotation: float | None = field(default=None)
- 
+
     def __attrs_post_init__(self) -> None:
         self.set_grid()
 
