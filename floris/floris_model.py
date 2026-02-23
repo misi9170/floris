@@ -218,8 +218,12 @@ class FlorisModel(LoggingManager):
                 self._wind_data.set_layout(farm_dict["layout_x"], farm_dict["layout_y"])
 
         # Wind data
-        if any([wind_directions, wind_speeds, turbulence_intensities, heterogeneous_inflow_config]):
-            # The if-statement above checks if any of these inputs are not None
+        if (
+            (wind_directions is not None)
+            or (wind_speeds is not None)
+            or (turbulence_intensities is not None)
+            or (heterogeneous_inflow_config is not None)
+        ):
             if wind_data is not None:
                 raise ValueError(
                     "If wind_data is passed to reinitialize, then do not pass wind_directions, "
