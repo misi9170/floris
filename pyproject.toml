@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "floris"
-version = "4.6.4"
+version = "4.6.6"
 description = "A controls-oriented engineering wake model."
 readme = "README.md"
 requires-python = ">=3.10, <3.15"
@@ -36,7 +36,7 @@ dependencies = [
     "numpy~=2.0",
     "scipy~=1.1",
     "matplotlib~=3.0",
-    "pandas~=2.0",
+    "pandas>=2.0,<4",
     "shapely~=2.0",
     "coloredlogs~=15.0",
     "pathos~=0.3",
@@ -57,7 +57,7 @@ develop = [
     "pytest-benchmark~=5.1",
     "pre-commit~=4.0",
     "ruff~=0.9",
-    "isort>=5,<8"
+    "isort>=5,<9"
 ]
 
 [tool.setuptools.packages.find]
@@ -196,6 +196,7 @@ lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 "floris/core/wake_velocity/jensen.py" = ["F841"]
 "floris/core/wake_velocity/gauss.py" = ["F841"]
 "floris/core/wake_velocity/empirical_gauss.py" = ["F841"]
+"floris/core/wake_model/*.py" = ["F841"]
 # Ignore `F401` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
 "__init__.py" = ["F401"]
 
@@ -234,6 +235,7 @@ lines_after_imports = 2
 line_length = 100
 order_by_type = false
 split_on_trailing_comma = true
+skip = ["floris/core/turbine/__init__.py"]
 
 # length_sort = true
 # case_sensitive: False

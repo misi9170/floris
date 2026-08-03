@@ -5,8 +5,10 @@ import numpy as np
 from floris import FlorisModel
 from floris.core import State
 from floris.core.turbine.operation_models import (
+    MixedOperationTurbine,
     POWER_SETPOINT_DEFAULT,
     POWER_SETPOINT_DISABLED,
+    SimpleDeratingTurbine,
 )
 
 
@@ -465,23 +467,19 @@ def optimize_power_setpoints(
 
     # Ensure we're in an operation model which includes derating
     # presently this can be "mixed" or "simple-derating"
-    if fmodel.get_operation_model() not in ["mixed", "simple-derating"]:
+    valid_op_models = (SimpleDeratingTurbine, MixedOperationTurbine)
+    if not all(isinstance(m, valid_op_models) for m in fmodel.get_operation_model()):
         raise ValueError(
             "Operation model must include derating (e.g., 'mixed' or 'simple-derating')"
         )
 
     # Raise an error if there is more than one turbine type specified
-    if not np.array(
-        [
-            fmodel.core.farm.turbine_definitions[0] == td
-            for td in fmodel.core.farm.turbine_definitions
-        ]
-    ).all():
+    if not all(fmodel.core.farm.turbines[0] == t for t in fmodel.core.farm.turbines):
         raise NotImplementedError("Only one turbine type is currently supported for optimization")
 
     # If initial set point not provided, set to rated (assumed max) power
     if power_setpoint_initial is None:
-        max_power = fmodel.core.farm.turbine_map[0].power_thrust_table["power"].max() * 1000.0
+        max_power = fmodel.core.farm.turbines[0].power_thrust_table["power"].max() * 1000.0
         power_setpoint_initial = np.tile(max_power, (fmodel.n_findex, 1))
 
     # Initialize the test power setpoints

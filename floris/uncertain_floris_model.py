@@ -9,6 +9,7 @@ import numpy as np
 
 from floris import FlorisModel
 from floris.core import average_velocity, State
+from floris.core.turbine import BaseOperationModel
 from floris.logging_manager import LoggingManager
 from floris.par_floris_model import ParFlorisModel
 from floris.type_dec import (
@@ -957,20 +958,13 @@ class UncertainFlorisModel(LoggingManager):
 
         return weights
 
-    def get_operation_model(self) -> str:
+    def get_operation_model(self) -> list[BaseOperationModel]:
         """Get the operation model of a FlorisModel.
 
         Returns:
-            str: The operation_model.
+            list[BaseOperationModel]: The operation_model instance(s).
         """
-        operation_models = [
-            self.fmodel_unexpanded.core.farm.turbine_definitions[tindex]["operation_model"]
-            for tindex in range(self.fmodel_unexpanded.core.farm.n_turbines)
-        ]
-        if len(set(operation_models)) == 1:
-            return operation_models[0]
-        else:
-            return operation_models
+        return [t.operation_model for t in self.fmodel_expanded.core.farm.turbines]
 
     def set_operation_model(self, operation_model: str | List[str]):
         """Set the turbine operation model(s).
@@ -981,10 +975,10 @@ class UncertainFlorisModel(LoggingManager):
         if isinstance(operation_model, str):
             if len(self.fmodel_unexpanded.core.farm.turbine_type) == 1:
                 # Set a single one here, then, and return
-                turbine_type = self.fmodel_unexpanded.core.farm.turbine_definitions[0]
-                turbine_type["operation_model"] = operation_model
+                turbine_dict = self.fmodel_unexpanded.core.farm.turbines[0].as_dict()
+                turbine_dict["operation_model"] = operation_model
                 self.set(
-                    turbine_type=[turbine_type],
+                    turbine_type=[turbine_dict],
                     reference_wind_height=self.reference_wind_height
                 )
                 return
@@ -996,16 +990,16 @@ class UncertainFlorisModel(LoggingManager):
                 "The length of the operation_model list must be " "equal to the number of turbines."
             )
 
-        turbine_type_list = self.fmodel_unexpanded.core.farm.turbine_definitions
+        turbine_dicts = [t.as_dict() for t in self.fmodel_unexpanded.core.farm.turbines]
 
         for tindex in range(self.fmodel_unexpanded.core.farm.n_turbines):
-            turbine_type_list[tindex]["turbine_type"] = (
-                turbine_type_list[tindex]["turbine_type"] + "_" + operation_model[tindex]
+            turbine_dicts[tindex]["turbine_type"] = (
+                turbine_dicts[tindex]["turbine_type"] + "_" + operation_model[tindex]
             )
-            turbine_type_list[tindex]["operation_model"] = operation_model[tindex]
+            turbine_dicts[tindex]["operation_model"] = operation_model[tindex]
 
         self.set(
-            turbine_type=turbine_type_list,
+            turbine_type=turbine_dicts,
             reference_wind_height=self.reference_wind_height
         )
 
@@ -1019,34 +1013,35 @@ class UncertainFlorisModel(LoggingManager):
         """
         return self.__class__(self.fmodel_unexpanded.copy(), **self.secondary_init_kwargs)
 
-    def get_param(self, param: List[str], param_idx: Optional[int] = None) -> Any:
+    def get_wake_parameter(self, parameter: str, parameter_idx: Optional[int] = None) -> Any:
         """Get a parameter from a FlorisModel object.
 
         Args:
-            param (List[str]): A list of keys to traverse the FlorisModel dictionary.
-            param_idx (Optional[int], optional): The index to get the value at. Defaults to None.
-                If None, the entire parameter is returned.
+            parameter (str): The wake parameter to get.
+            parameter_idx (Optional[int], optional): The index to get the value at.
+                Defaults to None. If None, the entire parameter is returned.
 
         Returns:
             Any: The value of the parameter.
         """
         fm_dict = self.fmodel_unexpanded.core.as_dict()
 
-        if param_idx is None:
-            return nested_get(fm_dict, param)
+        if parameter_idx is None:
+            return nested_get(fm_dict, ["wake", "parameters", parameter])
         else:
-            return nested_get(fm_dict, param)[param_idx]
+            return nested_get(fm_dict, ["wake", "parameters", parameter])[parameter_idx]
 
-    def set_param(self, param: List[str], value: Any, param_idx: Optional[int] = None):
+    def set_wake_parameter(self, parameter: str, value: Any, parameter_idx: Optional[int] = None):
         """Set a parameter in a FlorisModel object.
 
         Args:
-            param (List[str]): A list of keys to traverse the FlorisModel dictionary.
+            parameter (str): The wake parameter to set.
             value (Any): The value to set.
-            param_idx (Optional[int], optional): The index to set the value at. Defaults to None.
+            parameter_idx (Optional[int], optional): The index to set the value at.
+                Defaults to None.
         """
         fm_dict_mod = self.fmodel_unexpanded.core.as_dict()
-        nested_set(fm_dict_mod, param, value, param_idx)
+        nested_set(fm_dict_mod, ["wake", "parameters", parameter], value, parameter_idx)
         self.fmodel_unexpanded.__init__(fm_dict_mod, **self.fmodel_unexpanded.secondary_init_kwargs)
         self.set()
 

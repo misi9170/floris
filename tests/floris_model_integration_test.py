@@ -300,7 +300,7 @@ def test_disable_turbines():
     # Set to mixed turbine model
     with open(
         str(
-            fmodel.core.as_dict()["farm"]["turbine_library_path"]
+            fmodel.core.as_dict()["farm"]["external_turbine_library_path"]
             / (fmodel.core.as_dict()["farm"]["turbine_type"][0] + ".yaml")
         )
     ) as t:
@@ -728,64 +728,64 @@ def test_get_powers_with_wind_data():
 
     assert np.allclose(farm_power_weighted, fmodel.get_turbine_powers()[:,:,:-1].sum(axis=2))
 
-def test_get_and_set_param():
+def test_get_and_set_wake_parameter():
     fmodel = FlorisModel(configuration=YAML_INPUT)
 
-    # Get the wind speed
-    wind_speeds = fmodel.get_param(['flow_field', 'wind_speeds'])
-    assert wind_speeds[0] == 8.0
-
-    # Set the wind speed
-    fmodel.set_param(['flow_field', 'wind_speeds'], 10.0, param_idx=0)
-    wind_speed = fmodel.get_param(['flow_field', 'wind_speeds'], param_idx=0  )
-    assert wind_speed == 10.0
-
-    # Repeat with wake parameter
-    fmodel.set_param(['wake', 'wake_velocity_parameters', 'gauss', 'alpha'], 0.1)
-    alpha = fmodel.get_param(['wake', 'wake_velocity_parameters', 'gauss', 'alpha'])
+    # Wake parameter
+    fmodel.set_wake_parameter("alpha", 0.1)
+    alpha = fmodel.get_wake_parameter("alpha")
     assert alpha == 0.1
 
 def test_get_operation_model():
     fmodel = FlorisModel(configuration=YAML_INPUT)
-    assert fmodel.get_operation_model() == "cosine-loss"
+    assert fmodel.get_operation_model()[0].__class__.__name__ == "CosineLossTurbine"
 
 def test_set_operation_model():
 
     fmodel = FlorisModel(configuration=YAML_INPUT)
     fmodel.set_operation_model("simple-derating")
-    assert fmodel.get_operation_model() == "simple-derating"
+    assert fmodel.get_operation_model()[0].__class__.__name__ == "SimpleDeratingTurbine"
 
     reference_wind_height = fmodel.reference_wind_height
 
     # Check multiple turbine types works
     fmodel.set(layout_x=[0, 0], layout_y=[0, 1000])
     fmodel.set_operation_model(["simple-derating", "cosine-loss"])
-    assert fmodel.get_operation_model() == ["simple-derating", "cosine-loss"]
+    assert (
+        [om.__class__.__name__ for om in fmodel.get_operation_model()]
+        == ["SimpleDeratingTurbine", "CosineLossTurbine"]
+    )
 
     # Check that setting a single turbine type, and then altering the operation model works
     fmodel.set(layout_x=[0, 0], layout_y=[0, 1000])
     fmodel.set(turbine_type=["nrel_5MW"], reference_wind_height=reference_wind_height)
     fmodel.set_operation_model("simple-derating")
-    assert fmodel.get_operation_model() == "simple-derating"
+    assert fmodel.get_operation_model()[0].__class__.__name__ == "SimpleDeratingTurbine"
 
     # Check that setting over mutliple turbine types works
     fmodel.set(turbine_type=["nrel_5MW", "iea_15MW"], reference_wind_height=reference_wind_height)
     fmodel.set_operation_model("simple-derating")
-    assert fmodel.get_operation_model() == "simple-derating"
+    assert fmodel.get_operation_model()[0].__class__.__name__ == "SimpleDeratingTurbine"
     fmodel.set_operation_model(["simple-derating", "cosine-loss"])
-    assert fmodel.get_operation_model() == ["simple-derating", "cosine-loss"]
+    assert (
+        [om.__class__.__name__ for om in fmodel.get_operation_model()]
+        == ["SimpleDeratingTurbine", "CosineLossTurbine"]
+    )
 
     # Check setting over single turbine type; then updating layout works
     fmodel.set(turbine_type=["nrel_5MW"], reference_wind_height=reference_wind_height)
     fmodel.set_operation_model("simple-derating")
     fmodel.set(layout_x=[0, 0, 0], layout_y=[0, 1000, 2000])
-    assert fmodel.get_operation_model() == "simple-derating"
+    assert fmodel.get_operation_model()[0].__class__.__name__ == "SimpleDeratingTurbine"
 
     # Check that setting for multiple turbine types and then updating layout breaks
     fmodel.set(layout_x=[0, 0], layout_y=[0, 1000])
     fmodel.set(turbine_type=["nrel_5MW"], reference_wind_height=reference_wind_height)
     fmodel.set_operation_model(["simple-derating", "cosine-loss"])
-    assert fmodel.get_operation_model() == ["simple-derating", "cosine-loss"]
+    assert (
+        [om.__class__.__name__ for om in fmodel.get_operation_model()]
+        == ["SimpleDeratingTurbine", "CosineLossTurbine"]
+    )
     with pytest.raises(ValueError):
         fmodel.set(layout_x=[0, 0, 0], layout_y=[0, 1000, 2000])
 
